@@ -1,9 +1,10 @@
 import { fromPairs } from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectMenu } from '../../actions/index';
+import { modifyNodeProperty,  addNodeToFlow } from '../../actions/index';
 import NodeCanvas from './nodeChoices';
 import Muuri from 'muuri';
+import NodePropertyBox from '../templates/nodePropertyBox';
 
 const nodeChoiceRenderMap = {
     'dq': ['dq1', 'dq2'],
@@ -15,7 +16,7 @@ class MainMenu extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = { 'menuClicked': false, 'prevEl': null, 'nodeChoices': null, 'selectMenu': 'about' }
+        this.state = { 'menuClicked': false, 'prevEl': null, 'nodeChoices': null, 'selectMenu': 'about', 'dropAreaNodes': [], 'selectedNode': null}
     }
 
     menuClick = (e) => {
@@ -23,92 +24,53 @@ class MainMenu extends React.Component {
             this.state.prevEl.classList.remove('clicked')
             e.target.classList.add("clicked")
             this.setState({ 'prevEl': e.target, 'selectMenu': e.target.getAttribute('topic') }, () => { this.getNodeChoices(this.state.selectMenu) })
-            
+
         }
     }
 
-    getNodeChoices = (selectMenu = 'about', firstRender=false) => {
-        console.log(this.state.selectMenu)
-        let randomNum = String(Math.random())
+    selectNodeOnCanvas = (e) => {
+        let uniqueID = e.target.getAttribute('id')
+        this.setState({selectedNode: uniqueID})
+    }
+
+    nodeClickFromMenu = (e) => {
+        let uniqueID = Math.floor(Math.random() * 100000) + Math.random().toString(36).substr(2, 5)
+        let nodeProperty = e.target.getAttribute('node-property')
+        const initialNodeProp = {}
+        uniqueID = nodeProperty + "-" + String(uniqueID)
+        initialNodeProp[uniqueID] = {} //initilize an empty node property object
+        
+        let nodes =
+            <div key={uniqueID} className="node-item onCanvas">
+                <button id={uniqueID}  onClick={this.selectNodeOnCanvas} node-property={nodeProperty} className="top-node ui primary basic button">
+                    {nodeProperty}
+                </button>
+            </div>
+        
+        let newNodes = this.state.dropAreaNodes.concat(nodes)
+        this.setState({ dropAreaNodes: newNodes})
+        console.log('this is the intial node prop', initialNodeProp)
+        this.props.addNodeToFlow(initialNodeProp)
+    }
+
+    getNodeChoices = (selectMenu = 'about', firstRender = false) => {
         let nodeChoiceMap = nodeChoiceRenderMap[selectMenu].map((e) => {
+            // let nodeProp = e + "-prop"
             return (
-                <div id = {randomNum} className="item" node-property="test2" >
-                    <div className="item-content">
-                        <button node-property="test2" className="top-node ui primary basic button">
-                            {e}
-                        </button>
-                    </div>
+                <div key={e} className="node-item">
+                    <button  onClick={this.nodeClickFromMenu} node-property={e} className="top-node ui primary basic button">
+                        {e}
+                    </button>
                 </div>
             )
         })
-        
-        if (firstRender) {
-            this.setState({ 'nodeChoices': nodeChoiceMap }, () => {this.initMuuriCanvas()})
-        } else {
-            this.setState({ 'nodeChoices': nodeChoiceMap }, () => {
-                console.log(nodeChoiceRenderMap[selectMenu])
-                console.log(nodeChoiceMap)})
-        }
-        
-        
 
-        // return nodeChoiceMap
+
+        this.setState({ 'nodeChoices': nodeChoiceMap })
     }
 
     componentDidMount() {
         this.setState({ 'prevEl': document.querySelector('.menu-btn.clicked') }, () => { this.getNodeChoices('about', true) })
-    }
-
-    initMuuriCanvas = () => {
-        let cloneMap = {}
-
-        let gridCanvas = new Muuri('#drop-area', {
-            dragEnabled: true,
-            dragSort: function () {
-                return [gridCanvas]
-            }
-        }).on('receive', (data) => {
-            if (cloneMap[data.item._id]){
-                delete cloneMap[data.item._id]
-            }
-            cloneMap[data.item._id] = {
-                item: data.item,
-                grid: data.fromGrid,
-                index: data.fromIndex,
-                fromOtherGrid: true
-            }
-        }).on('dragReleaseStart', (item) => {
-            let cloneData = cloneMap[item._id]
-            if (cloneMap[item._id]) {
-                delete cloneMap[item._id]
-                const nodeMap = gridCanvas.getItems().map((e) => { return e._element.getAttribute('node-property') })                
-                // const cloneData = cloneMap[item._id]
-                const cloneEl = cloneData.item.getElement().cloneNode(true)
-                cloneEl.setAttribute('class', 'item');
-                cloneEl.children[0].setAttribute('style', '');
-
-                let items = cloneData.grid.add(cloneEl, {active: true });
-                // cloneData.grid.show(items);
-
-                // this.props.addNode(nodeMap)
-            }
-        })
-
-        // .on('dragInit', (item) => {
-        //     // console.log(item)
-        //     this.onTopNodeClick(item._element, false)
-        // })
-        let gridNodeArea = new Muuri('.grid-container', {
-            dragEnabled: true,
-            dragSort: function () {
-                return [gridCanvas]
-            },
-        })
-
-        // .on('dragInit', (item) => {
-        //     this.onTopNodeClick(item._element, false)
-        // })
-
     }
 
     render() {
@@ -122,13 +84,20 @@ class MainMenu extends React.Component {
                 <div className="grid-container">
                     {this.state.nodeChoices}
                 </div>
-                <h1>{this.state.selectMenu}</h1>
-                {this.state.nodeChoices}
-                <div id="drop-area">
-
+                <div id="node-area-layout">
+                    <div id="drop-area-container">
+                        {this.state.dropAreaNodes}
+                    </div>
+                    <div id="node-property-container">
+                        {this.state.selectedNode !== null ? <NodePropertyBox nodeProperty={this.state.selectedNode} />: ''}
+                    </div>
+                    <div id="macro-generator-container">
+                    </div>
                 </div>
-                {this.state.nodeChoices}
-                {/* {this.state.nodeChoices !== null ? <NodeCanvas /> : ''} */}
+                {/* <div id="drop-area">
+                    
+                </div>
+                {this.state.selectedNode !== null ? <NodePropertyBox nodeProperty={this.state.selectedNode} />: ''} */}
 
             </React.Fragment>
 
@@ -136,5 +105,7 @@ class MainMenu extends React.Component {
     }
 }
 
-
-export default connect(null, { selectMenu })(MainMenu);
+const mapStateToProps = (state) => {
+    return ({mainFlowNodes: state.mainFlowNodes})
+}
+export default connect(null, { addNodeToFlow, modifyNodeProperty })(MainMenu);

@@ -5,28 +5,22 @@
 
 .grid-container {
   display: flex;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #f3f3f3;
 }
 
 .grid-component {
   height: 150px !important;
 }
 
-#drop-area {
-  position: relative;
-  border: 2px black solid;
-  height: 500px !important;
-  width: 700px;
+.node-item {
+  width: 80px;
+  height: 80px;
+  margin-right: 15px;
 }
-
-.item, .item-placeholder {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  margin: 0px 15px;
-}
-
-.item-placeholder {
-  z-index: -1;
+.node-item.onCanvas {
+  margin-bottom: 15px;
 }
 
 .item-content {
@@ -58,7 +52,7 @@ button {
   display: flex;
   height: 27px;
   background-color: #80397b;
-  margin-bottom: 20px;
+  margin-top: 5px;
 }
 
 .menu-btn {
@@ -77,12 +71,58 @@ button {
 
 body {
   margin-top: 10px;
+  min-width: 320px !important;
 }
 
 #root {
   width: 100%;
   height: 100%;
   margin: 0px 15px;
+}
+
+#drop-area-container {
+  grid-area: nodeDropArea;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px black solid;
+  height: 150px !important;
+  align-content: start;
+}
+
+#node-property-container {
+  grid-area: nodePropertyArea;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  border: 2px black solid;
+}
+
+#macro-generator-container {
+  grid-area: macroGeneratorArea;
+  border: 2px black solid;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#node-area-layout {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  grid-template-rows: 150px minmax(250px, auto);
+}
+
+.node-prop.tab-lbl {
+  font-size: 16px;
+}
+
+.ui.menu .item {
+  font-weight: 700 !important;
 }
 
 /*# sourceMappingURL=header.css.map */

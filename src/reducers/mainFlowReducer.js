@@ -2,11 +2,11 @@ const INITIAL_STATE = {
     mainFlow : null
 }
 
-const mainFlowReducer = (state=INITIAL_STATE, action) => {
+const mainFlowReducer = (state={}, action) => {
     switch (action.type) {
         case 'ADD_NODE':
             return {...state, ...action.payload}
-        case 'EDIT_NODE':
+        case 'MODIFY_NODE_PROPERTY':
             return {...state, ...action.payload}
         default:
             return state
