@@ -1,10 +1,14 @@
-import { fromPairs } from 'lodash';
+// import { fromPairs } from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { modifyNodeProperty,  addNodeToFlow } from '../../actions/index';
-import NodeCanvas from './nodeChoices';
-import Muuri from 'muuri';
+import { modifyNodeProperty, addNodeToFlow, parseNodeRequest } from '../../actions/index';
 import NodePropertyBox from '../templates/nodePropertyBox';
+import { Button } from 'semantic-ui-react';
+import hljs from 'highlight.js';
+import hljsVba from 'highlight.js/lib/vba';
+import 'highlight.js/styles/github.css';
+// console.log(hljs)
+
 
 const nodeChoiceRenderMap = {
     'dq': ['dq1', 'dq2'],
@@ -16,7 +20,9 @@ class MainMenu extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = { 'menuClicked': false, 'prevEl': null, 'nodeChoices': null, 'selectMenu': 'about', 'dropAreaNodes': [], 'selectedNode': null}
+        this.state = { 'menuClicked': false, 'prevEl': null, 'nodeChoices': null, 'selectMenu': 'about', 'dropAreaNodes': [], 'selectedNode': null }
+        hljs.initHighlightingOnLoad();
+        hljs.registerLanguage("vba", hljsVba);
     }
 
     menuClick = (e) => {
@@ -30,7 +36,7 @@ class MainMenu extends React.Component {
 
     selectNodeOnCanvas = (e) => {
         let uniqueID = e.target.getAttribute('id')
-        this.setState({selectedNode: uniqueID})
+        this.setState({ selectedNode: uniqueID })
     }
 
     nodeClickFromMenu = (e) => {
@@ -39,18 +45,23 @@ class MainMenu extends React.Component {
         const initialNodeProp = {}
         uniqueID = nodeProperty + "-" + String(uniqueID)
         initialNodeProp[uniqueID] = {} //initilize an empty node property object
-        
+
         let nodes =
             <div key={uniqueID} className="node-item onCanvas">
-                <button id={uniqueID}  onClick={this.selectNodeOnCanvas} node-property={nodeProperty} className="top-node ui primary basic button">
+                <button id={uniqueID} onClick={this.selectNodeOnCanvas} node-property={nodeProperty} className="top-node ui primary basic button">
                     {nodeProperty}
                 </button>
             </div>
-        
+
         let newNodes = this.state.dropAreaNodes.concat(nodes)
-        this.setState({ dropAreaNodes: newNodes})
+        this.setState({ dropAreaNodes: newNodes })
         console.log('this is the intial node prop', initialNodeProp)
         this.props.addNodeToFlow(initialNodeProp)
+    }
+
+    onClickParseCanvasNodes = () => {
+        this.props.parseNodeRequest()
+        // console.log('this is the parsed node macro', this.props.parsedNodeMacro)
     }
 
     getNodeChoices = (selectMenu = 'about', firstRender = false) => {
@@ -58,7 +69,7 @@ class MainMenu extends React.Component {
             // let nodeProp = e + "-prop"
             return (
                 <div key={e} className="node-item">
-                    <button  onClick={this.nodeClickFromMenu} node-property={e} className="top-node ui primary basic button">
+                    <button onClick={this.nodeClickFromMenu} node-property={e} className="top-node ui primary basic button">
                         {e}
                     </button>
                 </div>
@@ -70,6 +81,7 @@ class MainMenu extends React.Component {
     }
 
     componentDidMount() {
+        
         this.setState({ 'prevEl': document.querySelector('.menu-btn.clicked') }, () => { this.getNodeChoices('about', true) })
     }
 
@@ -87,17 +99,24 @@ class MainMenu extends React.Component {
                 <div id="node-area-layout">
                     <div id="drop-area-container">
                         {this.state.dropAreaNodes}
+
+                        <Button onClick={this.onClickParseCanvasNodes}>
+                            Submit
+                        </Button>
+
                     </div>
                     <div id="node-property-container">
-                        {this.state.selectedNode !== null ? <NodePropertyBox nodeProperty={this.state.selectedNode} />: ''}
+                        {this.state.selectedNode !== null ? <NodePropertyBox nodeProperty={this.state.selectedNode} /> : ''}
                     </div>
-                    <div id="macro-generator-container">
+                    <div id="macro-generator-container" >
+                        <pre>
+                            <code className="vba" >
+                                {this.props.parsedNodeMacro}
+                            </code>
+                        </pre>
+
                     </div>
                 </div>
-                {/* <div id="drop-area">
-                    
-                </div>
-                {this.state.selectedNode !== null ? <NodePropertyBox nodeProperty={this.state.selectedNode} />: ''} */}
 
             </React.Fragment>
 
@@ -106,6 +125,10 @@ class MainMenu extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return ({mainFlowNodes: state.mainFlowNodes})
+    return ({
+        mainFlowNodes: state.mainFlowNodes,
+        parsedNodeMacro: state.parsedNodeMacro
+    })
 }
-export default connect(null, { addNodeToFlow, modifyNodeProperty })(MainMenu);
+
+export default connect(mapStateToProps, { addNodeToFlow, modifyNodeProperty, parseNodeRequest })(MainMenu);
