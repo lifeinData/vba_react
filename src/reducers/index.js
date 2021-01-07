@@ -4,11 +4,13 @@ import nodePropertyReducer from './nodePropertyReducer';
 import selectedNodeReducer from './selectedNodeReducer';
 import selectedMenuOptionReducer from './selectedMenuOptionReducer';
 import parseNodeRequest from './nodeParserReducer';
+import nodePropertyDescrip from './nodePropertyDescripReducer';
 
 export default combineReducers({
   'mainFlowNodes': mainFlowReducer,
   'nodeProperty': nodePropertyReducer,
   'selectedNode': selectedNodeReducer,
   'selectedMenuOptionReducer': selectedMenuOptionReducer,
-  'parsedNodeMacro': parseNodeRequest
+  'parsedNodeMacro': parseNodeRequest,
+  'nodePropertyDescrip': nodePropertyDescrip
 });

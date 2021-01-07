@@ -106,7 +106,7 @@ class MainMenu extends React.Component {
 
                     </div>
                     <div id="node-property-container">
-                        {this.state.selectedNode !== null ? <NodePropertyBox nodeProperty={this.state.selectedNode} /> : ''}
+                        <NodePropertyBox nodeProperty={this.state.selectedNode} />
                     </div>
                     <div id="macro-generator-container" >
                         <pre>

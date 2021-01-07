@@ -80,6 +80,12 @@ body {
   margin: 0px 15px;
 }
 
+#node-area-layout {
+  display: grid;
+  grid-template-columns: 4fr 7fr;
+  grid-template-rows: 150px minmax(250px, auto);
+}
+
 #drop-area-container {
   grid-area: nodeDropArea;
   grid-column-start: 1;
@@ -100,6 +106,9 @@ body {
   grid-row-start: 2;
   grid-row-end: 3;
   border: 2px black solid;
+  padding-top: 4px;
+  padding-left: 1px;
+  padding-right: 5px;
 }
 
 #macro-generator-container {
@@ -111,18 +120,17 @@ body {
   grid-row-end: 3;
 }
 
-#node-area-layout {
-  display: grid;
-  grid-template-columns: 2fr 5fr;
-  grid-template-rows: 150px minmax(250px, auto);
-}
-
 .node-prop.tab-lbl {
   font-size: 16px;
 }
 
 .ui.menu .item {
   font-weight: 700 !important;
+}
+
+.disabled {
+  pointer-events: none;
+  color: darkgrey;
 }
 
 /*# sourceMappingURL=header.css.map */

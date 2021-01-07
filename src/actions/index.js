@@ -73,3 +73,16 @@ export const parseNodeRequest = () => {
         hljs.registerLanguage("vba", hljsVba);
       }
 }
+
+export const mouseOverProperty = (propertyType) => {
+    return {
+        type: "MOUSEOVER_PROPERTY",
+        payload: propertyType
+    }
+}
+
+export const mouseOutOfProperty = (propertyType) => {
+    return {
+        type: "MOUSEOUT_PROPERTY"
+    }
+}
