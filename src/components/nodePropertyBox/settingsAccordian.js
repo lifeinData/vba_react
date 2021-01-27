@@ -1,14 +1,18 @@
-import { Accordion, Icon } from 'semantic-ui-react';
+import { Accordion, Icon, Button, Checkbox, Form, Tab } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { Formik } from 'formik';
 import React from 'react';
-import { mouseOverProperty, mouseOutOfProperty } from '../../actions'
+import { mouseOverProperty, mouseOutOfProperty, modifyNodeProperty } from '../../actions'
+import SettingsFields from './settingFields'
 
 class settingsAccordian extends React.Component {
-
+    //settings accordian that takes into the settings fields and property description
     constructor(props) {
         super(props)
         this.state = { activeIndex: [0] }
     }
+
+
 
     handleTitleClick = (e, titleProps) => {
         const index = titleProps.index
@@ -21,24 +25,19 @@ class settingsAccordian extends React.Component {
             // let activeIndexes = activeIndexAry.concat(index) 
             this.setState({ activeIndex: activeIndexAry.concat(index) })
         }
-        console.log('this is the state', this.state)
+
     }
 
-    onMouseEnter = (e) => {
-        // console.log(e)
-        this.props.mouseOverProperty(e.target.parentNode.id)
-    }
+    getSettingsAccord = () => {
+        if (this.props.nodeProperty == null) {
+            return (
+                <Tab.Pane></Tab.Pane>
+            )
+        }
 
-    onMouseLeave = (e) => {
-        this.props.mouseOutOfProperty()
-    }
-
-    render() {
         return (
-            <Accordion
-                // defaultActiveIndex={[0, 2]}
-                // panels={this.panels}
 
+            <Accordion
                 exclusive={false}
                 fluid
                 styled
@@ -55,11 +54,12 @@ class settingsAccordian extends React.Component {
                         index={0}
                         className="test-header"
                     >
-                        <Icon name='dropdown' />
+                    
+                    <Icon name='dropdown' />
                         Insert Columns
                     </Accordion.Title>
                     <Accordion.Content className="test-content" active={this.state.activeIndex.includes(0)}>
-                        Insert columns here
+                        <SettingsFields nodeProperty={this.props.nodeProperty}/>
                     </Accordion.Content>
                 </div>
 
@@ -84,9 +84,37 @@ class settingsAccordian extends React.Component {
 
             </Accordion>
         )
+    }
+
+
+    onMouseEnter = (e) => {
+        // console.log(e)
+        this.props.mouseOverProperty(e.target.parentNode.id)
+    }
+
+    onMouseLeave = (e) => {
+        this.props.mouseOutOfProperty()
+    }
+
+    render() {
+        return (
+            this.getSettingsAccord()
+        )
 
     }
 }
 
 
-export default connect(null, {mouseOverProperty , mouseOutOfProperty})(settingsAccordian);
+const mapStateToProps = (state, ownProps) => {
+    // console.log(state, ownProps)
+    // return { test: 'test' }
+    if (ownProps.nodeProperty == null) {
+        return { nodeProperties: null }
+    } else {
+        
+        return { nodeProperties: state.mainFlowNodes[ownProps.nodeProperty] }
+    }
+
+}
+
+export default connect(mapStateToProps, { mouseOverProperty, mouseOutOfProperty })(settingsAccordian);

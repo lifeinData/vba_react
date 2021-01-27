@@ -1,7 +1,7 @@
 // import { fromPairs } from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { modifyNodeProperty, addNodeToFlow, parseNodeRequest } from '../../actions/index';
+import { addNodeToFlow, parseNodeRequest } from '../../actions/index';
 import NodePropertyBox from '../templates/nodePropertyBox';
 import { Button } from 'semantic-ui-react';
 import hljs from 'highlight.js';
@@ -11,9 +11,9 @@ import 'highlight.js/styles/github.css';
 
 
 const nodeChoiceRenderMap = {
-    'dq': ['dq1', 'dq2'],
-    'columnModify': ['cm1', 'cm2'],
-    'about': ['about1', 'about2']
+    'dq': [{abbrev:'dqNum', full:'Numeric DQ Report'}, {abbrev:'dqCate', full:'Categorical DQ Report'}],
+    'columnModify': [{abbrev:'colMod', full:'Column Modify Filler'}],
+    'about': [{abbrev:'about', full:'about Filler'}]
 };
 
 class MainMenu extends React.Component {
@@ -68,9 +68,9 @@ class MainMenu extends React.Component {
         let nodeChoiceMap = nodeChoiceRenderMap[selectMenu].map((e) => {
             // let nodeProp = e + "-prop"
             return (
-                <div key={e} className="node-item">
-                    <button onClick={this.nodeClickFromMenu} node-property={e} className="top-node ui primary basic button">
-                        {e}
+                <div key={e['abbrev']} className="node-item">
+                    <button onClick={this.nodeClickFromMenu} node-property={e['abbrev']} className="top-node ui primary basic button">
+                        {e['full']}
                     </button>
                 </div>
             )
@@ -105,9 +105,11 @@ class MainMenu extends React.Component {
                         </Button>
 
                     </div>
+
                     <div id="node-property-container">
                         <NodePropertyBox nodeProperty={this.state.selectedNode} />
                     </div>
+
                     <div id="macro-generator-container" >
                         <pre>
                             <code className="vba" >
@@ -131,4 +133,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, { addNodeToFlow, modifyNodeProperty, parseNodeRequest })(MainMenu);
+export default connect(mapStateToProps, { addNodeToFlow, parseNodeRequest })(MainMenu);
