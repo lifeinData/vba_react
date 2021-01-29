@@ -3,44 +3,46 @@ import { Accordion, Icon, Button, Checkbox, Form, Tab } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { modifyNodeProperty } from '../../actions'
 import React from 'react';
+import ColumnDropDown from './data_column_components/columnDropDownList'
 
 class settingFields extends React.Component {
     
     render() {
         console.log(this.props.nodeProperties)
         return (
+            <React.Fragment>
+                <Formik
+                    enableReinitialize={true}
+                    initialValues={this.props.nodeProperties}
+                    onSubmit={(values) => {
+                        console.log('these are the values', values)
+                        this.props.modifyNodeProperty(this.props.nodeProperty, values)
+                    }}
+                >
+                    {({ values, handleChange, handleSubmit }) => {
 
-            <Formik
-                enableReinitialize={true}
-                initialValues={this.props.nodeProperties}
-                onSubmit={(values) => {
-                    console.log('these are the values', values)
-                    this.props.modifyNodeProperty(this.props.nodeProperty, values)
-                }}
-            >
-                {({ values, handleChange, handleSubmit }) => {
+                        return (
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Field>
+                                    <input
+                                        id="columns"
+                                        type="text"
+                                        value={values.columns}
+                                        onChange={handleChange}
+                                        className="text-input"
+                                    />
+                                </Form.Field>
 
-                    return (
-                        <Form onSubmit={handleSubmit}>
-                            <Form.Field>
-                                <input
-                                    id="columns"
-                                    type="text"
-                                    value={values.columns}
-                                    onChange={handleChange}
-                                    className="text-input"
-                                />
-                            </Form.Field>
+                                <Button type="submit">
+                                    Submit
+                                </Button>
+                            </Form>
+                        )
 
-                            <Button type="submit">
-                                Submit
-                            </Button>
-                        </Form>
-                    )
-
-                }}
-            </Formik>
-
+                    }}
+                </Formik>
+                <ColumnDropDown />
+            </React.Fragment>
         )
     }
 }

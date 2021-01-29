@@ -66,7 +66,6 @@ class MainMenu extends React.Component {
 
     getNodeChoices = (selectMenu = 'about', firstRender = false) => {
         let nodeChoiceMap = nodeChoiceRenderMap[selectMenu].map((e) => {
-            // let nodeProp = e + "-prop"
             return (
                 <div key={e['abbrev']} className="node-item">
                     <button onClick={this.nodeClickFromMenu} node-property={e['abbrev']} className="top-node ui primary basic button">
