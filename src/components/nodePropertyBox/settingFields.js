@@ -1,12 +1,22 @@
 import { Formik, Field } from 'formik';
 import { Accordion, Icon, Button, Checkbox, Form, Tab } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { modifyNodeProperty } from '../../actions'
+import { modifyNodeProperty, columnDropDownSubmit } from '../../actions'
 import React from 'react';
 import ColumnDropDown from './data_column_components/columnDropDownList'
 
 class settingFields extends React.Component {
-    
+    parseColumnPaste (inputVal) {
+        let tmp_obj = {}
+        let columnAry = inputVal.split('\t')
+        let col;
+        for (col of columnAry) {
+            tmp_obj[col] = 'na'
+        }
+
+        return tmp_obj
+    }
+
     render() {
         console.log(this.props.nodeProperties)
         return (
@@ -15,8 +25,8 @@ class settingFields extends React.Component {
                     enableReinitialize={true}
                     initialValues={this.props.nodeProperties}
                     onSubmit={(values) => {
-                        console.log('these are the values', values)
                         this.props.modifyNodeProperty(this.props.nodeProperty, values)
+                        this.props.columnDropDownSubmit(this.parseColumnPaste(values.columns))
                     }}
                 >
                     {({ values, handleChange, handleSubmit }) => {
@@ -60,4 +70,4 @@ const mapStateToProps = (state, ownProps) => {
 
 }
 
-export default connect(mapStateToProps, { modifyNodeProperty })(settingFields);
+export default connect(mapStateToProps, { modifyNodeProperty, columnDropDownSubmit })(settingFields);

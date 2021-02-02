@@ -83,3 +83,10 @@ export const mouseOutOfProperty = (propertyType) => {
         type: "MOUSEOUT_PROPERTY"
     }
 }
+
+export const columnDropDownSubmit = (columnList) => {
+    return {
+        type: "COLUMN_LIST_SUBMIT",
+        payload: columnList
+    }
+}
