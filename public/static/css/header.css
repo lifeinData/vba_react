@@ -14,15 +14,6 @@
   height: 150px !important;
 }
 
-.node-item {
-  width: 80px;
-  height: 80px;
-  margin-right: 15px;
-}
-.node-item.onCanvas {
-  margin-bottom: 15px;
-}
-
 .item-content {
   position: relative;
   width: 100%;
@@ -39,11 +30,6 @@ body {
   margin: 20px 0;
 }
 
-.top-node {
-  height: 100%;
-  width: 100%;
-}
-
 button {
   z-index: 100;
 }
@@ -55,20 +41,6 @@ button {
   margin-top: 5px;
 }
 
-.menu-btn {
-  color: white;
-  font-weight: 550;
-  font-size: 16px;
-  height: 100%;
-  width: 170px;
-  text-align: center;
-  cursor: pointer;
-}
-.menu-btn.clicked {
-  background-color: #f3f3f3;
-  color: #80397b;
-}
-
 body {
   margin-top: 10px;
   min-width: 320px !important;
@@ -77,13 +49,49 @@ body {
 #root {
   width: 100%;
   height: 100%;
-  margin: 0px 15px;
+  margin: 0px 5px;
 }
 
 #node-area-layout {
   display: grid;
-  grid-template-columns: 4fr 7fr;
-  grid-template-rows: 150px minmax(250px, auto);
+  grid-template-columns: 2fr 8fr 3fr;
+  grid-template-rows: 100vh;
+}
+#node-area-layout .templateChoices {
+  background-color: #f7f7f7;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+#node-area-layout .templateChoices .menu-header {
+  font-weight: 550;
+  font-size: 16px;
+  text-align: left;
+  margin: 10px 7px 6px 7px;
+  border-bottom: 2px black solid;
+  cursor: pointer;
+}
+#node-area-layout .templateChoices p {
+  margin: 3px 11px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+#node-area-layout .macro-generateor-container {
+  background-color: #f7f7f7;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+}
+#node-area-layout pre {
+  background-color: #f7f7f7;
+  width: 100%;
+  height: 100vh;
+  margin: 0px;
+}
+#node-area-layout .informationBox {
+  display: flex;
+  flex-direction: column;
 }
 
 #drop-area-container {
@@ -111,13 +119,18 @@ body {
   padding-right: 5px;
 }
 
-#macro-generator-container {
-  grid-area: macroGeneratorArea;
-  border: 2px black solid;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
+#column_dropdown_select {
+  display: flex;
+}
+#column_dropdown_select .radio {
+  margin-left: 9px;
+}
+#column_dropdown_select label {
+  padding-left: 20px;
+}
+#column_dropdown_select p {
+  font-size: 1rem;
+  padding-right: 50px;
 }
 
 .node-prop.tab-lbl {

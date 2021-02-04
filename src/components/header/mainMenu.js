@@ -20,7 +20,10 @@ class MainMenu extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = { 'menuClicked': false, 'prevEl': null, 'nodeChoices': null, 'selectMenu': 'about', 'dropAreaNodes': [], 'selectedNode': null }
+
+        this.state = { 'menuClicked': false, 'prevEl': null, 
+        'reportNodeChoices': this.getNodeChoices('dq'), 'columnModNodeChoices': null, 
+        'selectMenu': 'about', 'dropAreaNodes': [], 'selectedNode': null }
         hljs.initHighlightingOnLoad();
         hljs.registerLanguage("vba", hljsVba);
     }
@@ -65,18 +68,13 @@ class MainMenu extends React.Component {
     }
 
     getNodeChoices = (selectMenu = 'about', firstRender = false) => {
-        let nodeChoiceMap = nodeChoiceRenderMap[selectMenu].map((e) => {
+        return nodeChoiceRenderMap[selectMenu].map((e) => {
             return (
-                <div key={e['abbrev']} className="node-item">
-                    <button onClick={this.nodeClickFromMenu} node-property={e['abbrev']} className="top-node ui primary basic button">
-                        {e['full']}
-                    </button>
-                </div>
+                <p key={e['abbrev']} onClick={this.nodeClickFromMenu} node-property={e['abbrev']} className="node-item">
+                    {e['full']}
+                </p>
             )
         })
-
-
-        this.setState({ 'nodeChoices': nodeChoiceMap })
     }
 
     componentDidMount() {
@@ -87,7 +85,36 @@ class MainMenu extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div id="top-main-menu">
+                <div id="node-area-layout">
+                    <div className="templateChoices">
+                        <p topic="dq" className="menu-header">Data Quality</p>
+                            {this.state.reportNodeChoices}
+                        <p topic="columnModify" className="menu-header">Column Modification</p>
+                        <p topic="about" className="menu-header">About</p>
+                        
+                        <p className="menu-header" onClick={this.onClickParseCanvasNodes}>
+                            Submit
+                        </p>
+
+                    </div>
+                    <div className="macro-generator-container">
+                        <pre>
+                            <code className="vba" >
+                                {this.props.parsedNodeMacro}
+                            </code>
+                        </pre>
+                    </div>
+                    <div className="informationBox">
+                        <div className="templateHistory-cont">
+
+                        </div>
+                        <div className="template-info-cont">
+
+                        </div>
+                    </div>
+                </div>
+
+                {/* <div id="top-main-menu">
                     <p topic="dq" onClick={this.menuClick} className="menu-btn">Data Quality</p>
                     <p topic="columnModify" onClick={this.menuClick} className="menu-btn">Column Modification</p>
                     <p topic="about" onClick={this.menuClick} className="menu-btn clicked">About</p>
@@ -117,7 +144,7 @@ class MainMenu extends React.Component {
                         </pre>
 
                     </div>
-                </div>
+                </div> */}
 
             </React.Fragment>
 

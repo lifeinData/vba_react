@@ -28,7 +28,8 @@ class columnDropDownList extends React.Component {
         let columnDropDown = cols.map((e) => {
             return (
                 <Dropdown.Item key={e} children={
-                    <div style={{display:'flex'}}>
+                    <div id="column_dropdown_select">
+                        <p>{e}</p>
                         <Radio
                             col_tar={e}
                             value='txt'
@@ -61,7 +62,7 @@ class columnDropDownList extends React.Component {
         return (
             <React.Fragment>
                 <Dropdown text="Column Drop Down Choices" 
-                onClick={this.dropDownOnClick} open={this.state.dropDownPersist} onMouseLeave={this.onDropDownLeave}>
+                onClick={this.dropDownOnClick} open={true} onMouseLeave={this.onDropDownLeave}>
                     <Dropdown.Menu>
                         {this.getColumnChoices()}
                     </Dropdown.Menu>
