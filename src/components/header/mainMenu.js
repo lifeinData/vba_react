@@ -7,6 +7,8 @@ import { Button } from 'semantic-ui-react';
 import hljs from 'highlight.js';
 import hljsVba from 'highlight.js/lib/vba';
 import 'highlight.js/styles/github.css';
+import ColumnSettingDropdown from '../column_settings/sectionDropDown';
+
 // console.log(hljs)
 
 
@@ -87,12 +89,12 @@ class MainMenu extends React.Component {
             <React.Fragment>
                 <div id="node-area-layout">
                     <div className="templateChoices">
-                        <p topic="dq" className="menu-header">Data Quality</p>
+                        <p topic="dq" className="menu-header-h1">Data Quality</p>
                             {this.state.reportNodeChoices}
-                        <p topic="columnModify" className="menu-header">Column Modification</p>
-                        <p topic="about" className="menu-header">About</p>
+                        <p topic="columnModify" className="menu-header-h1">Column Modification</p>
+                        <p topic="about" className="menu-header-h1">About</p>
                         
-                        <p className="menu-header" onClick={this.onClickParseCanvasNodes}>
+                        <p className="menu-header-h1" onClick={this.onClickParseCanvasNodes}>
                             Submit
                         </p>
 
@@ -105,10 +107,19 @@ class MainMenu extends React.Component {
                         </pre>
                     </div>
                     <div className="informationBox">
-                        <div className="templateHistory-cont">
 
-                        </div>
                         <div className="template-info-cont">
+                            <p topic="dq" className="menu-header-h1">ABOUT THIS TEMPLATE</p>
+{/*ABOUT THIS TEMPLATE 
+USAGE INFORMATION
+ERROR CHECKS
+REPORT SAMPLE
+*/}
+                        </div>
+                        <div className="template-targetcol-cont">
+                            <ColumnSettingDropdown />
+                        </div>
+                        <div className="template-history-cont">
 
                         </div>
                     </div>

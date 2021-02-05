@@ -27,7 +27,6 @@ class columnDropDownList extends React.Component {
 
         let columnDropDown = cols.map((e) => {
             return (
-                <Dropdown.Item key={e} children={
                     <div id="column_dropdown_select">
                         <p>{e}</p>
                         <Radio
@@ -51,7 +50,6 @@ class columnDropDownList extends React.Component {
                             checked={this.props.columnDropDownSelections[e] == 'na'}
                         />
                     </div> 
-                } />
             )
         })
 
@@ -61,14 +59,9 @@ class columnDropDownList extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Dropdown text="Column Drop Down Choices" 
-                onClick={this.dropDownOnClick} open={true} onMouseLeave={this.onDropDownLeave}>
-                    <Dropdown.Menu>
-                        {this.getColumnChoices()}
-                    </Dropdown.Menu>
-                    
-                </Dropdown>
-                    
+
+                {this.getColumnChoices()}
+
             </React.Fragment>
         )
     }

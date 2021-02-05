@@ -30,10 +30,6 @@ body {
   margin: 20px 0;
 }
 
-button {
-  z-index: 100;
-}
-
 #top-main-menu {
   display: flex;
   height: 27px;
@@ -63,14 +59,6 @@ body {
   height: 100%;
   overflow: auto;
 }
-#node-area-layout .templateChoices .menu-header {
-  font-weight: 550;
-  font-size: 16px;
-  text-align: left;
-  margin: 10px 7px 6px 7px;
-  border-bottom: 2px black solid;
-  cursor: pointer;
-}
 #node-area-layout .templateChoices p {
   margin: 3px 11px;
   margin-bottom: 6px;
@@ -78,7 +66,7 @@ body {
   cursor: pointer;
 }
 #node-area-layout .macro-generateor-container {
-  background-color: #f7f7f7;
+  background-color: #ebebeb;
   width: 100%;
   height: 100vh;
   overflow: auto;
@@ -92,6 +80,60 @@ body {
 #node-area-layout .informationBox {
   display: flex;
   flex-direction: column;
+  background: #f7f7f7;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#node-area-layout .informationBox .template-info-cont {
+  width: max(350px, 96%);
+  background: #fdfdfd;
+  height: 32%;
+  border: 2px #ededed solid;
+  padding: 7px 4px;
+}
+#node-area-layout .informationBox .template-targetcol-cont {
+  width: max(350px, 96%);
+  background: #fdfdfd;
+  height: 32%;
+  border: 2px #ededed solid;
+  padding: 7px 4px;
+}
+#node-area-layout .informationBox .template-targetcol-cont .column-input-form {
+  display: flex;
+  margin: 0px 7px;
+  justify-content: space-between;
+}
+#node-area-layout .informationBox .template-targetcol-cont Button {
+  padding: 4px 7px;
+  height: 37px;
+}
+#node-area-layout .informationBox .template-targetcol-cont .column-input {
+  width: calc(100% - 115px);
+}
+#node-area-layout .informationBox .template-history-cont {
+  width: max(350px, 96%);
+  background: #fdfdfd;
+  height: 32%;
+  border: 2px #ededed solid;
+}
+
+.menu-header-h1 {
+  font-weight: 550;
+  font-size: 16px;
+  text-align: left;
+  margin: 10px 7px 6px 7px;
+  border-bottom: 2px black solid;
+  cursor: pointer;
+}
+
+.menu-header-h2 {
+  color: #6d6d6d !important;
+  font-weight: 550;
+  font-size: 13px;
+  text-align: left;
+  margin: 0px 9px 4px 7px;
+  border-bottom: 1px #6d6d6d solid;
+  padding: 4px 0px !important;
 }
 
 #drop-area-container {
@@ -148,6 +190,23 @@ body {
 
 .text-input {
   width: 100%;
+  margin: 10px 7px 6px 7px;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+     supported by Chrome, Edge, Opera and Firefox */
 }
 
 /*# sourceMappingURL=header.css.map */

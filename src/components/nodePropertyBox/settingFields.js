@@ -44,7 +44,7 @@ class settingFields extends React.Component {
                                 </Form.Field>
 
                                 <Button type="submit">
-                                    Submit
+                                    Add Columns
                                 </Button>
                             </Form>
                         )
