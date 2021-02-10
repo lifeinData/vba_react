@@ -8,6 +8,8 @@ import hljs from 'highlight.js';
 import hljsVba from 'highlight.js/lib/vba';
 import 'highlight.js/styles/github.css';
 import ColumnSettingDropdown from '../column_settings/sectionDropDown';
+import TemplateDisplay from '../template_display_area/templateDisplay';
+import { Resizable } from "re-resizable";
 
 // console.log(hljs)
 
@@ -25,7 +27,7 @@ class MainMenu extends React.Component {
 
         this.state = { 'menuClicked': false, 'prevEl': null, 
         'reportNodeChoices': this.getNodeChoices('dq'), 'columnModNodeChoices': null, 
-        'selectMenu': 'about', 'dropAreaNodes': [], 'selectedNode': null }
+        'selectMenu': 'about', 'dropAreaNodes': [], 'selectedNode': null, 'renderTemplateFlag':false }
         hljs.initHighlightingOnLoad();
         hljs.registerLanguage("vba", hljsVba);
     }
@@ -60,13 +62,13 @@ class MainMenu extends React.Component {
 
         let newNodes = this.state.dropAreaNodes.concat(nodes)
         this.setState({ dropAreaNodes: newNodes })
-        console.log('this is the intial node prop', initialNodeProp)
         this.props.addNodeToFlow(initialNodeProp)
     }
 
-    onClickParseCanvasNodes = () => {
-        this.props.parseNodeRequest()
-        // console.log('this is the parsed node macro', this.props.parsedNodeMacro)
+    onClickGetTemplateCode = () => {
+        if (this.state.renderTemplateFlag){
+            return <TemplateDisplay/>
+        }
     }
 
     getNodeChoices = (selectMenu = 'about', firstRender = false) => {
@@ -94,35 +96,44 @@ class MainMenu extends React.Component {
                         <p topic="columnModify" className="menu-header-h1">Column Modification</p>
                         <p topic="about" className="menu-header-h1">About</p>
                         
-                        <p className="menu-header-h1" onClick={this.onClickParseCanvasNodes}>
-                            Submit
+                        <p className="menu-header-h1" onClick={() => {this.setState({renderTemplateFlag:true})}}>
+                            SUBMIT
                         </p>
 
                     </div>
+                    
                     <div className="macro-generator-container">
-                        <pre>
-                            <code className="vba" >
-                                {this.props.parsedNodeMacro}
-                            </code>
-                        </pre>
+                        {this.onClickGetTemplateCode()}
                     </div>
-                    <div className="informationBox">
+                    
+                    <Resizable 
+                        className="informationBox"
+                        minWidth="344"
+                        maxWidth="677"
+                        enable={{ top:false, right:false, bottom:false, left:true, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
+                    >
+                        {/* <div className="informationBox"> */}
 
-                        <div className="template-info-cont">
-                            <p topic="dq" className="menu-header-h1">ABOUT THIS TEMPLATE</p>
-{/*ABOUT THIS TEMPLATE 
-USAGE INFORMATION
-ERROR CHECKS
-REPORT SAMPLE
-*/}
-                        </div>
-                        <div className="template-targetcol-cont">
-                            <ColumnSettingDropdown />
-                        </div>
-                        <div className="template-history-cont">
+                            <div className="template-info-cont">
+                                <p topic="dq" className="menu-header-h1">ABOUT THIS TEMPLATE</p>
+                            {/*ABOUT THIS TEMPLATE 
+                            USAGE INFORMATION
+                            ERROR CHECKS
+                            REPORT SAMPLE
+                            */}
+                            </div>
 
-                        </div>
-                    </div>
+                            <div className="template-targetcol-cont">
+                                <ColumnSettingDropdown />
+                            </div>
+
+                            <div className="template-history-cont">
+
+                            </div>
+                        {/* </div> */}
+                    </Resizable>
+                   
+                
                 </div>
 
                 {/* <div id="top-main-menu">

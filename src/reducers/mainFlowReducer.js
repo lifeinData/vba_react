@@ -1,5 +1,6 @@
 // reducers for changing the property of the node
 // todo: change later
+
 const INITIAL_STATE = {
     mainFlow : null
 }

@@ -7,7 +7,7 @@ import { Button, Form } from 'semantic-ui-react';
 class insertNewColumn extends React.Component {
     constructor (props) {
         super(props)
-
+        this.state = {initalVal:{columns:''}}
     }
 
     parseColumnPaste (inputVal) {
@@ -25,9 +25,10 @@ class insertNewColumn extends React.Component {
         return (
             <Formik
                     enableReinitialize={true}
-                    initialValues={{columns:''}}
-                    onSubmit={(values) => {
+                    initialValues={this.state.initalVal}
+                    onSubmit={(values, actions) => {
                         this.props.columnDropDownSubmit(this.parseColumnPaste(values.columns))
+                        actions.resetForm({values: ''})
                     }}
             >
                 {({ values, handleChange, handleSubmit }) => {

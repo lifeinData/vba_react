@@ -1,6 +1,8 @@
 import React from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 import InsertNewColumn from './column_settings_sections/insertNewColumn'
+import ColumnChoiceList from './column_settings_sections/currentColumnList'
 
 class sectionDropDown extends React.Component {
     constructor(props){
@@ -21,6 +23,12 @@ class sectionDropDown extends React.Component {
 
     }
     
+    hasColumnChoices = () => {
+        if (Object.keys(this.props.columnChoices).length > 0) {
+            return <ColumnChoiceList />
+        }
+    }
+
     render () {
         return (
         <React.Fragment>
@@ -75,7 +83,7 @@ class sectionDropDown extends React.Component {
                         CURRENT COLUMN LIST
                     </Accordion.Title>
                     <Accordion.Content className="test-content" active={this.state.activeIndex.includes(2)}>
-                        {/* <SettingsFields nodeProperty={this.props.nodeProperty}/> */}
+                        {this.hasColumnChoices()}
                     </Accordion.Content>
                 </div>
 
@@ -88,4 +96,10 @@ class sectionDropDown extends React.Component {
     }   
 }
 
-export default sectionDropDown;
+const mapStateToProps = (state) => {
+    return ({
+        'columnChoices': state.columnChoices
+    })
+}
+
+export default connect(mapStateToProps)(sectionDropDown)

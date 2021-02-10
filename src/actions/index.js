@@ -9,7 +9,6 @@ const getInitialNodeProp = (nodeID) => {
     let nodePropObj = {}
     //bunch of rules here for intiail node property
     let nodeClass = nodeID.split('-')[0]
-    console.log(nodeClass)
     
     if (nodeClass == 'dqNum') {
         nodePropObj[nodeID] = {
@@ -88,5 +87,19 @@ export const columnDropDownSubmit = (columnList) => {
     return {
         type: "COLUMN_LIST_SUBMIT",
         payload: columnList
+    }
+}
+
+export const columnTypeChanged = (newType) => {
+    return {
+        type: 'COLUMN_TYPE_CHANGED',
+        payload: newType
+    }
+}
+
+export const templateFunctionBreakdownSelect = (func_name) => {
+    return {
+        type: 'ADD_HIGHLIGHT_SECTION',
+        payload: func_name
     }
 }

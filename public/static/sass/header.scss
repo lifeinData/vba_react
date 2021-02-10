@@ -10,6 +10,15 @@
     width: 200px;
 }
 
+@mixin info-box-div {
+  width: max(315px, 100%);
+  background: #fdfdfd;
+  flex-basis: 33.33%;
+  border: 2px #ededed solid;
+  margin-bottom: 7px;
+  padding: 7px 4px;
+}
+
 .grid-container {
     display: flex;
     padding-top:8px;
@@ -69,7 +78,7 @@
   #node-area-layout {
     //overall layout
     display: grid;
-    grid-template-columns: 2fr 8fr 3fr;
+    grid-template-columns: 2fr 7fr 2fr;
     grid-template-rows: 100vh;
 
     & .templateChoices {
@@ -86,20 +95,64 @@
       }
     }
 
-    & .macro-generateor-container {
+    & .macro-generator-container {
       background-color:#ebebeb;
       width: 100%;
-      height: 100vh;
-      overflow: auto;
-      
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 8px 8px;
+      overflow: hidden;
+
+      & .function-break-down {
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0px 10px;
+        width: inherit;
+        
+        & p {
+          cursor: pointer;
+          border: 1px black solid;
+          padding: 7px 7px;
+          text-align: center;
+          width: fit-content;
+          margin-right: 8px;
+          border-radius: 15px;
+
+          &:last-child {
+            margin-bottom: 14px;
+          }
+        }
+
+      }
+
+      & .inner-cont {
+        background-color: white;
+        width: 100%;
+      }
+
+      & .template-funcs {
+        display: flex;
+        
+
+
+      }
+
+      & pre {
+        width: inherit;
+        margin: 0px;
+        margin-top: 12px;
+        overflow: auto;
+        & code {
+          background-color: white;
+          & .section {
+            background-color: aqua;
+          }
+        }
+      }
     }
 
-    & pre {
-      background-color: #f7f7f7;
-      width: 100%;
-      height: 100vh;
-      margin: 0px;
-    }
+
     
     & .informationBox {
       display: flex;
@@ -107,22 +160,18 @@
       background:#f7f7f7;
       justify-content: space-evenly;
       align-items: center;
+      padding: 8px 8px;
+      overflow: auto;
+      width: 100%;
       
         & .template-info-cont {
-          width: max(350px, 96%);
-          background: #fdfdfd;
-          height: 32%;
-          border: 2px #ededed solid;
-          padding: 7px 4px;
+          @include info-box-div;
         }
         
         & .template-targetcol-cont {
-          width: max(350px, 96%);
-          background: #fdfdfd;
-          height: 32%;
-          border: 2px #ededed solid;
-          padding: 7px 4px;
-
+            @include info-box-div;
+            overflow: auto;
+          
           & .column-input-form {
             display: flex;
             margin: 0px 7px;
@@ -137,20 +186,32 @@
           & .column-input {
             width: calc(100% - 115px);
           }
+
+          & .column_choices_list {
+            display: flex;
+            margin: 0px 7px;
+            justify-content: space-between;
+
+            & .drop-down-cont {
+              width: fit-content;
+            }
+
+            & p {
+              width: fit-content;
+              margin-bottom: 8px;
+            }
+          }
         }
 
         & .template-history-cont {
-          width: max(350px, 96%);
-          background: #fdfdfd;
-          height: 32%;
-          border: 2px #ededed solid;
+          @include info-box-div;
         }
     }
   }
 
   .menu-header-h1 {
     font-weight: 550;
-    font-size:16px;
+    font-size:16px !important;
     text-align: left;
     margin: 10px 7px 6px 7px;
     border-bottom: 2px black solid;
@@ -160,7 +221,7 @@
   .menu-header-h2 {
     color:#6d6d6d !important;
     font-weight: 550;
-    font-size:13px;
+    font-size:13px !important;
     text-align: left;
     margin: 0px 9px 4px 7px;
     border-bottom: 1px #6d6d6d solid;
@@ -196,7 +257,7 @@
   }
 
 
-  #column_dropdown_select {
+  #column_choices_list {
     display: flex;
     & .radio {
       margin-left: 9px;

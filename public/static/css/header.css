@@ -50,7 +50,7 @@ body {
 
 #node-area-layout {
   display: grid;
-  grid-template-columns: 2fr 8fr 3fr;
+  grid-template-columns: 2fr 7fr 2fr;
   grid-template-rows: 100vh;
 }
 #node-area-layout .templateChoices {
@@ -65,17 +65,51 @@ body {
   font-size: 14px;
   cursor: pointer;
 }
-#node-area-layout .macro-generateor-container {
+#node-area-layout .macro-generator-container {
   background-color: #ebebeb;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 8px 8px;
+  overflow: hidden;
+}
+#node-area-layout .macro-generator-container .function-break-down {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0px 10px;
+  width: inherit;
+}
+#node-area-layout .macro-generator-container .function-break-down p {
+  cursor: pointer;
+  border: 1px black solid;
+  padding: 7px 7px;
+  text-align: center;
+  width: fit-content;
+  margin-right: 8px;
+  border-radius: 15px;
+}
+#node-area-layout .macro-generator-container .function-break-down p:last-child {
+  margin-bottom: 14px;
+}
+#node-area-layout .macro-generator-container .inner-cont {
+  background-color: white;
+  width: 100%;
+}
+#node-area-layout .macro-generator-container .template-funcs {
+  display: flex;
+}
+#node-area-layout .macro-generator-container pre {
+  width: inherit;
+  margin: 0px;
+  margin-top: 12px;
   overflow: auto;
 }
-#node-area-layout pre {
-  background-color: #f7f7f7;
-  width: 100%;
-  height: 100vh;
-  margin: 0px;
+#node-area-layout .macro-generator-container pre code {
+  background-color: white;
+}
+#node-area-layout .macro-generator-container pre code .section {
+  background-color: aqua;
 }
 #node-area-layout .informationBox {
   display: flex;
@@ -83,20 +117,26 @@ body {
   background: #f7f7f7;
   justify-content: space-evenly;
   align-items: center;
+  padding: 8px 8px;
+  overflow: auto;
+  width: 100%;
 }
 #node-area-layout .informationBox .template-info-cont {
-  width: max(350px, 96%);
+  width: max(315px, 100%);
   background: #fdfdfd;
-  height: 32%;
+  flex-basis: 33.33%;
   border: 2px #ededed solid;
+  margin-bottom: 7px;
   padding: 7px 4px;
 }
 #node-area-layout .informationBox .template-targetcol-cont {
-  width: max(350px, 96%);
+  width: max(315px, 100%);
   background: #fdfdfd;
-  height: 32%;
+  flex-basis: 33.33%;
   border: 2px #ededed solid;
+  margin-bottom: 7px;
   padding: 7px 4px;
+  overflow: auto;
 }
 #node-area-layout .informationBox .template-targetcol-cont .column-input-form {
   display: flex;
@@ -110,16 +150,30 @@ body {
 #node-area-layout .informationBox .template-targetcol-cont .column-input {
   width: calc(100% - 115px);
 }
+#node-area-layout .informationBox .template-targetcol-cont .column_choices_list {
+  display: flex;
+  margin: 0px 7px;
+  justify-content: space-between;
+}
+#node-area-layout .informationBox .template-targetcol-cont .column_choices_list .drop-down-cont {
+  width: fit-content;
+}
+#node-area-layout .informationBox .template-targetcol-cont .column_choices_list p {
+  width: fit-content;
+  margin-bottom: 8px;
+}
 #node-area-layout .informationBox .template-history-cont {
-  width: max(350px, 96%);
+  width: max(315px, 100%);
   background: #fdfdfd;
-  height: 32%;
+  flex-basis: 33.33%;
   border: 2px #ededed solid;
+  margin-bottom: 7px;
+  padding: 7px 4px;
 }
 
 .menu-header-h1 {
   font-weight: 550;
-  font-size: 16px;
+  font-size: 16px !important;
   text-align: left;
   margin: 10px 7px 6px 7px;
   border-bottom: 2px black solid;
@@ -129,7 +183,7 @@ body {
 .menu-header-h2 {
   color: #6d6d6d !important;
   font-weight: 550;
-  font-size: 13px;
+  font-size: 13px !important;
   text-align: left;
   margin: 0px 9px 4px 7px;
   border-bottom: 1px #6d6d6d solid;
@@ -161,16 +215,16 @@ body {
   padding-right: 5px;
 }
 
-#column_dropdown_select {
+#column_choices_list {
   display: flex;
 }
-#column_dropdown_select .radio {
+#column_choices_list .radio {
   margin-left: 9px;
 }
-#column_dropdown_select label {
+#column_choices_list label {
   padding-left: 20px;
 }
-#column_dropdown_select p {
+#column_choices_list p {
   font-size: 1rem;
   padding-right: 50px;
 }

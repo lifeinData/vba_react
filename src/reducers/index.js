@@ -5,7 +5,8 @@ import selectedNodeReducer from './selectedNodeReducer';
 import selectedMenuOptionReducer from './selectedMenuOptionReducer';
 import parseNodeRequest from './nodeParserReducer';
 import nodePropertyDescrip from './nodePropertyDescripReducer';
-import columnDropDownReducer from './columnDropDownReducer';
+import columnChoicesReducer from './columnChoicesReducer';
+import highlightCodeReducer from './highlightCodeReducer';
 
 export default combineReducers({
   'mainFlowNodes': mainFlowReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   'selectedMenuOptionReducer': selectedMenuOptionReducer,
   'parsedNodeMacro': parseNodeRequest,
   'nodePropertyDescrip': nodePropertyDescrip,
-  'columnDropDownReducer': columnDropDownReducer
+  'columnChoices': columnChoicesReducer,
+  'highlightCodeSelection': highlightCodeReducer
 });

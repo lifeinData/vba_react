@@ -20,8 +20,9 @@ class columnDropDownList extends React.Component {
     }
 
     onRadioClick = (e, d) => {
-        console.log('event: ', e, 'data: ', d)
+        // console.log('event: ', e, 'data: ', d)
     }
+
     getColumnChoices = () => {
         let cols = _.keys(this.props.columnDropDownSelections)
 

@@ -61,7 +61,6 @@ class settingFields extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     // console.log(state, ownProps)
     // return { test: 'test' }
-    console.log('this is hte node property', ownProps)
     if (ownProps.nodeProperty == null) {
         return { nodeProperties: null }
     } else {
