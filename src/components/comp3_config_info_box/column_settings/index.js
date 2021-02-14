@@ -98,7 +98,7 @@ class sectionDropDown extends React.Component {
 
 const mapStateToProps = (state) => {
     return ({
-        'columnChoices': state.columnChoices
+        columnChoices: state.columnChoices
     })
 }
 

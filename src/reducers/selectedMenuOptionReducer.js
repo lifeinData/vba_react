@@ -1,4 +1,4 @@
-const selectedMenuReducer = (state='about', action) => {
+const selectedMenuReducer = (state='overall_descrip', action) => {
     switch (action.type) {
         case 'SELECT_MENU_OPTION':
             return action.payload

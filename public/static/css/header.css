@@ -48,39 +48,38 @@ body {
   margin: 0px 5px;
 }
 
-#node-area-layout {
-  display: grid;
-  grid-template-columns: 2fr 7fr 2fr;
-  grid-template-rows: 100vh;
+#main-app-layout {
+  display: flex;
 }
-#node-area-layout .templateChoices {
+#main-app-layout .templateChoices {
   background-color: #f7f7f7;
-  width: 100%;
-  height: 100%;
+  width: 330px;
+  min-width: 330px;
+  height: 100vh;
   overflow: auto;
 }
-#node-area-layout .templateChoices p {
+#main-app-layout .templateChoices p {
   margin: 3px 11px;
   margin-bottom: 6px;
   font-size: 14px;
   cursor: pointer;
 }
-#node-area-layout .macro-generator-container {
+#main-app-layout .macro-generator-container {
   background-color: #ebebeb;
-  width: 100%;
-  height: 100%;
+  width: 1200px;
+  height: 100vh;
   display: flex;
   justify-content: center;
   padding: 8px 8px;
   overflow: hidden;
 }
-#node-area-layout .macro-generator-container .function-break-down {
+#main-app-layout .macro-generator-container .function-break-down {
   display: flex;
   flex-flow: row wrap;
   margin: 0px 10px;
   width: inherit;
 }
-#node-area-layout .macro-generator-container .function-break-down p {
+#main-app-layout .macro-generator-container .function-break-down p {
   cursor: pointer;
   border: 1px black solid;
   padding: 7px 7px;
@@ -89,83 +88,103 @@ body {
   margin-right: 8px;
   border-radius: 15px;
 }
-#node-area-layout .macro-generator-container .function-break-down p:last-child {
+#main-app-layout .macro-generator-container .function-break-down p:hover, #main-app-layout .macro-generator-container .function-break-down p.active {
+  background: black;
+  color: white;
+  font-weight: bolder;
+}
+#main-app-layout .macro-generator-container .function-break-down p:last-child {
   margin-bottom: 14px;
 }
-#node-area-layout .macro-generator-container .inner-cont {
+#main-app-layout .macro-generator-container .inner-cont {
   background-color: white;
   width: 100%;
 }
-#node-area-layout .macro-generator-container .template-funcs {
+#main-app-layout .macro-generator-container .template-funcs {
   display: flex;
 }
-#node-area-layout .macro-generator-container pre {
+#main-app-layout .macro-generator-container pre {
   width: inherit;
   margin: 0px;
   margin-top: 12px;
   overflow: auto;
 }
-#node-area-layout .macro-generator-container pre code {
+#main-app-layout .macro-generator-container pre code {
   background-color: white;
 }
-#node-area-layout .macro-generator-container pre code .section {
+#main-app-layout .macro-generator-container pre code .section {
   background-color: aqua;
 }
-#node-area-layout .informationBox {
+#main-app-layout .informationBox {
   display: flex;
   flex-direction: column;
   background: #f7f7f7;
   justify-content: space-evenly;
   align-items: center;
   padding: 8px 8px;
-  overflow: auto;
-  width: 100%;
+  overflow: hidden;
 }
-#node-area-layout .informationBox .template-info-cont {
+#main-app-layout .informationBox .template-info-cont {
   width: max(315px, 100%);
   background: #fdfdfd;
-  flex-basis: 33.33%;
+  height: 33.33%;
   border: 2px #ededed solid;
   margin-bottom: 7px;
   padding: 7px 4px;
 }
-#node-area-layout .informationBox .template-targetcol-cont {
+#main-app-layout .informationBox .template-info-cont .descrip-txt {
+  color: #6d6d6d !important;
+  font-weight: 550;
+  text-align: left;
+  margin: 0px 9px 4px 12px;
+  font-size: 14px !important;
+  width: inherit;
+}
+#main-app-layout .informationBox .template-info-cont .descrip-header {
+  color: black !important;
+  font-weight: 600;
+  text-align: left;
+  margin: 0px 9px 4px 7px;
+  font-size: 15px !important;
+  width: inherit;
+}
+#main-app-layout .informationBox .template-targetcol-cont {
   width: max(315px, 100%);
   background: #fdfdfd;
-  flex-basis: 33.33%;
+  height: 33.33%;
   border: 2px #ededed solid;
   margin-bottom: 7px;
   padding: 7px 4px;
   overflow: auto;
 }
-#node-area-layout .informationBox .template-targetcol-cont .column-input-form {
+#main-app-layout .informationBox .template-targetcol-cont .column-input-form {
   display: flex;
   margin: 0px 7px;
   justify-content: space-between;
 }
-#node-area-layout .informationBox .template-targetcol-cont Button {
+#main-app-layout .informationBox .template-targetcol-cont Button {
   padding: 4px 7px;
   height: 37px;
 }
-#node-area-layout .informationBox .template-targetcol-cont .column-input {
+#main-app-layout .informationBox .template-targetcol-cont .column-input {
   width: calc(100% - 115px);
 }
-#node-area-layout .informationBox .template-targetcol-cont .column_choices_list {
+#main-app-layout .informationBox .template-targetcol-cont .column_choices_list {
   display: flex;
   margin: 0px 7px;
   justify-content: space-between;
 }
-#node-area-layout .informationBox .template-targetcol-cont .column_choices_list .drop-down-cont {
+#main-app-layout .informationBox .template-targetcol-cont .column_choices_list .drop-down-cont {
   width: fit-content;
 }
-#node-area-layout .informationBox .template-targetcol-cont .column_choices_list p {
+#main-app-layout .informationBox .template-targetcol-cont .column_choices_list p {
   width: fit-content;
   margin-bottom: 8px;
 }
-#node-area-layout .informationBox .template-history-cont {
+#main-app-layout .informationBox .template-history-cont {
   width: max(315px, 100%);
   background: #fdfdfd;
-  flex-basis: 33.33%;
+  height: 33.33%;
   border: 2px #ededed solid;
   margin-bottom: 7px;
   padding: 7px 4px;

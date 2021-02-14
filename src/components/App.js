@@ -1,13 +1,11 @@
 import React from 'react';
-// import NodeChoices from './header/nodeChoices';
-import TopMainMenuChoices from './header/mainMenu';
+import MainAppLayout from './mainAppLayout/mainAppLayout';
 
 class App extends React.Component {
     render () {
         return (
             <React.Fragment>
-                <TopMainMenuChoices />
-                {/* <NodeChoices /> */}
+                <MainAppLayout />
             </React.Fragment>
             
         )

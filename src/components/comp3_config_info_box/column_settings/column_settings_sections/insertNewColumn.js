@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { columnDropDownSubmit } from '../../../actions'
+import { columnDropDownSubmit } from '../../../../actions'
 import { Formik } from 'formik';
 import { Button, Form } from 'semantic-ui-react';
 

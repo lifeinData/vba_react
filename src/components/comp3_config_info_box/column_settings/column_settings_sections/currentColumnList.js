@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { Dropdown, Menu, Radio } from 'semantic-ui-react';
-import { columnTypeChanged } from '../../../actions'
+import { Dropdown, Checkbox, Menu, Radio } from 'semantic-ui-react';
+import { columnTypeChanged, toggleInsertColumn } from '../../../../actions'
+import hljs from 'highlight.js';
+import hljsVba from 'highlight.js/lib/vba';
 
 class currentColumnList extends React.Component {
     constructor(props) {
@@ -23,7 +25,8 @@ class currentColumnList extends React.Component {
     getColumnChoices = () => {
         let cols = _.keys(this.props.columnChoices)
         let columnDropDown = cols.map((e) => {
-            return (
+            if (e != 'insertColumnFlag') {
+                return (
                     <div className="column_choices_list">
                         <p>{e}</p>
                         <div className='drop-down-cont'>
@@ -56,15 +59,37 @@ class currentColumnList extends React.Component {
                         </div>
 
                     </div> 
-            )
+                )
+            }
+
         })
 
         return columnDropDown
     }
 
+    toggleInsertColumn = (e, data) => {
+        if (data.checked) {
+            this.props.toggleInsertColumn({'insertColumnFlag':true})
+        } else {
+            this.props.toggleInsertColumn({'insertColumnFlag':false})
+        }
+
+
+    }
+
     render () {
+        hljs.initHighlighting.called = false;
+        hljs.initHighlighting();
+        hljs.registerLanguage("vba", hljsVba);
         return (
-            this.getColumnChoices()
+            <React.Fragment>
+                <Checkbox toggle 
+                    label="Insert Columns to Template"
+                    onChange={this.toggleInsertColumn}
+                />
+                {this.getColumnChoices()}
+            </React.Fragment>
+            
         )
     }
 
@@ -76,4 +101,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, { columnTypeChanged } )(currentColumnList)
+export default connect(mapStateToProps, { toggleInsertColumn, columnTypeChanged } )(currentColumnList)

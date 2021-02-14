@@ -1,6 +1,6 @@
 import parseRequestAxio from '../apis/parseRequest'
 import hljs from 'highlight.js';
-import 'highlight.js/styles/github.css';
+// import '../components/mainAppLayout/node_modules/highlight.js/styles/github.css';
 import hljsVba from 'highlight.js/lib/vba';
 // console.log(hljs)
 
@@ -57,13 +57,9 @@ export const selectMenu = (topic) => {
 
 export const parseNodeRequest = () => {
     return async (dispatch, getState) => {
-        // const { userId } = getState().auth;
         let response = await parseRequestAxio.post('/nodeParse/', {'a':'a'});
-        // console.log(response.data.slice(1,-1))
-        console.log(response)
-        // response = response.data.replace('"', '')
         // console.log(response)
-        dispatch({ type: "PARSE_NODE_REQUEST", payload: response.data});
+        dispatch({ type: "PARSE_TEMPLATE_CODE", payload: response.data});
         hljs.initHighlighting.called = false;
         hljs.initHighlighting();
         hljs.registerLanguage("vba", hljsVba);
@@ -101,5 +97,12 @@ export const templateFunctionBreakdownSelect = (func_name) => {
     return {
         type: 'ADD_HIGHLIGHT_SECTION',
         payload: func_name
+    }
+}
+
+export const toggleInsertColumn = (toggleStatus) => {
+    return {
+        type: 'TOGGLE_INSERT_COLUMN',
+        payload: toggleStatus
     }
 }

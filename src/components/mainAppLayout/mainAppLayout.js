@@ -2,13 +2,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addNodeToFlow, parseNodeRequest } from '../../actions/index';
-import NodePropertyBox from '../templates/nodePropertyBox';
-import { Button } from 'semantic-ui-react';
 import hljs from 'highlight.js';
 import hljsVba from 'highlight.js/lib/vba';
 import 'highlight.js/styles/github.css';
-import ColumnSettingDropdown from '../column_settings/sectionDropDown';
-import TemplateDisplay from '../template_display_area/templateDisplay';
+import ColumnSettingSection from '../comp3_config_info_box/column_settings'
+import TemplateDescriptionSection from '../comp3_config_info_box/template_description'
+import TemplateDisplay from '../comp1_template_display_area/templateDisplay';
 import { Resizable } from "re-resizable";
 
 // console.log(hljs)
@@ -27,7 +26,7 @@ class MainMenu extends React.Component {
 
         this.state = { 'menuClicked': false, 'prevEl': null, 
         'reportNodeChoices': this.getNodeChoices('dq'), 'columnModNodeChoices': null, 
-        'selectMenu': 'about', 'dropAreaNodes': [], 'selectedNode': null, 'renderTemplateFlag':false }
+        'selectMenu': 'about', 'dropAreaNodes': [], 'selectedNode': null, 'renderTemplateFlag':false}
         hljs.initHighlightingOnLoad();
         hljs.registerLanguage("vba", hljsVba);
     }
@@ -89,7 +88,7 @@ class MainMenu extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div id="node-area-layout">
+                <div id="main-app-layout">
                     <div className="templateChoices">
                         <p topic="dq" className="menu-header-h1">Data Quality</p>
                             {this.state.reportNodeChoices}
@@ -106,16 +105,20 @@ class MainMenu extends React.Component {
                         {this.onClickGetTemplateCode()}
                     </div>
                     
-                    <Resizable 
+                    <Resizable   
+                        defaultSize={{
+                            width:377,
+                            height:"100vh",
+                        }}
                         className="informationBox"
-                        minWidth="344"
-                        maxWidth="677"
+                        minWidth="377px"
+                        maxWidth="677px"
+                        minHeight="100vh"
                         enable={{ top:false, right:false, bottom:false, left:true, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
                     >
-                        {/* <div className="informationBox"> */}
 
                             <div className="template-info-cont">
-                                <p topic="dq" className="menu-header-h1">ABOUT THIS TEMPLATE</p>
+                                <TemplateDescriptionSection renderTemplateFlag = {this.state.renderTemplateFlag}/>
                             {/*ABOUT THIS TEMPLATE 
                             USAGE INFORMATION
                             ERROR CHECKS
@@ -124,7 +127,7 @@ class MainMenu extends React.Component {
                             </div>
 
                             <div className="template-targetcol-cont">
-                                <ColumnSettingDropdown />
+                                <ColumnSettingSection />
                             </div>
 
                             <div className="template-history-cont">
@@ -135,39 +138,6 @@ class MainMenu extends React.Component {
                    
                 
                 </div>
-
-                {/* <div id="top-main-menu">
-                    <p topic="dq" onClick={this.menuClick} className="menu-btn">Data Quality</p>
-                    <p topic="columnModify" onClick={this.menuClick} className="menu-btn">Column Modification</p>
-                    <p topic="about" onClick={this.menuClick} className="menu-btn clicked">About</p>
-                </div>
-                <div className="grid-container">
-                    {this.state.nodeChoices}
-                </div>
-                <div id="node-area-layout">
-                    <div id="drop-area-container">
-                        {this.state.dropAreaNodes}
-
-                        <Button onClick={this.onClickParseCanvasNodes}>
-                            Submit
-                        </Button>
-
-                    </div>
-
-                    <div id="node-property-container">
-                        <NodePropertyBox nodeProperty={this.state.selectedNode} />
-                    </div>
-
-                    <div id="macro-generator-container" >
-                        <pre>
-                            <code className="vba" >
-                                {this.props.parsedNodeMacro}
-                            </code>
-                        </pre>
-
-                    </div>
-                </div> */}
-
             </React.Fragment>
 
         )
@@ -177,7 +147,7 @@ class MainMenu extends React.Component {
 const mapStateToProps = (state) => {
     return ({
         mainFlowNodes: state.mainFlowNodes,
-        parsedNodeMacro: state.parsedNodeMacro
+        templateToDisplay: state.templateCodeInfo.template_code,
     })
 }
 

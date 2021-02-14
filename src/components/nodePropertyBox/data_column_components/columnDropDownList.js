@@ -1,8 +1,9 @@
 import React from 'react';
-import { Dropdown, Menu, Radio } from 'semantic-ui-react';
+import { Dropdown, Menu, Checkbox, Radio } from 'semantic-ui-react';
 import { columnDropDownSubmit } from '../../../actions'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+
 
 class columnDropDownList extends React.Component {
     constructor(props) {
@@ -60,7 +61,11 @@ class columnDropDownList extends React.Component {
     render() {
         return (
             <React.Fragment>
-
+                <Checkbox toggle 
+                    label="Insert Columns to Template"
+                    onChange={(e,d)=>{console.log(e,d)}}
+                />
+                Hello
                 {this.getColumnChoices()}
 
             </React.Fragment>

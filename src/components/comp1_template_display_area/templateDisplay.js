@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import hljs from 'highlight.js'
-import hljsVba from 'highlight.js/lib/vba'
-import { addNodeToFlow, parseNodeRequest } from '../../actions/index';
+
+import { parseNodeRequest } from '../../actions/index';
 import FunctionBreakdownBar from './template_display_sections/functionBreakdown';
 import {Accordion, Icon} from 'semantic-ui-react';
 
@@ -35,6 +34,35 @@ class templateDisplay extends React.Component {
         return ''
     }
 
+    parseTemplateCode = () => {
+        let numColumnsToInsert = []
+        let txtColumnsToInsert = []
+        let numRegex = /<jsNumParse>/
+
+        if (this.props.columnChoices.insertColumnFlag) {
+            
+            for (let [colName, colType] of Object.entries(this.props.columnChoices)){
+                if (colName != 'insertColumnFlag'){
+                    if (colType == 'num'){
+                        numColumnsToInsert.push("'" + colName + "'")
+                    } else if (colType == 'txt'){
+                        txtColumnsToInsert.push("'" + colName + "'")
+                    }
+                }
+            }
+            
+            if (numColumnsToInsert.length > 0) {
+                let replacedTemplate
+                numColumnsToInsert = numColumnsToInsert.join(',')
+                replacedTemplate = this.props.templateToDisplay.replace(numRegex, numColumnsToInsert)
+                return (replacedTemplate === this.props.templateToDisplay ? this.props.templateToDisplay : replacedTemplate)
+            }
+
+        }
+
+        return this.props.templateToDisplay
+
+    }
 
     // parseTemplateCode = () => {
     //     // let split_code = this.props.templateToDisplay.split('End Function')
@@ -103,7 +131,7 @@ class templateDisplay extends React.Component {
                         <Accordion.Content style={{marginLeft: "7px", height: '100%', maxHeight: 'calc(100vh - 251px)', overflow: 'auto'}} active={this.state.activeIndex.includes(1)}>
                             <pre>                                
                                 <code className="vba" >
-                                    {this.props.templateToDisplay}
+                                    {this.parseTemplateCode()}
                                 </code>
                             </pre> 
 
@@ -122,8 +150,9 @@ class templateDisplay extends React.Component {
 
 const mapStateToProps = (state) => {
     return ({
-        templateToDisplay: state.parsedNodeMacro,
-        highlightCodeSelection: state.highlightCodeSelection
+        templateToDisplay: state.templateCodeInfo.template_code,
+        highlightCodeSelection: state.highlightCodeSelection,
+        columnChoices: state.columnChoices
     })
 }
 
