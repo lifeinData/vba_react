@@ -1,14 +1,12 @@
 // import { fromPairs } from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { addNodeToFlow, parseNodeRequest } from '../../actions/index';
+import { addNodeToFlow } from '../../actions/index';
 import hljs from 'highlight.js';
 import hljsVba from 'highlight.js/lib/vba';
 import 'highlight.js/styles/github.css';
-import ColumnSettingSection from '../comp3_config_info_box/column_settings'
-import TemplateDescriptionSection from '../comp3_config_info_box/template_description'
-import TemplateDisplay from '../comp1_template_display_area/templateDisplay';
-import { Resizable } from "re-resizable";
+import TemplateDisplay from '../comp2_template_display_area/templateDisplay';
+import ConfigInfoBox from '../comp3_config_info_box'
 
 // console.log(hljs)
 
@@ -105,36 +103,7 @@ class MainMenu extends React.Component {
                         {this.onClickGetTemplateCode()}
                     </div>
                     
-                    <Resizable   
-                        defaultSize={{
-                            width:377,
-                            height:"100vh",
-                        }}
-                        className="informationBox"
-                        minWidth="377px"
-                        maxWidth="677px"
-                        minHeight="100vh"
-                        enable={{ top:false, right:false, bottom:false, left:true, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
-                    >
-
-                            <div className="template-info-cont">
-                                <TemplateDescriptionSection renderTemplateFlag = {this.state.renderTemplateFlag}/>
-                            {/*ABOUT THIS TEMPLATE 
-                            USAGE INFORMATION
-                            ERROR CHECKS
-                            REPORT SAMPLE
-                            */}
-                            </div>
-
-                            <div className="template-targetcol-cont">
-                                <ColumnSettingSection />
-                            </div>
-
-                            <div className="template-history-cont">
-
-                            </div>
-                        {/* </div> */}
-                    </Resizable>
+                    <ConfigInfoBox />
                    
                 
                 </div>
@@ -151,4 +120,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, { addNodeToFlow, parseNodeRequest })(MainMenu);
+export default connect(mapStateToProps, { addNodeToFlow })(MainMenu);

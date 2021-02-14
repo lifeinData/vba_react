@@ -12,4 +12,4 @@ class templateDescriptionSection extends React.Component {
     }
 }
 
-export default connect( null , {})(templateDescriptionSection)
+export default templateDescriptionSection

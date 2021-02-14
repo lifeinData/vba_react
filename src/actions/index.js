@@ -55,9 +55,10 @@ export const selectMenu = (topic) => {
     }
 }
 
-export const parseNodeRequest = () => {
+export const parseTemplateRequest = () => {
     return async (dispatch, getState) => {
-        let response = await parseRequestAxio.post('/nodeParse/', {'a':'a'});
+        let response = await parseRequestAxio.get('/getTemplate/', {params : {'sub_folder':'metadata_reports', 
+                                                                              'template_id':'num_metadata_report'}});
         // console.log(response)
         dispatch({ type: "PARSE_TEMPLATE_CODE", payload: response.data});
         hljs.initHighlighting.called = false;
@@ -104,5 +105,12 @@ export const toggleInsertColumn = (toggleStatus) => {
     return {
         type: 'TOGGLE_INSERT_COLUMN',
         payload: toggleStatus
+    }
+}
+
+export const parseTemplateOptions = () => {
+    return async (dispatch) => {
+        const response = await (parseRequestAxio.get('/menuOptions/'))
+        dispatch({type: 'GET_TEMPLATE_OPTIONS', paylod: response.data})
     }
 }

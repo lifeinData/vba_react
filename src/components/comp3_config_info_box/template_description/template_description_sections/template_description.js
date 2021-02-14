@@ -17,7 +17,7 @@ class templateDescription extends React.Component {
     }
 
     renderTemplateDescrip = () => {
-        if (this.props.renderTemplateFlag) {
+        if (this.props.funcDescrip != null) {
             return (
                 <React.Fragment>
                     <p className="descrip-header">{this.props.selectedFuncInfo}</p>
@@ -28,6 +28,7 @@ class templateDescription extends React.Component {
             )
         }
     }
+
     render () {
         if (this.props.funcDescrip != null) {
             return (

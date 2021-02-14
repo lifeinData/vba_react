@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { parseNodeRequest } from '../../actions/index';
+import { parseTemplateRequest, parseTemplateOptions } from '../../actions/index';
 import FunctionBreakdownBar from './template_display_sections/functionBreakdown';
 import {Accordion, Icon} from 'semantic-ui-react';
 
 class templateDisplay extends React.Component {
     constructor(props){
         super(props)
-        this.props.parseNodeRequest()
+        this.props.parseTemplateRequest()
+        this.props.parseTemplateOptions()
         console.log('templateDisplay is called')
         this.state = { activeIndex: [0,1]}
     }
@@ -156,4 +157,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, {parseNodeRequest}) (templateDisplay)
+export default connect(mapStateToProps, {parseTemplateRequest, parseTemplateOptions}) (templateDisplay)
