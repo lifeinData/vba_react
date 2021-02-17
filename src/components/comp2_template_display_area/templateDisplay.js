@@ -9,7 +9,7 @@ class templateDisplay extends React.Component {
     constructor(props){
         super(props)
         this.props.parseTemplateRequest()
-        this.props.parseTemplateOptions()
+        // this.props.parseTemplateOptions()
         console.log('templateDisplay is called')
         this.state = { activeIndex: [0,1]}
     }

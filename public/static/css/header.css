@@ -190,6 +190,16 @@ body {
   padding: 7px 4px;
 }
 
+.menu-choice-header-h1 {
+  width: 316px;
+}
+.menu-choice-header-h1 p {
+  width: inherit;
+  padding-left: 32px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
 .menu-header-h1 {
   font-weight: 550;
   font-size: 16px !important;
@@ -197,6 +207,9 @@ body {
   margin: 10px 7px 6px 7px;
   border-bottom: 2px black solid;
   cursor: pointer;
+}
+.menu-header-h1.menu-choice {
+  margin-top: 0px;
 }
 
 .menu-header-h2 {

@@ -7,6 +7,7 @@ import templateCodeInfoReducer from './templateCodeReducer';
 import nodePropertyDescrip from './nodePropertyDescripReducer';
 import columnChoicesReducer from './columnChoicesReducer';
 import highlightCodeReducer from './highlightCodeReducer';
+import templateChoiceReducer from './templateChoiceReducer';
 
 export default combineReducers({
   'mainFlowNodes': mainFlowReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   'templateCodeInfo': templateCodeInfoReducer,
   'nodePropertyDescrip': nodePropertyDescrip,
   'columnChoices': columnChoicesReducer,
-  'funcInfoSelected': highlightCodeReducer
+  'funcInfoSelected': highlightCodeReducer,
+  'templateChoice': templateChoiceReducer
 });

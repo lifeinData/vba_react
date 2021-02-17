@@ -1,12 +1,13 @@
 // import { fromPairs } from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { addNodeToFlow } from '../../actions/index';
+import { addNodeToFlow, parseTemplateOptions } from '../../actions/index';
 import hljs from 'highlight.js';
 import hljsVba from 'highlight.js/lib/vba';
 import 'highlight.js/styles/github.css';
 import TemplateDisplay from '../comp2_template_display_area/templateDisplay';
 import ConfigInfoBox from '../comp3_config_info_box'
+import TemplateChoices from '../comp1_template_choices/template_choices_section/template_choices'
 
 // console.log(hljs)
 
@@ -21,12 +22,13 @@ class MainMenu extends React.Component {
 
     constructor(props) {
         super(props)
-
+        
         this.state = { 'menuClicked': false, 'prevEl': null, 
         'reportNodeChoices': this.getNodeChoices('dq'), 'columnModNodeChoices': null, 
         'selectMenu': 'about', 'dropAreaNodes': [], 'selectedNode': null, 'renderTemplateFlag':false}
         hljs.initHighlightingOnLoad();
         hljs.registerLanguage("vba", hljsVba);
+        
     }
 
     menuClick = (e) => {
@@ -87,7 +89,7 @@ class MainMenu extends React.Component {
         return (
             <React.Fragment>
                 <div id="main-app-layout">
-                    <div className="templateChoices">
+                    {/* <div className="templateChoices">
                         <p topic="dq" className="menu-header-h1">Data Quality</p>
                             {this.state.reportNodeChoices}
                         <p topic="columnModify" className="menu-header-h1">Column Modification</p>
@@ -97,8 +99,9 @@ class MainMenu extends React.Component {
                             SUBMIT
                         </p>
 
-                    </div>
-                    
+                    </div> */}
+                    <TemplateChoices />
+
                     <div className="macro-generator-container">
                         {this.onClickGetTemplateCode()}
                     </div>
@@ -120,4 +123,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, { addNodeToFlow })(MainMenu);
+export default connect(mapStateToProps, { addNodeToFlow, parseTemplateOptions })(MainMenu);

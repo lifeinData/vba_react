@@ -111,6 +111,6 @@ export const toggleInsertColumn = (toggleStatus) => {
 export const parseTemplateOptions = () => {
     return async (dispatch) => {
         const response = await (parseRequestAxio.get('/menuOptions/'))
-        dispatch({type: 'GET_TEMPLATE_OPTIONS', paylod: response.data})
+        dispatch({type: 'GET_TEMPLATE_OPTIONS', payload: response.data})
     }
 }

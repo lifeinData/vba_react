@@ -6,3 +6,5 @@ const templateChoiceReducer = (state={}, action) => {
             return state
     }
 }
+
+export default templateChoiceReducer;
