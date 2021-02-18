@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Accordion, Icon} from 'semantic-ui-react';
-import { parseTemplateOptions } from '../../../actions/index';
+import { parseTemplateOptions, parseTemplateRequest, templateOptionClicked } from '../../../actions/index';
+import { Resizable } from "re-resizable";
 
 class templateChoices extends React.Component {
     constructor(props){
@@ -17,8 +18,16 @@ class templateChoices extends React.Component {
         if (prevProps.templateChoices != this.props.templateChoices) {
             this.setState({
                 'accordActiveIndex': [...Array(Object.keys(this.props.templateChoices).length).keys()]
-                // 'accordActiveIndex': []
-            }, ()=>{console.log(this.state.accordActiveIndex)})
+            })
+        }
+    }
+
+    templateChoiceOnClick = (e) => {
+        let [header, template_id] = e.target.id.split('-')
+        this.props.parseTemplateRequest(header, template_id)
+        
+        if (!(this.props.templateChoiceClicked)){
+            this.props.templateOptionClicked()
         }
     }
 
@@ -27,7 +36,7 @@ class templateChoices extends React.Component {
         for (let choice of Object.keys(this.props.templateChoices[key])){
             if (choice != "id") {
                 subheading.push(
-                    <p>
+                    <p id={this.props.templateChoices[key]['id'] + '-' + this.props.templateChoices[key][choice]['id']} onClick={this.templateChoiceOnClick}>
                         {choice}
                     </p>
                 )
@@ -53,7 +62,7 @@ class templateChoices extends React.Component {
                             className = "menu-header-h1 menu-choice"
                         >
                         <Icon name='dropdown' />
-                            {category}
+                            {category.toUpperCase()}
                         </Accordion.Title>
                         <Accordion.Content className="test-content" active={this.state.accordActiveIndex.includes(index)}>
                             {this.transformToSubheading(category)}
@@ -84,12 +93,26 @@ class templateChoices extends React.Component {
         
         return (
             <React.Fragment>
+            <Resizable   
+                defaultSize={{
+                    width:330,
+                    height:"100vh",
+                }}
+                className="templateChoiceMenu"
+                minWidth="330px"
+                maxWidth="677px"
+                minHeight="100vh"
+                enable={{ top:false, right:true, bottom:false, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
+            >
                 <Accordion
                     exclusive={false}
                     className="menu-choice-header-h1"
                 >
                     {this.transformToMenu()}
                 </Accordion>
+
+            </Resizable>
+
             </React.Fragment>
         )
     }
@@ -97,9 +120,12 @@ class templateChoices extends React.Component {
 
 const mapStateToProps = (state) => {
     return (
-        {templateChoices: state.templateChoice}
+        {
+            templateChoices: state.templateChoice.data,
+            templateChoiceClicked: state.templateChoice.templateChoiceClicked
+        }
     )
     
 }
 
-export default connect (mapStateToProps, {parseTemplateOptions})(templateChoices)
+export default connect (mapStateToProps, {parseTemplateOptions, parseTemplateRequest, templateOptionClicked})(templateChoices)

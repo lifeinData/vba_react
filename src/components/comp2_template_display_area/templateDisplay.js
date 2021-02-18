@@ -101,7 +101,7 @@ class templateDisplay extends React.Component {
     // }
 
     render () {
-        if (this.props.templateToDisplay != '') {
+        if (this.props.templateChoiceClicked) {
             
             return (
                 <React.Fragment>
@@ -153,7 +153,8 @@ const mapStateToProps = (state) => {
     return ({
         templateToDisplay: state.templateCodeInfo.template_code,
         highlightCodeSelection: state.highlightCodeSelection,
-        columnChoices: state.columnChoices
+        columnChoices: state.columnChoices,
+        templateChoiceClicked: state.templateChoice.templateChoiceClicked
     })
 }
 

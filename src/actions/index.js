@@ -55,10 +55,10 @@ export const selectMenu = (topic) => {
     }
 }
 
-export const parseTemplateRequest = () => {
+export const parseTemplateRequest = (heading, templateId) => {
     return async (dispatch, getState) => {
-        let response = await parseRequestAxio.get('/getTemplate/', {params : {'sub_folder':'metadata_reports', 
-                                                                              'template_id':'num_metadata_report'}});
+        let response = await parseRequestAxio.get('/getTemplate/', {params : {'heading': heading, 
+                                                                              'template_id': templateId}});
         // console.log(response)
         dispatch({ type: "PARSE_TEMPLATE_CODE", payload: response.data});
         hljs.initHighlighting.called = false;
@@ -112,5 +112,12 @@ export const parseTemplateOptions = () => {
     return async (dispatch) => {
         const response = await (parseRequestAxio.get('/menuOptions/'))
         dispatch({type: 'GET_TEMPLATE_OPTIONS', payload: response.data})
+    }
+}
+
+export const templateOptionClicked = () => {
+    return {
+        type: 'TEMPLATE_OPTION_CLICKED',
+        payload: {'templateChoiceClicked': true}
     }
 }

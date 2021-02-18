@@ -190,14 +190,28 @@ body {
   padding: 7px 4px;
 }
 
-.menu-choice-header-h1 {
-  width: 316px;
+.templateChoiceMenu {
+  display: flex;
+  flex-direction: column;
+  background: #f7f7f7;
+  padding: 7px 8px;
 }
-.menu-choice-header-h1 p {
+.templateChoiceMenu .menu-choice-header-h1 {
+  width: 100%;
+  border: 2px #ededed solid;
+  padding: 9px 4px;
+  background: white;
+  height: 100vh;
+}
+.templateChoiceMenu .menu-choice-header-h1 p {
   width: inherit;
   padding-left: 32px;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 500;
+  cursor: pointer;
+}
+.templateChoiceMenu .menu-choice-header-h1 p:hover {
+  font-weight: 800;
 }
 
 .menu-header-h1 {
@@ -210,6 +224,9 @@ body {
 }
 .menu-header-h1.menu-choice {
   margin-top: 0px;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  font-size: 16px !important;
 }
 
 .menu-header-h2 {

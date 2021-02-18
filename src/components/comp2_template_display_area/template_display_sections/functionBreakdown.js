@@ -29,14 +29,12 @@ class functionBreakdownSection extends React.Component {
 
     getFunctionBreakdown = () => {
         if (this.props.templateToDisplay !=  null) {
-            // let split_code = this.props.templateToDisplay.split('End Function')
-            // let captureRegex = /Function (\w+)/
+
             let split_code;
             let func_name;
             split_code = Object.keys(this.props.templateToDisplay).map((func_name) => {
                 if ((func_name != 'template_code') && (func_name != 'overall_descrip')) {
-                    // let func_name;
-                    // func_name = el.match(captureRegex)[1]
+
                     return (
                         <p 
                         id={func_name}

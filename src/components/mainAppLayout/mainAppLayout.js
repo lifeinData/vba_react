@@ -7,7 +7,7 @@ import hljsVba from 'highlight.js/lib/vba';
 import 'highlight.js/styles/github.css';
 import TemplateDisplay from '../comp2_template_display_area/templateDisplay';
 import ConfigInfoBox from '../comp3_config_info_box'
-import TemplateChoices from '../comp1_template_choices/template_choices_section/template_choices'
+import TemplateChoicesBox from '../comp1_template_choices'
 
 // console.log(hljs)
 
@@ -89,21 +89,10 @@ class MainMenu extends React.Component {
         return (
             <React.Fragment>
                 <div id="main-app-layout">
-                    {/* <div className="templateChoices">
-                        <p topic="dq" className="menu-header-h1">Data Quality</p>
-                            {this.state.reportNodeChoices}
-                        <p topic="columnModify" className="menu-header-h1">Column Modification</p>
-                        <p topic="about" className="menu-header-h1">About</p>
-                        
-                        <p className="menu-header-h1" onClick={() => {this.setState({renderTemplateFlag:true})}}>
-                            SUBMIT
-                        </p>
-
-                    </div> */}
-                    <TemplateChoices />
+                    <TemplateChoicesBox />
 
                     <div className="macro-generator-container">
-                        {this.onClickGetTemplateCode()}
+                        <TemplateDisplay/>
                     </div>
                     
                     <ConfigInfoBox />
