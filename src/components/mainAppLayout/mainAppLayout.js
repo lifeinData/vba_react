@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNodeToFlow, parseTemplateOptions } from '../../actions/index';
 import hljs from 'highlight.js';
-import hljsVba from 'highlight.js/lib/vba';
+import hljsVba from 'highlight.js/lib/languages/vba';
 import 'highlight.js/styles/github.css';
 import TemplateDisplay from '../comp2_template_display_area/templateDisplay';
 import ConfigInfoBox from '../comp3_config_info_box'
@@ -26,7 +26,7 @@ class MainMenu extends React.Component {
         this.state = { 'menuClicked': false, 'prevEl': null, 
         'reportNodeChoices': this.getNodeChoices('dq'), 'columnModNodeChoices': null, 
         'selectMenu': 'about', 'dropAreaNodes': [], 'selectedNode': null, 'renderTemplateFlag':false}
-        hljs.initHighlightingOnLoad();
+        // hljs.initHighlightingOnLoad();
         hljs.registerLanguage("vba", hljsVba);
         
     }

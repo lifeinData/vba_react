@@ -1,7 +1,7 @@
 import parseRequestAxio from '../apis/parseRequest'
-import hljs from 'highlight.js';
+// import hljs from 'highlight.js';
 // import '../components/mainAppLayout/node_modules/highlight.js/styles/github.css';
-import hljsVba from 'highlight.js/lib/vba';
+// import hljsVba from 'highlight.js/lib/vba';
 // console.log(hljs)
 
 const getInitialNodeProp = (nodeID) => {
@@ -61,9 +61,9 @@ export const parseTemplateRequest = (heading, templateId) => {
                                                                               'template_id': templateId}});
         // console.log(response)
         dispatch({ type: "PARSE_TEMPLATE_CODE", payload: response.data});
-        hljs.initHighlighting.called = false;
-        hljs.initHighlighting();
-        hljs.registerLanguage("vba", hljsVba);
+        // hljs.initHighlighting.called = false;
+        // hljs.initHighlighting();
+        // hljs.registerLanguage("vba", hljsVba);
       }
 }
 

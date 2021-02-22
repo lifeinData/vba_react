@@ -36,7 +36,7 @@ class templateChoices extends React.Component {
         for (let choice of Object.keys(this.props.templateChoices[key])){
             if (choice != "id") {
                 subheading.push(
-                    <p id={this.props.templateChoices[key]['id'] + '-' + this.props.templateChoices[key][choice]['id']} onClick={this.templateChoiceOnClick}>
+                    <p key={this.props.templateChoices[key][choice]['id']} id={this.props.templateChoices[key]['id'] + '-' + this.props.templateChoices[key][choice]['id']} onClick={this.templateChoiceOnClick}>
                         {choice}
                     </p>
                 )
@@ -64,7 +64,7 @@ class templateChoices extends React.Component {
                         <Icon name='dropdown' />
                             {category.toUpperCase()}
                         </Accordion.Title>
-                        <Accordion.Content className="test-content" active={this.state.accordActiveIndex.includes(index)}>
+                        <Accordion.Content key={category} className="test-content" active={this.state.accordActiveIndex.includes(index)}>
                             {this.transformToSubheading(category)}
                         </Accordion.Content>
                     </React.Fragment>

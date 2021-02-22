@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Dropdown, Checkbox, Menu, Radio } from 'semantic-ui-react';
 import { columnTypeChanged, toggleInsertColumn } from '../../../../actions'
-import hljs from 'highlight.js';
-import hljsVba from 'highlight.js/lib/vba';
+// import hljs from 'highlight.js';
+// import hljsVba from 'highlight.js/lib/vba';
 
 class currentColumnList extends React.Component {
     constructor(props) {
@@ -78,9 +78,9 @@ class currentColumnList extends React.Component {
     }
 
     render () {
-        hljs.initHighlighting.called = false;
-        hljs.initHighlighting();
-        hljs.registerLanguage("vba", hljsVba);
+        // hljs.initHighlighting.called = false;
+        // hljs.initHighlighting();
+        // hljs.registerLanguage("vba", hljsVba);
         return (
             <React.Fragment>
                 <Checkbox toggle 

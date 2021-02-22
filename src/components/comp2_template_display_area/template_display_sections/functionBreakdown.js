@@ -15,7 +15,8 @@ class functionBreakdownSection extends React.Component {
     onMouseEnter = (e, d) => {
         // this.props.templateFunctionBreakdownSelect({'funcSelected' : e.target.id})
         // this.setState({'functionInfoSelected': e.target.id})
-        this.props.templateFunctionBreakdownSelect(e.target.id)
+        // this.props.templateFunctionBreakdownSelect(e.target.id)
+        console.log('hello')
     }
 
     onFuncClick = (e) => {
@@ -24,7 +25,8 @@ class functionBreakdownSection extends React.Component {
     }
 
     onMouseLeave = () => {
-        this.props.templateFunctionBreakdownSelect(this.state.functionInfoSelected)
+        // this.props.templateFunctionBreakdownSelect(this.state.functionInfoSelected)
+        console.log('hello')
     }
 
     getFunctionBreakdown = () => {
