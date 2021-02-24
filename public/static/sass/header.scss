@@ -111,6 +111,11 @@
         flex-flow: row wrap;
         margin: 0px 10px;
         width: inherit;
+
+        & a {
+          color:black !important;
+          margin-bottom: 14px;
+        }
         
         & p {
           cursor: pointer;
@@ -120,6 +125,7 @@
           width: fit-content;
           margin-right: 8px;
           border-radius: 15px;
+          margin-bottom: 0px;
           
           &:hover, &.active {
             background: black;
@@ -127,19 +133,18 @@
             font-weight: bolder;
           }
 
-          &:last-child {
-            margin-bottom: 14px;
-          }
         }
 
       }
 
       & .template-display-inner-cont {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
         background-color: white;
         width: 100%;
         padding: 8px 4px;
+        height: 100%;
 
         & .template-code-cont {
           
@@ -159,7 +164,7 @@
             width: fit-content;
 
             &.highlighted {
-              background: #dedbdb7a !important
+              background: #3e34342f !important
             }
           }
 
@@ -171,9 +176,6 @@
             background:  rgb(247 247 247 / 49%) !important;
             margin-bottom: 0px;
             width: fit-content;
-
-
-            
           }
         }
         
@@ -270,12 +272,14 @@
         }
     }
   }
+
   .menu-choice-header-h1, .template-display-inner-cont {
     width: 100%;
     border: 2px #ededed  solid;
     padding: 8px 4px;
     background: white;
     height: 100vh;
+    
   }
 
   .populate_report_row {

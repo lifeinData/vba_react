@@ -14,25 +14,17 @@ class templateDisplay extends React.Component {
         super(props)
         // hljs.registerLanguage("vba", hljsVba);
         // this.props.parseTemplateOptions()
-        this.state = { activeIndex: [0,1], syntaxHighlighted: false, observer: null}
+        this.state = {activeIndex: [0,1], syntaxHighlighted: false}
+        this.codeLoaded = false
+        this.validTemplateCode = false
+    }
+    
+    triggerFunctionBreak = () => {
+        if ((!(this.state.codeLoaded)) && (this.props.templateToDisplay != null)) {
+            this.setState({codeLoaded : true})
+        }
     }
 
-    componentDidMount(){
-        // 
-        // document.querySelectorAll("pre code").forEach(block => {
-        //     hljs.highlightBlock(block);
-        //   });
-    }
-
-    componentDidUpdate(){
-        // document.querySelectorAll("pre code").forEach(block => {
-        //     // hljs.highlightBlock(block);
-        //     console.log(block)
-        //     hljs.highlightBlock(block);
-        //   });
-
-        // console.log(document.querySelectorAll("pre code"))
-    }
 
     handleTitleClick = (e, titleProps) => {
         const index = titleProps.index
@@ -55,19 +47,18 @@ class templateDisplay extends React.Component {
         return ''
     }
 
-    isSectionSelected = (mode, funcBlock) => {
-    //     // let captureRegex = /Function (\w+)/
+    isSectionSelected = (funcBlock) => {
+        let captureRegexFunc = /Function (\w+)/
+        let captureRegexSub = /Sub (\w+)/
+        let capture
 
-    //     // for (let [ind, func] of split_code.entries()) {
-    //     //     let capture = func.match(captureRegex)
-
-    //     //     if (capture != null) {
-    //     //         capture = capture[1]
-    //     //     } else {
-    //     //         capture = ''
-    //     //     }
-        let captureRegex = /Function (\w+)/
-        let capture = funcBlock.match(captureRegex)
+        if (funcBlock.match(captureRegexFunc)) {
+                capture = funcBlock.match(captureRegexFunc)
+            }
+        else {
+                capture = funcBlock.match(captureRegexSub)
+            }
+        
 
         if (capture != null) {
             capture = capture[1]
@@ -81,20 +72,36 @@ class templateDisplay extends React.Component {
     }
 
     markTemplateCode = (templateCodeToSplit) => {
-    
-        let split_code = templateCodeToSplit.split('End Function')
+        let [split_code_sub, split_code_func] = templateCodeToSplit.split(new RegExp('end sub', 'i'))
+        split_code_func = split_code_func != null ? split_code_func.split(new RegExp('end function', 'i')) : ''
+        let split_code = [split_code_sub, ...split_code_func]
+        let functionIdAry = Object.keys(this.props.templateCodeInfo)
+        functionIdAry.splice(functionIdAry.indexOf('overall_descrip'), 1)
         let code = split_code.map((el, ind) => {
+                            if (el != '') {
+                                // detect if it's a sub or function
+                                let capture_regex_sub = /sub (\w+)/
+                                let codeSection 
+                                if (el.toLowerCase().match(capture_regex_sub)){
+                                    codeSection = el.trim() + "\nEnd Sub"     
+                                } else {
+                                    codeSection = el.trim() + "\nEnd Function"    
+                                }
 
-                            return (
-                                <div className={this.isSectionSelected('func', el)}>
-                                    <a id = {ind}></a>
-                                    <SyntaxHighlighter language='vba'>
-                                        {el.trim() + "\nEnd Function"}
-                                        {/* {""} */}
-                                        
-                                    </SyntaxHighlighter>
-                                </div>
-                            )
+                                return (
+                                    <React.Fragment>
+                                        <a id = {functionIdAry[ind]}></a>
+                                        <div className={this.isSectionSelected(el)}>
+                                            
+                                            <SyntaxHighlighter language='vba'>
+                                                {codeSection}                                                
+                                            </SyntaxHighlighter>
+                                        </div>
+                                    </React.Fragment>
+    
+                                )
+                            }
+
                         }
                     )
 
@@ -135,74 +142,32 @@ class templateDisplay extends React.Component {
     
                 return (replacedTemplate === this.props.templateToDisplay ? this.markTemplateCode(this.props.templateToDisplay) : this.markTemplateCode(replacedTemplate))
             }
-    
-            return this.markTemplateCode(this.props.templateToDisplay)
+            
+            return (
+                <React.Fragment>
+
+                    <a id="overall_descrip"></a>
+                    {this.markTemplateCode(this.props.templateToDisplay)}
+                </React.Fragment>
+            )
+
 
         } else {
             return ''
         }
     }
 
-    // configureMutationObserver = () => {
-    //     let targetNode =  document.getElementById("code-block")
-    //     let config = {attributes: true}
-    //     this.setState({observer : new MutationObserver(this.highlightVBA)}, ()=>{this.state.observer.observe(targetNode, config)} ) 
-        
-    // }
-
-    highlightVBA = (mutationsList) => {
-        // console.log(mutationsList)
-        // if (this.props.templateToDisplay != null) {
-        //     hljs.initHighlighting.called = false;
-        //     hljs.initHighlighting();
-        //     hljs.registerLanguage("vba", hljsVba);
-        // }
-    }
-
-    // parseTemplateCode = () => {
-    //     // let split_code = this.props.templateToDisplay.split('End Function')
-    //     let split_code = [1,2,3,4,5]
-    //     // let section_together = []
-    //     // let captureRegex = /Function (\w+)/
-
-    //     // for (let [ind, func] of split_code.entries()) {
-    //     //     let capture = func.match(captureRegex)
-
-    //     //     if (capture != null) {
-    //     //         capture = capture[1]
-    //     //     } else {
-    //     //         capture = ''
-    //     //     }
-
-    //     let code = split_code.map((el, ind) => {
-    //         return (<div key={ind} className={this.props.highlightCodeSelection}>
-    //             {el}
-    //             {"\n"}
-    //             {this.props.highlightCodeSelection}
-    //             End Function
-    //         </div>)
-    //     })
-
-
-    
-    //     return (
-                                    
-
-    //             code
-            
-    //     )
-
-    // }
-
     renderParts = (sectionType) => {
         if (this.props.templateChoiceClicked) {
             if (sectionType == 'func'){
-                return <FunctionBreakdownBar />
-            } else if (sectionType == 'vba') {
-                
-                return (
-                        this.parseTemplateCode()
-                    )
+                    return <FunctionBreakdownBar />
+                    
+            } else if ((sectionType == 'vba')) {
+                let templateCode = this.parseTemplateCode()
+                if ( templateCode != ''){
+                    this.validTemplateCode = true
+                    return templateCode
+                }
             }
 
             
@@ -219,24 +184,26 @@ class templateDisplay extends React.Component {
         
     }
 
+    triggerUpdate = () => {
+        if ((this.codeLoaded == false) && (this.props.templateToDisplay != null) && (this.validTemplateCode)) {
+            this.codeLoaded = true
+            this.forceUpdate()
+        }
+    }
+
     render () {
             return (
                 <React.Fragment>
                     <Accordion className="template-display-inner-cont">
-                        <Accordion.Title
-                            onClick={this.handleTitleClick}
-                            active={this.state.activeIndex.includes(0)}
-                            index={0}
-                            className="menu-header-h1 menu-choice"
-                        >
-                            <Icon name='dropdown' />
-                            TEMPALTE CODE FUNCTION(S)
-                        </Accordion.Title>
-                        <Accordion.Content style={{paddingBottom: '0px'}} active={this.state.activeIndex.includes(0)}>
-                            
-                            {this.renderParts('func')}
+
+
+
+
+                        <Accordion.Content className="template-code-cont" active={this.state.activeIndex.includes(1)}>
+                            {this.renderParts('vba')}
+                                                        
                         </Accordion.Content>
-                        
+
                         <Accordion.Title
                             onClick={this.handleTitleClick}
                             active={this.state.activeIndex.includes(1)}
@@ -247,10 +214,19 @@ class templateDisplay extends React.Component {
                             CODE
                         </Accordion.Title>
 
-                        <Accordion.Content className="template-code-cont" active={this.state.activeIndex.includes(1)}>
-                            {this.renderParts('vba')}
+                        <Accordion.Content style={{paddingBottom: '0px'}} active={this.state.activeIndex.includes(0)}>
+                            {this.renderParts('func')}
                         </Accordion.Content>
-
+                        
+                        <Accordion.Title
+                            onClick={this.handleTitleClick}
+                            active={this.state.activeIndex.includes(0)}
+                            index={0}
+                            className="menu-header-h1 menu-choice"
+                        >
+                            <Icon name='dropdown' />
+                            TEMPALTE CODE FUNCTION(S)
+                        </Accordion.Title>
                     </Accordion>
                 </React.Fragment>
             )
@@ -260,6 +236,7 @@ class templateDisplay extends React.Component {
 
 const mapStateToProps = (state) => {
     return ({
+        templateCodeInfo: state.templateCodeInfo.template_func_description,
         templateToDisplay: state.templateCodeInfo.template_code,
         highlightCodeSelection: state.funcInfoSelected,
         columnChoices: state.columnChoices,

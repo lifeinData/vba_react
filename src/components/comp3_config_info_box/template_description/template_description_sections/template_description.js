@@ -45,7 +45,7 @@ class templateDescription extends React.Component {
 
 const mapStateToProps = (state) => {
     return ({
-        funcDescrip : state.templateCodeInfo,
+        funcDescrip : state.templateCodeInfo.template_func_description,
         selectedFuncInfo: state.funcInfoSelected
     })
 }

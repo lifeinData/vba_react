@@ -1,6 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {templateFunctionBreakdownSelect} from '../../../actions';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
+import { HashLink as Link } from 'react-router-hash-link';
+
 
 class functionBreakdownSection extends React.Component {
     constructor(props) {
@@ -22,6 +26,7 @@ class functionBreakdownSection extends React.Component {
     onFuncClick = (e) => {
         this.setState({'functionInfoSelected':e.target.id})
         this.props.templateFunctionBreakdownSelect(e.target.id)
+        
     }
 
     onMouseLeave = () => {
@@ -30,37 +35,43 @@ class functionBreakdownSection extends React.Component {
     }
 
     getFunctionBreakdown = () => {
-        if (this.props.templateToDisplay !=  null) {
+        if (this.props.templateCodeInfo !=  null) {
 
             let split_code;
             let func_name;
-            split_code = Object.keys(this.props.templateToDisplay).map((func_name) => {
+            split_code = Object.keys(this.props.templateCodeInfo).map((func_name) => {
                 if ((func_name != 'template_code') && (func_name != 'overall_descrip')) {
 
                     return (
-                        <p 
-                        id={func_name}
-                        key={func_name}
-                        onClick={this.onFuncClick}
-                        onMouseEnter={this.onMouseEnter}
-                        onMouseLeave={this.onMouseLeave}
-                        className={this.state.functionInfoSelected == func_name ? 'active' : ''}>
-                            {func_name}
-                        </p>
+                        <Link to={"#"+func_name}>
+                            <p 
+                            id={func_name}
+                            key={func_name}
+                            onClick={this.onFuncClick}
+                            onMouseEnter={this.onMouseEnter}
+                            onMouseLeave={this.onMouseLeave}
+                            className={this.state.functionInfoSelected == func_name ? 'active' : ''}>
+                                {func_name}
+                            </p>
+
+                        </Link>
                     )
                 }
             })
             
             split_code.splice(0, 0,
-                <p 
-                    id="overall_descrip"
-                    key="overall_descrip"
-                    onClick={this.onFuncClick}
-                    onMouseEnter={this.onMouseEnter}
-                    onMouseLeave={this.onMouseLeave}
-                    className={this.state.functionInfoSelected == 'overall_descrip' ? 'active' : ''}>
-                        Template Code Overview
-                </p>)
+                <Link to="#overall_descrip">
+                    <p 
+                        id="overall_descrip"
+                        key="overall_descrip"
+                        onClick={this.onFuncClick}
+                        onMouseEnter={this.onMouseEnter}
+                        onMouseLeave={this.onMouseLeave}
+                        className={this.state.functionInfoSelected == 'overall_descrip' ? 'active' : ''}>
+                            Template Code Overview
+                    </p>
+                </Link>
+)
                 
             return split_code
         }
@@ -68,21 +79,21 @@ class functionBreakdownSection extends React.Component {
     }
 
     render () {
-        return (
-            <React.Fragment>
+        return (      
                 <div className="function-break-down">
                     {this.getFunctionBreakdown()}
                 </div>
-            </React.Fragment>
+
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return ({
-        templateToDisplay: state.templateCodeInfo,
+        templateCodeInfo: state.templateCodeInfo.template_func_description,
         funcInfoSelect: state.funcInfoSelected
     })
 }
 
-export default connect(mapStateToProps, {templateFunctionBreakdownSelect})(functionBreakdownSection)
+export default compose (connect(mapStateToProps, {templateFunctionBreakdownSelect}),
+                        withRouter) (functionBreakdownSection)
