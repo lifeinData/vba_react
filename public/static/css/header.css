@@ -189,6 +189,9 @@ body {
   padding: 7px 4px;
   overflow: auto;
 }
+#main-app-layout .informationBox .template-targetcol-cont .insert_checkbox {
+  padding-left: 6px;
+}
 #main-app-layout .informationBox .template-targetcol-cont .column-input-form {
   display: flex;
   margin: 0px 7px;
@@ -207,7 +210,16 @@ body {
   justify-content: space-between;
 }
 #main-app-layout .informationBox .template-targetcol-cont .column_choices_list .drop-down-cont {
-  width: fit-content;
+  width: 105px;
+  margin-right: 45;
+}
+#main-app-layout .informationBox .template-targetcol-cont .column_choices_list .drop-down-cont .column-picker {
+  display: flex;
+  justify-content: space-between;
+}
+#main-app-layout .informationBox .template-targetcol-cont .column_choices_list .drop-down-cont i {
+  margin-left: 0px;
+  margin-top: 5px;
 }
 #main-app-layout .informationBox .template-targetcol-cont .column_choices_list p {
   width: fit-content;

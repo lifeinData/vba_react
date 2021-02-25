@@ -236,6 +236,10 @@
             @include info-box-div;
             overflow: auto;
           
+          & .insert_checkbox {
+            padding-left: 6px;
+          }
+
           & .column-input-form {
             display: flex;
             margin: 0px 7px;
@@ -257,7 +261,18 @@
             justify-content: space-between;
 
             & .drop-down-cont {
-              width: fit-content;
+              width: 105px;
+              margin-right: 45;
+              
+              & .column-picker {
+                display: flex;
+                justify-content: space-between;
+              }
+
+              & i {
+                margin-left: 0px;
+                margin-top: 5px;
+              }
             }
 
             & p {

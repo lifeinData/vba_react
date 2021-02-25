@@ -18,9 +18,11 @@ class templateDescription extends React.Component {
 
     renderTemplateDescrip = () => {
         if (this.props.funcDescrip != null) {
+            let descripHeader
+            descripHeader = this.props.selectedFuncInfo == 'overall_descrip' ? "Overall Template Description" :  this.props.selectedFuncInfo
             return (
                 <React.Fragment>
-                    <p className="descrip-header">{this.props.selectedFuncInfo}</p>
+                    <p className="descrip-header">{descripHeader}</p>
                     <p className="descrip-txt">
                         {this.props.funcDescrip[this.props.selectedFuncInfo]}
                     </p>

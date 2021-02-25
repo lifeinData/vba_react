@@ -64,7 +64,7 @@ class templateChoices extends React.Component {
                         <Icon name='dropdown' />
                             {category.toUpperCase()}
                         </Accordion.Title>
-                        <Accordion.Content key={category} className="test-content" active={this.state.accordActiveIndex.includes(index)}>
+                        <Accordion.Content key={category} active={this.state.accordActiveIndex.includes(index)}>
                             {this.transformToSubheading(category)}
                         </Accordion.Content>
                     </React.Fragment>

@@ -49,7 +49,7 @@ class sectionDropDown extends React.Component {
                         <Icon name='dropdown' />
                         INSERT NEW COLUMNS
                     </Accordion.Title>
-                    <Accordion.Content className="test-content" active={this.state.activeIndex.includes(0)}>
+                    <Accordion.Content active={this.state.activeIndex.includes(0)}>
                         <InsertNewColumn />
                     </Accordion.Content>
                 </div>
@@ -65,7 +65,7 @@ class sectionDropDown extends React.Component {
                         <Icon name='dropdown' />
                         EXPLANATION
                     </Accordion.Title>
-                    <Accordion.Content className="test-content" active={this.state.activeIndex.includes(1)}>
+                    <Accordion.Content active={this.state.activeIndex.includes(1)}>
                         {/* <SettingsFields nodeProperty={this.props.nodeProperty}/> */}
                     </Accordion.Content>
                 </div>
@@ -82,7 +82,7 @@ class sectionDropDown extends React.Component {
                         <Icon name='dropdown' />
                         CURRENT COLUMN LIST
                     </Accordion.Title>
-                    <Accordion.Content className="test-content" active={this.state.activeIndex.includes(2)}>
+                    <Accordion.Content active={this.state.activeIndex.includes(2)}>
                         {this.hasColumnChoices()}
                     </Accordion.Content>
                 </div>
