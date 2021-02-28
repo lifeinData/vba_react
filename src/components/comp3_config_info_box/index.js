@@ -3,6 +3,7 @@ import React from 'react';
 import { Resizable } from "re-resizable";
 import TemplateDescriptionSection from './template_description';
 import ColumnSettingSection from './column_settings'
+import CodeOptions from './code_options/codeOptions'
 
 class configInfoBoxSections extends React.Component {
     render () {
@@ -28,12 +29,14 @@ class configInfoBoxSections extends React.Component {
                 */}
                 </div>
 
-                <div className="template-targetcol-cont">
-                    <ColumnSettingSection />
+
+
+                <div className="template-code-opt-cont">
+                    <CodeOptions />
                 </div>
 
-                <div className="template-history-cont">
-
+                <div className="template-targetcol-cont">
+                    <ColumnSettingSection />
                 </div>
             {/* </div> */}
             </Resizable>

@@ -44,7 +44,7 @@ class functionBreakdownSection extends React.Component {
 
                     return (
                         <Link to={"#"+func_name}>
-                            <p 
+                            <p
                             id={func_name}
                             key={func_name}
                             onClick={this.onFuncClick}
@@ -53,7 +53,6 @@ class functionBreakdownSection extends React.Component {
                             className={this.state.functionInfoSelected == func_name ? 'active' : ''}>
                                 {func_name}
                             </p>
-
                         </Link>
                     )
                 }

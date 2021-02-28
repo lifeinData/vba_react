@@ -225,13 +225,50 @@ body {
   width: fit-content;
   margin-bottom: 8px;
 }
-#main-app-layout .informationBox .template-history-cont {
+#main-app-layout .informationBox .template-code-opt-cont {
   width: max(315px, 100%);
   background: #fdfdfd;
   height: 33.33%;
   border: 2px #ededed solid;
   margin-bottom: 7px;
   padding: 7px 4px;
+}
+#main-app-layout .informationBox .template-code-opt-cont .code-option-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 7px 8px 0px 8px;
+  height: 90%;
+  overflow: auto;
+}
+#main-app-layout .informationBox .template-code-opt-cont .code-option-box div.code-tooltip {
+  width: 100%;
+  text-align: center;
+  background: black;
+  color: white;
+  font-weight: 700;
+  margin-top: 5px;
+}
+#main-app-layout .informationBox .template-code-opt-cont .code-option-box div.code-tooltip.show {
+  visibility: visible;
+}
+#main-app-layout .informationBox .template-code-opt-cont .code-option-box div.code-tooltip.hide {
+  visibility: hidden;
+}
+#main-app-layout .informationBox .template-code-opt-cont .code-option-box img {
+  height: calc(100% - 20px);
+  width: calc(100% - 20px);
+  position: relative;
+  cursor: pointer;
+}
+#main-app-layout .informationBox .template-code-opt-cont .code-option-box .option-select {
+  width: 115px;
+  height: 115px;
+  border: 2px black solid;
+  margin-top: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .menu-choice-header-h1, .template-display-inner-cont {
@@ -306,18 +343,6 @@ body {
   border: 2px black solid;
   height: 150px !important;
   align-content: start;
-}
-
-#node-property-container {
-  grid-area: nodePropertyArea;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  border: 2px black solid;
-  padding-top: 4px;
-  padding-left: 1px;
-  padding-right: 5px;
 }
 
 #column_choices_list {
