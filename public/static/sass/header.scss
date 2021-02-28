@@ -19,6 +19,15 @@
   padding: 7px 4px;
 }
 
+@mixin code-opt-tooltip {
+  width: 100%;
+  text-align: center;
+  background: black;
+  color: white;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
 .grid-container {
     display: flex;
     padding-top:8px;
@@ -282,8 +291,47 @@
           }
         }
 
-        & .template-history-cont {
+        & .template-code-opt-cont {
           @include info-box-div;
+          & .code-option-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 7px 8px 0px 8px;
+            height: 90%;
+            overflow: auto;
+            
+            & div.code-tooltip {
+              @include code-opt-tooltip;
+
+              &.show {
+                visibility: visible;
+              }
+
+              &.hide {
+                visibility: hidden;
+              }
+              
+            }
+
+            & img {
+              height: calc(100% - 20px);
+              width: calc(100% - 20px);
+              position: relative;
+              cursor: pointer;
+            }
+
+            & .option-select {
+              width: 115px;
+              height: 115px;
+              border: 2px black solid;
+              margin-top: 3px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              // padding: 0px 15px 15px 15px;
+            }
+          }
         }
     }
   }
@@ -369,21 +417,6 @@
     // width: 90%;
     align-content: start;
   }
-
-  #node-property-container {
-    grid-area: nodePropertyArea;
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    border: 2px black solid;
-    padding-top: 4px;
-    padding-left: 1px;
-    padding-right: 5px;
-    // height: 400px;
-    // max-width: 538px;
-  }
-
 
   #column_choices_list {
     display: flex;
