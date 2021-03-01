@@ -90,7 +90,8 @@ class templateDisplay extends React.Component {
 
                                 return (
                                     <React.Fragment>
-                                        <a id = {functionIdAry[ind]}></a>
+                                    
+                                        <a id = {this.props.templateChoiceID + "#" + functionIdAry[ind]}></a>
                                         <div className={this.isSectionSelected(el)}>
                                             
                                             <SyntaxHighlighter language='vba'>
@@ -195,10 +196,6 @@ class templateDisplay extends React.Component {
             return (
                 <React.Fragment>
                     <Accordion className="template-display-inner-cont">
-
-
-
-
                         <Accordion.Content className="template-code-cont" active={this.state.activeIndex.includes(1)}>
                             {this.renderParts('vba')}
                                                         
@@ -240,7 +237,8 @@ const mapStateToProps = (state) => {
         templateToDisplay: state.templateCodeInfo.template_code,
         highlightCodeSelection: state.funcInfoSelected,
         columnChoices: state.columnChoices,
-        templateChoiceClicked: state.templateChoice.templateChoiceClicked
+        templateChoiceClicked: state.templateChoice.templateChoiceClicked,
+        templateChoiceID: state.templateChoice.templateID,
     })
 }
 

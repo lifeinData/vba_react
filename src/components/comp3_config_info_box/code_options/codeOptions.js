@@ -34,8 +34,8 @@ class codeOptions extends React.Component {
         return (
             <React.Fragment>
                 <p topic="dq" className="menu-header-h1">TEMPLATE CODE OPTIONS</p>
-                <div class="code-option-box">
-                    <div class="option-select">
+                <div className="code-option-box">
+                    <div className="option-select">
                         <img onMouseEnter={() => {this.handleMouseHover('code-cp-tooltip-class')}}
                              onMouseLeave={() => {this.handleMouseLeave('code-cp-tooltip-class')}}
                              className="cp_all_code" src={cpIcon}
@@ -45,13 +45,13 @@ class codeOptions extends React.Component {
                             Copy all code
                         </div>
                     </div>
-                    <div class="option-select">
+                    <div className="option-select">
                         
                     </div>
-                    <div class="option-select">
+                    <div className="option-select">
                     
                     </div>
-                    <div class="option-select">
+                    <div className="option-select">
                     
                     </div>
                 </div>

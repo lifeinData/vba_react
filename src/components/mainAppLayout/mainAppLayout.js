@@ -8,6 +8,7 @@ import 'highlight.js/styles/github.css';
 import TemplateDisplay from '../comp2_template_display_area/templateDisplay';
 import ConfigInfoBox from '../comp3_config_info_box'
 import TemplateChoicesBox from '../comp1_template_choices'
+import { HashRouter, NavLink } from 'react-router-dom';
 
 // console.log(hljs)
 
@@ -92,7 +93,14 @@ class MainMenu extends React.Component {
                     <TemplateChoicesBox />
 
                     <div className="macro-generator-container">
-                        <TemplateDisplay/>
+                        <TemplateDisplay />
+                        {/*                         
+                        <HashRouter basename="/templateCode/" children={}>
+
+                        </HashRouter>
+                        <HashRouter basename="/test1/" children={<div>hello</div>}>
+
+                        </HashRouter> */}
                     </div>
                     
                     <ConfigInfoBox />

@@ -118,3 +118,10 @@ export const templateOptionClicked = () => {
         payload: {'templateChoiceClicked': true}
     }
 }
+
+export const templateCodeChoice = (templateID) => {
+    return {
+        type: 'TEMPLATE_OPTION_CHOICE',
+        payload: templateID
+    }
+}

@@ -43,7 +43,7 @@ class functionBreakdownSection extends React.Component {
                 if ((func_name != 'template_code') && (func_name != 'overall_descrip')) {
 
                     return (
-                        <Link to={"#"+func_name}>
+                        <Link to={this.props.templateChoiceID + "#" + func_name}>
                             <p
                             id={func_name}
                             key={func_name}
@@ -90,6 +90,7 @@ class functionBreakdownSection extends React.Component {
 const mapStateToProps = (state) => {
     return ({
         templateCodeInfo: state.templateCodeInfo.template_func_description,
+        templateChoiceID: state.templateChoice.templateID,
         funcInfoSelect: state.funcInfoSelected
     })
 }

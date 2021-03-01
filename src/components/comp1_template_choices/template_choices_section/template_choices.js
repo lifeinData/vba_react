@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Accordion, Icon} from 'semantic-ui-react';
-import { parseTemplateOptions, parseTemplateRequest, templateOptionClicked } from '../../../actions/index';
+import { parseTemplateOptions, parseTemplateRequest, templateOptionClicked, templateCodeChoice } from '../../../actions/index';
 import { Resizable } from "re-resizable";
+import { HashLink as Link } from 'react-router-hash-link';
 
 class templateChoices extends React.Component {
     constructor(props){
@@ -12,6 +13,7 @@ class templateChoices extends React.Component {
             'accordActiveIndex': []
             // 'accordActiveIndex': []
         }
+        this.choiceID=''
     }
 
     componentDidUpdate (prevProps) {
@@ -22,10 +24,15 @@ class templateChoices extends React.Component {
         }
     }
 
+    componentDidUpdate (){
+        // this.props.parseTemplateRequest(this.header, this.template_id)
+    }
+
     templateChoiceOnClick = (e) => {
         let [header, template_id] = e.target.id.split('-')
+        // [this.header, this.template_id] = e.target.id.split('-')
         this.props.parseTemplateRequest(header, template_id)
-        
+        this.props.templateCodeChoice(template_id)
         if (!(this.props.templateChoiceClicked)){
             this.props.templateOptionClicked()
         }
@@ -35,9 +42,17 @@ class templateChoices extends React.Component {
         let subheading = []
         for (let choice of Object.keys(this.props.templateChoices[key])){
             if (choice != "id") {
+                // this.choiceID = this.props.templateChoices[key][choice]['id']
                 subheading.push(
-                    <p key={this.props.templateChoices[key][choice]['id']} id={this.props.templateChoices[key]['id'] + '-' + this.props.templateChoices[key][choice]['id']} onClick={this.templateChoiceOnClick}>
-                        {choice}
+
+                    <p key={this.props.templateChoices[key][choice]['id']} 
+                    
+                    onClick={this.templateChoiceOnClick}>
+                        <a href={"#templateCode#" + this.props.templateChoices[key][choice]['id']}
+                        id={this.props.templateChoices[key]['id'] + '-' + this.props.templateChoices[key][choice]['id']}> 
+                            {choice} 
+                        </a>
+                        
                     </p>
                 )
             } 
@@ -128,4 +143,4 @@ const mapStateToProps = (state) => {
     
 }
 
-export default connect (mapStateToProps, {parseTemplateOptions, parseTemplateRequest, templateOptionClicked})(templateChoices)
+export default connect (mapStateToProps, {templateCodeChoice, parseTemplateOptions, parseTemplateRequest, templateOptionClicked})(templateChoices)
