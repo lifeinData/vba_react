@@ -1,4 +1,4 @@
-const templateChoiceReducer = (state={'templateChoiceClicked': false, 'data': '', 'templateID':''}, action) => {
+const templateChoiceReducer = (state={'templateChoiceClicked': false, 'data': '', 'templateID':'', 'headerID':''}, action) => {
     switch (action.type) {
         case 'GET_TEMPLATE_OPTIONS':
             state['data'] = {...state['data'], ...action.payload} 
@@ -8,8 +8,9 @@ const templateChoiceReducer = (state={'templateChoiceClicked': false, 'data': ''
             return {...state, ...action.payload}
 
         case 'TEMPLATE_OPTION_CHOICE':
-            state['templateID'] = action.payload
-            return {...state}
+            // state['templateID'] = action.payload
+            // state['headerID'] = action.payload
+            return {...state, ...action.payload}
 
         default:
             return state

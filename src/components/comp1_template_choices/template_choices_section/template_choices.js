@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Accordion, Icon} from 'semantic-ui-react';
 import { parseTemplateOptions, parseTemplateRequest, templateOptionClicked, templateCodeChoice } from '../../../actions/index';
 import { Resizable } from "re-resizable";
-import { HashLink as Link } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 
 class templateChoices extends React.Component {
     constructor(props){
@@ -11,7 +11,6 @@ class templateChoices extends React.Component {
         this.props.parseTemplateOptions()
         this.state = {
             'accordActiveIndex': []
-            // 'accordActiveIndex': []
         }
         this.choiceID=''
     }
@@ -24,15 +23,12 @@ class templateChoices extends React.Component {
         }
     }
 
-    componentDidUpdate (){
-        // this.props.parseTemplateRequest(this.header, this.template_id)
-    }
-
     templateChoiceOnClick = (e) => {
         let [header, template_id] = e.target.id.split('-')
         // [this.header, this.template_id] = e.target.id.split('-')
-        this.props.parseTemplateRequest(header, template_id)
-        this.props.templateCodeChoice(template_id)
+        // this.props.parseTemplateRequest(header, template_id)
+        // console.log(window.location.href)
+        this.props.templateCodeChoice(header, template_id)
         if (!(this.props.templateChoiceClicked)){
             this.props.templateOptionClicked()
         }
@@ -48,10 +44,10 @@ class templateChoices extends React.Component {
                     <p key={this.props.templateChoices[key][choice]['id']} 
                     
                     onClick={this.templateChoiceOnClick}>
-                        <a href={"#templateCode#" + this.props.templateChoices[key][choice]['id']}
+                        <Link to = { "/home/" + this.props.templateChoices[key]['id'] + "/" + this.props.templateChoices[key][choice]['id']}
                         id={this.props.templateChoices[key]['id'] + '-' + this.props.templateChoices[key][choice]['id']}> 
                             {choice} 
-                        </a>
+                        </Link>
                         
                     </p>
                 )

@@ -5,11 +5,7 @@ import AppHeader from './mainAppLayout/appHeader'
 class App extends React.Component {
     render () {
         return (
-            <React.Fragment>
-                <AppHeader />
-                <MainAppLayout />
-            </React.Fragment>
-            
+            <AppHeader />            
         )
 
     }

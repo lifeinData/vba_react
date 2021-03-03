@@ -12,19 +12,36 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 class templateDisplay extends React.Component {
     constructor(props){
         super(props)
-        // hljs.registerLanguage("vba", hljsVba);
-        // this.props.parseTemplateOptions()
         this.state = {activeIndex: [0,1], syntaxHighlighted: false}
         this.codeLoaded = false
         this.validTemplateCode = false
     }
-    
-    triggerFunctionBreak = () => {
-        if ((!(this.state.codeLoaded)) && (this.props.templateToDisplay != null)) {
-            this.setState({codeLoaded : true})
+
+    componentDidMount () {
+        // case when going to the url directly
+        if (!(this.props.templateChoiceClicked)){
+            let templateUrlPart = window.location.href.split('home/')
+            if (templateUrlPart[1] != "") {
+                templateUrlPart = templateUrlPart[1].split('/')
+                this.props.parseTemplateRequest(templateUrlPart[0], templateUrlPart[1])
+                this.codeLoaded = true
+            }
         }
+
+        // console.log('these are the template choices on mount:  ', this.props.templateChoiceID, this.props.templateHeaderID)
     }
 
+    componentDidUpdate (prevProps, prevState) {
+        // console.log('these are the template choices:  ', this.props.templateChoiceID, this.props.templateHeaderID)
+
+        if (this.props.templateChoiceClicked){
+            if (prevProps.templateChoiceID != this.props.templateChoiceID){
+                this.props.parseTemplateRequest(this.props.templateHeaderID, this.props.templateChoiceID)
+            }
+        }
+
+        // this.codeLoaded = true
+    }
 
     handleTitleClick = (e, titleProps) => {
         const index = titleProps.index
@@ -111,7 +128,6 @@ class templateDisplay extends React.Component {
 
     parseTemplateCode = () => {
         if (this.props.templateToDisplay != null) {
-
             let numColumnsToInsert = []
             let txtColumnsToInsert = []
             let numRegex = /<jsNumParse>/
@@ -159,7 +175,11 @@ class templateDisplay extends React.Component {
     }
 
     renderParts = (sectionType) => {
-        if (this.props.templateChoiceClicked) {
+        if (this.props.templateChoiceClicked || this.codeLoaded) {
+            // if (!(this.codeLoaded)){
+            //     this.props.parseTemplateRequest(this.props.templateHeaderID, this.props.templateChoiceID)
+            // }
+            // this.codeLoaded = true
             if (sectionType == 'func'){
                     return <FunctionBreakdownBar />
                     
@@ -167,11 +187,10 @@ class templateDisplay extends React.Component {
                 let templateCode = this.parseTemplateCode()
                 if ( templateCode != ''){
                     this.validTemplateCode = true
+                    
                     return templateCode
                 }
             }
-
-            
         }
         
         if (sectionType == 'vba') {
@@ -185,48 +204,44 @@ class templateDisplay extends React.Component {
         
     }
 
-    triggerUpdate = () => {
-        if ((this.codeLoaded == false) && (this.props.templateToDisplay != null) && (this.validTemplateCode)) {
-            this.codeLoaded = true
-            this.forceUpdate()
-        }
-    }
-
     render () {
-            return (
-                <React.Fragment>
-                    <Accordion className="template-display-inner-cont">
-                        <Accordion.Content className="template-code-cont" active={this.state.activeIndex.includes(1)}>
-                            {this.renderParts('vba')}
-                                                        
-                        </Accordion.Content>
+        return (
+            <React.Fragment>
+            <div className="macro-generator-container">
 
-                        <Accordion.Title
-                            onClick={this.handleTitleClick}
-                            active={this.state.activeIndex.includes(1)}
-                            index={1}
-                            className="menu-header-h1 menu-choice"
-                        >
-                            <Icon name='dropdown' />
-                            CODE
-                        </Accordion.Title>
+                <Accordion className="template-display-inner-cont">
+                    <Accordion.Content className="template-code-cont" active={this.state.activeIndex.includes(1)}>
+                        {this.renderParts('vba')}
+                                                    
+                    </Accordion.Content>
 
-                        <Accordion.Content style={{paddingBottom: '0px'}} active={this.state.activeIndex.includes(0)}>
-                            {this.renderParts('func')}
-                        </Accordion.Content>
-                        
-                        <Accordion.Title
-                            onClick={this.handleTitleClick}
-                            active={this.state.activeIndex.includes(0)}
-                            index={0}
-                            className="menu-header-h1 menu-choice"
-                        >
-                            <Icon name='dropdown' />
-                            TEMPALTE CODE FUNCTION(S)
-                        </Accordion.Title>
-                    </Accordion>
-                </React.Fragment>
-            )
+                    <Accordion.Title
+                        onClick={this.handleTitleClick}
+                        active={this.state.activeIndex.includes(1)}
+                        index={1}
+                        className="menu-header-h1 menu-choice"
+                    >
+                        <Icon name='dropdown' />
+                        CODE
+                    </Accordion.Title>
+
+                    <Accordion.Content style={{paddingBottom: '0px'}} active={this.state.activeIndex.includes(0)}>
+                        {this.renderParts('func')}
+                    </Accordion.Content>
+                    
+                    <Accordion.Title
+                        onClick={this.handleTitleClick}
+                        active={this.state.activeIndex.includes(0)}
+                        index={0}
+                        className="menu-header-h1 menu-choice"
+                    >
+                        <Icon name='dropdown' />
+                        TEMPALTE CODE FUNCTION(S)
+                    </Accordion.Title>
+                </Accordion>
+            </div>
+            </React.Fragment>
+        )
     }
 }
 
@@ -239,6 +254,7 @@ const mapStateToProps = (state) => {
         columnChoices: state.columnChoices,
         templateChoiceClicked: state.templateChoice.templateChoiceClicked,
         templateChoiceID: state.templateChoice.templateID,
+        templateHeaderID: state.templateChoice.headerID
     })
 }
 

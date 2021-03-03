@@ -461,3 +461,18 @@
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
   }
+
+  /* header section */
+  
+.ui.menu {
+  background: #1078f7;
+  border: 0px;
+  margin-bottom: 0px;
+
+  .active.item {
+    background: #ebebeb;
+    color: black;
+
+  }
+
+}

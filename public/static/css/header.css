@@ -393,4 +393,15 @@ body {
      supported by Chrome, Edge, Opera and Firefox */
 }
 
+/* header section */
+.ui.menu {
+  background: #1078f7;
+  border: 0px;
+  margin-bottom: 0px;
+}
+.ui.menu .active.item {
+  background: #ebebeb;
+  color: black;
+}
+
 /*# sourceMappingURL=header.css.map */

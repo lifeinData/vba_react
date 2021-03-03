@@ -119,9 +119,9 @@ export const templateOptionClicked = () => {
     }
 }
 
-export const templateCodeChoice = (templateID) => {
+export const templateCodeChoice = (headerID, templateID) => {
     return {
         type: 'TEMPLATE_OPTION_CHOICE',
-        payload: templateID
+        payload: {headerID: headerID, templateID: templateID}
     }
 }

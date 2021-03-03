@@ -6,9 +6,12 @@ import hljs from 'highlight.js';
 import hljsVba from 'highlight.js/lib/languages/vba';
 import 'highlight.js/styles/github.css';
 import TemplateDisplay from '../comp2_template_display_area/templateDisplay';
+import TemplateDisplayT from '../comp2_template_display_area/templateDisplayTest';
 import ConfigInfoBox from '../comp3_config_info_box'
 import TemplateChoicesBox from '../comp1_template_choices'
+import { Route, Switch } from 'react-router-dom';
 import { HashRouter, NavLink } from 'react-router-dom';
+import AppHeader from './appHeader';
 
 // console.log(hljs)
 
@@ -30,6 +33,11 @@ class MainMenu extends React.Component {
         // hljs.initHighlightingOnLoad();
         hljs.registerLanguage("vba", hljsVba);
         
+    }
+
+    componentDidMount() {
+        console.log(this.props)
+        this.setState({ 'prevEl': document.querySelector('.menu-btn.clicked') }, () => { this.getNodeChoices('about', true) })
     }
 
     menuClick = (e) => {
@@ -81,31 +89,15 @@ class MainMenu extends React.Component {
         })
     }
 
-    componentDidMount() {
-        
-        this.setState({ 'prevEl': document.querySelector('.menu-btn.clicked') }, () => { this.getNodeChoices('about', true) })
-    }
-
     render() {
         return (
             <React.Fragment>
                 <div id="main-app-layout">
                     <TemplateChoicesBox />
 
-                    <div className="macro-generator-container">
-                        <TemplateDisplay />
-                        {/*                         
-                        <HashRouter basename="/templateCode/" children={}>
 
-                        </HashRouter>
-                        <HashRouter basename="/test1/" children={<div>hello</div>}>
-
-                        </HashRouter> */}
-                    </div>
-                    
+                    <TemplateDisplay templateid={this.props.match.params.id}/>
                     <ConfigInfoBox />
-                   
-                
                 </div>
             </React.Fragment>
 
