@@ -257,12 +257,12 @@ body {
 }
 #main-app-layout .informationBox .template-code-opt-cont .code-option-box img {
   height: calc(100% - 20px);
-  width: calc(100% - 20px);
+  width: calc(100% - 35px);
   position: relative;
   cursor: pointer;
 }
 #main-app-layout .informationBox .template-code-opt-cont .code-option-box .option-select {
-  width: 115px;
+  width: 130px;
   height: 115px;
   border: 2px black solid;
   margin-top: 3px;

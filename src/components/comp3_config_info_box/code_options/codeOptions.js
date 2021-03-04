@@ -1,6 +1,8 @@
 import React from 'react';
 import cpIcon from '../../../images/copy_paste_icon.png';
-import { Alert } from 'react-bootstrap'
+import cpSectionIcon from '../../../images/copy_paste_section.png';
+import cpLinkIcon from '../../../images/copy_link.png'
+import { Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 class codeOptions extends React.Component {
@@ -9,6 +11,7 @@ class codeOptions extends React.Component {
         this.state = {
             'code-cp-tooltip-class' : "code-tooltip hide",
             'code-function-tooltip-class' : "code-tooltip hide",
+            'code-link-tooltip-class': "code-tooltip hide"
         }
     }
 
@@ -46,9 +49,22 @@ class codeOptions extends React.Component {
                         </div>
                     </div>
                     <div className="option-select">
-                        
+                        <img onMouseEnter={() => {this.handleMouseHover('code-function-tooltip-class')}}
+                             onMouseLeave={() => {this.handleMouseLeave('code-function-tooltip-class')}}
+                             className="cp_all_code" src={cpSectionIcon}
+                        />
+                        <div className={this.state['code-function-tooltip-class']}>
+                            Copy code section
+                        </div>
                     </div>
                     <div className="option-select">
+                        <img onMouseEnter={() => {this.handleMouseHover('code-link-tooltip-class')}}
+                             onMouseLeave={() => {this.handleMouseLeave('code-link-tooltip-class')}}
+                             className="cp_all_code" src={cpLinkIcon}
+                        />
+                        <div className={this.state['code-link-tooltip-class']}>
+                            Copy code link
+                        </div>
                     
                     </div>
                     <div className="option-select">
