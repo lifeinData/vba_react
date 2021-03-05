@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Alert } from 'react-bootstrap'
-import { parseTemplateRequest, parseTemplateOptions } from '../../actions/index';
+import { parseTemplateRequest, parseTemplateOptions, selectedFuncBlock } from '../../actions/index';
 import FunctionBreakdownBar from './template_display_sections/functionBreakdown';
 import {Accordion, Icon} from 'semantic-ui-react';
 import hljs from 'highlight.js';
@@ -28,12 +28,9 @@ class templateDisplay extends React.Component {
             }
         }
 
-        // console.log('these are the template choices on mount:  ', this.props.templateChoiceID, this.props.templateHeaderID)
     }
 
     componentDidUpdate (prevProps, prevState) {
-        // console.log('these are the template choices:  ', this.props.templateChoiceID, this.props.templateHeaderID)
-
         if (this.props.templateChoiceClicked){
             if (prevProps.templateChoiceID != this.props.templateChoiceID){
                 this.props.parseTemplateRequest(this.props.templateHeaderID, this.props.templateChoiceID)
@@ -80,6 +77,7 @@ class templateDisplay extends React.Component {
         if (capture != null) {
             capture = capture[1]
             if (this.props.highlightCodeSelection == capture) {
+                this.props.selectedFuncBlock(funcBlock)
                 return 'codeDiv highlighted'
             }
         }
@@ -108,8 +106,8 @@ class templateDisplay extends React.Component {
                                 return (
                                     <React.Fragment>
                                     
-                                        <a id = {this.props.templateChoiceID + "#" + functionIdAry[ind]}></a>
-                                        <div className={this.isSectionSelected(el)}>
+                                        <a id = {functionIdAry[ind]}></a>
+                                        <div className={this.isSectionSelected(codeSection)}>
                                             
                                             <SyntaxHighlighter language='vba'>
                                                 {codeSection}                                                
@@ -250,7 +248,7 @@ const mapStateToProps = (state) => {
     return ({
         templateCodeInfo: state.templateCodeInfo.template_func_description,
         templateToDisplay: state.templateCodeInfo.template_code,
-        highlightCodeSelection: state.funcInfoSelected,
+        highlightCodeSelection: state.funcInfoSelected.funcTitle,
         columnChoices: state.columnChoices,
         templateChoiceClicked: state.templateChoice.templateChoiceClicked,
         templateChoiceID: state.templateChoice.templateID,
@@ -258,4 +256,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, {parseTemplateRequest, parseTemplateOptions}) (templateDisplay)
+export default connect(mapStateToProps, {selectedFuncBlock, parseTemplateRequest, parseTemplateOptions}) (templateDisplay)

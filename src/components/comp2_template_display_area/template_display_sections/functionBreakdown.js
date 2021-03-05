@@ -91,7 +91,7 @@ const mapStateToProps = (state) => {
     return ({
         templateCodeInfo: state.templateCodeInfo.template_func_description,
         templateChoiceID: state.templateChoice.templateID,
-        funcInfoSelect: state.funcInfoSelected
+        funcInfoSelect: state.funcInfoSelected.funcTitle
     })
 }
 

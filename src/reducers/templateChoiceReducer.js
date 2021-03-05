@@ -8,8 +8,6 @@ const templateChoiceReducer = (state={'templateChoiceClicked': false, 'data': ''
             return {...state, ...action.payload}
 
         case 'TEMPLATE_OPTION_CHOICE':
-            // state['templateID'] = action.payload
-            // state['headerID'] = action.payload
             return {...state, ...action.payload}
 
         default:

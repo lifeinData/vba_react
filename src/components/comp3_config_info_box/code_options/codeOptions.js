@@ -2,6 +2,7 @@ import React from 'react';
 import cpIcon from '../../../images/copy_paste_icon.png';
 import cpSectionIcon from '../../../images/copy_paste_section.png';
 import cpLinkIcon from '../../../images/copy_link.png'
+import likeIcon from '../../../images/like_icon.png'
 import { Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
@@ -30,6 +31,8 @@ class codeOptions extends React.Component {
     copyToClipBoard = (mode) => {
         if (mode == 'full') {
             navigator.clipboard.writeText(this.props.templateToDisplay)
+        } else if (mode == 'functionBlock') {
+            navigator.clipboard.writeText(this.props.funcBlockToCopy)
         }
     }
 
@@ -52,6 +55,7 @@ class codeOptions extends React.Component {
                         <img onMouseEnter={() => {this.handleMouseHover('code-function-tooltip-class')}}
                              onMouseLeave={() => {this.handleMouseLeave('code-function-tooltip-class')}}
                              className="cp_all_code" src={cpSectionIcon}
+                             onClick={() => {this.copyToClipBoard('functionBlock')}}
                         />
                         <div className={this.state['code-function-tooltip-class']}>
                             Copy code section
@@ -68,7 +72,14 @@ class codeOptions extends React.Component {
                     
                     </div>
                     <div className="option-select">
-                    
+                        <img onMouseEnter={() => {this.handleMouseHover('code-link-tooltip-class')}}
+                                onMouseLeave={() => {this.handleMouseLeave('code-link-tooltip-class')}}
+                                className="cp_all_code" src={likeIcon}
+                        />
+
+                        <div className={this.state['code-link-tooltip-class']}>
+                            Copy code link
+                        </div>
                     </div>
                 </div>
             </React.Fragment>
@@ -79,6 +90,7 @@ class codeOptions extends React.Component {
 const mapStateToProps = (state) => {
     return ({
         templateToDisplay: state.templateCodeInfo.template_code,
+        funcBlockToCopy: state.funcInfoSelected.funcBlock
     })
 }
 

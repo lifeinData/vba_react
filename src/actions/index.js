@@ -94,7 +94,7 @@ export const columnTypeChanged = (newType) => {
 export const templateFunctionBreakdownSelect = (func_name) => {
     return {
         type: 'ADD_HIGHLIGHT_SECTION',
-        payload: func_name
+        payload: {'funcTitle':func_name}
     }
 }
 
@@ -123,5 +123,12 @@ export const templateCodeChoice = (headerID, templateID) => {
     return {
         type: 'TEMPLATE_OPTION_CHOICE',
         payload: {headerID: headerID, templateID: templateID}
+    }
+}
+
+export const selectedFuncBlock = (funcBlock) => {
+    return {
+        type: 'SELECTED_FUNC_BLOCK',
+        payload: {'funcBlock' : funcBlock}
     }
 }

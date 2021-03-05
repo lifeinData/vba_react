@@ -32,7 +32,7 @@ const mapStateToProps = (state) => {
     return ({
         templateCodeInfo: state.templateCodeInfo.template_func_description,
         templateToDisplay: state.templateCodeInfo.template_code,
-        highlightCodeSelection: state.funcInfoSelected,
+        highlightCodeSelection: state.funcInfoSelected.funcTitle,
         columnChoices: state.columnChoices,
         templateChoiceClicked: state.templateChoice.templateChoiceClicked,
         templateChoiceID: state.templateChoice.templateID,
