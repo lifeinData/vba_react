@@ -22,7 +22,13 @@ class templateDisplay extends React.Component {
         if (!(this.props.templateChoiceClicked)){
             let templateUrlPart = window.location.href.split('home/')
             if (templateUrlPart[1] != "") {
-                templateUrlPart = templateUrlPart[1].split('/')
+
+                if (templateUrlPart[1].includes("#")) {
+                    templateUrlPart = templateUrlPart[1].split('#')[0]
+                    templateUrlPart = templateUrlPart.split('/')
+                } else {
+                    templateUrlPart = templateUrlPart[1].split('/')
+                }
                 this.props.parseTemplateRequest(templateUrlPart[0], templateUrlPart[1])
                 this.codeLoaded = true
             }

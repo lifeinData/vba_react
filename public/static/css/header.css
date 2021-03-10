@@ -67,7 +67,7 @@ body {
 #main-app-layout .macro-generator-container {
   background-color: #ebebeb;
   width: 1200px;
-  height: 100vh;
+  height: calc(100vh - 44px);
   display: flex;
   justify-content: center;
   padding: 7px 8px;
@@ -105,7 +105,6 @@ body {
   background-color: white;
   width: 100%;
   padding: 8px 4px;
-  height: 100%;
 }
 #main-app-layout .macro-generator-container .template-display-inner-cont .template-code-cont {
   background: #f9f9f9;
@@ -188,6 +187,7 @@ body {
   margin-bottom: 7px;
   padding: 7px 4px;
   overflow: auto;
+  margin-bottom: 0px !important;
 }
 #main-app-layout .informationBox .template-targetcol-cont .insert_checkbox {
   padding-left: 6px;
@@ -255,6 +255,10 @@ body {
 #main-app-layout .informationBox .template-code-opt-cont .code-option-box div.code-tooltip.hide {
   visibility: hidden;
 }
+#main-app-layout .informationBox .template-code-opt-cont .code-option-box div.code-tooltip.clicked {
+  visibility: visible;
+  background-color: green;
+}
 #main-app-layout .informationBox .template-code-opt-cont .code-option-box img {
   height: calc(100% - 20px);
   width: calc(100% - 35px);
@@ -276,7 +280,7 @@ body {
   border: 2px #ededed solid;
   padding: 8px 4px;
   background: white;
-  height: 100vh;
+  height: 100%;
 }
 
 .populate_report_row {
@@ -288,6 +292,7 @@ body {
   flex-direction: column;
   background: #f7f7f7;
   padding: 7px 8px;
+  height: calc(100vh - 44px);
 }
 .templateChoiceMenu p {
   width: inherit;

@@ -29,10 +29,32 @@ class codeOptions extends React.Component {
     }
 
     copyToClipBoard = (mode) => {
-        if (mode == 'full') {
+        if (mode == 'code-cp-tooltip-class') {
             navigator.clipboard.writeText(this.props.templateToDisplay)
-        } else if (mode == 'functionBlock') {
+            this.setState({[mode]: "code-tooltip clicked"})
+        } else if (mode == 'code-function-tooltip-class') {
             navigator.clipboard.writeText(this.props.funcBlockToCopy)
+            this.setState({[mode]: "code-tooltip clicked"})
+        } else if (mode == 'code-link-tooltip-class'){
+            let link = window.location.href
+            if (link.includes("#")){
+                link = link.split("#")[0]
+            }
+
+            navigator.clipboard.writeText(link)
+            this.setState({[mode]: "code-tooltip clicked"})
+        }
+    }
+
+    optnStringRender = (optnClass) => {
+        if (this.state[optnClass].includes('clicked')){
+            return "Copied!"
+        } else if (optnClass == 'code-cp-tooltip-class') {
+            return "Copy all code"
+        } else if (optnClass == 'code-function-tooltip-class') {
+            return "Copy code section"
+        } else if (optnClass == 'code-link-tooltip-class') {
+            return "Copy code link"
         }
     }
 
@@ -44,30 +66,31 @@ class codeOptions extends React.Component {
                     <div className="option-select">
                         <img onMouseEnter={() => {this.handleMouseHover('code-cp-tooltip-class')}}
                              onMouseLeave={() => {this.handleMouseLeave('code-cp-tooltip-class')}}
-                             className="cp_all_code" src={cpIcon}
-                             onClick={() => {this.copyToClipBoard('full')}}
-                             />
+                             src={cpIcon}
+                             onClick={(e) => {this.copyToClipBoard('code-cp-tooltip-class')}}
+                        />
                         <div className={this.state['code-cp-tooltip-class']}>
-                            Copy all code
+                            {this.optnStringRender('code-cp-tooltip-class')}
                         </div>
                     </div>
                     <div className="option-select">
                         <img onMouseEnter={() => {this.handleMouseHover('code-function-tooltip-class')}}
                              onMouseLeave={() => {this.handleMouseLeave('code-function-tooltip-class')}}
-                             className="cp_all_code" src={cpSectionIcon}
-                             onClick={() => {this.copyToClipBoard('functionBlock')}}
+                             src={cpSectionIcon}
+                             onClick={() => {this.copyToClipBoard('code-function-tooltip-class')}}
                         />
                         <div className={this.state['code-function-tooltip-class']}>
-                            Copy code section
+                            {this.optnStringRender('code-function-tooltip-class')}
                         </div>
                     </div>
                     <div className="option-select">
                         <img onMouseEnter={() => {this.handleMouseHover('code-link-tooltip-class')}}
                              onMouseLeave={() => {this.handleMouseLeave('code-link-tooltip-class')}}
-                             className="cp_all_code" src={cpLinkIcon}
+                             onClick={() => {this.copyToClipBoard('code-link-tooltip-class')}}
+                             src={cpLinkIcon}
                         />
                         <div className={this.state['code-link-tooltip-class']}>
-                            Copy code link
+                            {this.optnStringRender('code-link-tooltip-class')}
                         </div>
                     
                     </div>
@@ -78,7 +101,7 @@ class codeOptions extends React.Component {
                         />
 
                         <div className={this.state['code-link-tooltip-class']}>
-                            Copy code link
+                            This is cool!
                         </div>
                     </div>
                 </div>

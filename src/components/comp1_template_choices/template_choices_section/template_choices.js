@@ -106,13 +106,12 @@ class templateChoices extends React.Component {
             <React.Fragment>
             <Resizable   
                 defaultSize={{
-                    width:330,
-                    height:"100vh",
+                    width:344,
+                    height:"calc(100vh - 44px)",
                 }}
                 className="templateChoiceMenu"
                 minWidth="330px"
                 maxWidth="677px"
-                minHeight="100vh"
                 enable={{ top:false, right:true, bottom:false, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
             >
                 <Accordion

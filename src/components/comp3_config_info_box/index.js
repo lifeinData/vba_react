@@ -11,25 +11,17 @@ class configInfoBoxSections extends React.Component {
             <Resizable   
             defaultSize={{
                 width:377,
-                height:"100vh",
+                height:"calc(100vh - 44px)",
             }}
             className="informationBox"
             minWidth="377px"
             maxWidth="677px"
-            minHeight="100vh"
             enable={{ top:false, right:false, bottom:false, left:true, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
             >
 
                 <div className="template-info-cont">
                     <TemplateDescriptionSection />
-                {/*ABOUT THIS TEMPLATE 
-                USAGE INFORMATION
-                ERROR CHECKS
-                REPORT SAMPLE
-                */}
                 </div>
-
-
 
                 <div className="template-code-opt-cont">
                     <CodeOptions />
