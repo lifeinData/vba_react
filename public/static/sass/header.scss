@@ -475,10 +475,20 @@
   border: 0px;
   margin-bottom: 0px;
 
-  .active.item {
-    background: #ebebeb;
-    color: black;
+  & a.active.item {
+    background: #f7f7f7;
+    color: #1078f7;
 
   }
+
+  & a.item {
+    background-color: white;
+    color: #1078f7;
+  }
+
+  & a.active.item:hover, a.item:hover {
+    background: #f7f7f7;
+    color: #1078f7;
+  } 
 
 }

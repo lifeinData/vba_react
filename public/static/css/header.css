@@ -404,9 +404,17 @@ body {
   border: 0px;
   margin-bottom: 0px;
 }
-.ui.menu .active.item {
-  background: #ebebeb;
-  color: black;
+.ui.menu a.active.item {
+  background: #f7f7f7;
+  color: #1078f7;
+}
+.ui.menu a.item {
+  background-color: white;
+  color: #1078f7;
+}
+.ui.menu a.active.item:hover, .ui.menu a.item:hover {
+  background: #f7f7f7;
+  color: #1078f7;
 }
 
 /*# sourceMappingURL=header.css.map */

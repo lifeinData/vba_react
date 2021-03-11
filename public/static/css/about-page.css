@@ -1,0 +1,17 @@
+#about-page-layout {
+  display: flex;
+}
+#about-page-layout #about-menu {
+  background-color: #f7f7f7;
+  width: 330px;
+  height: calc(100vh - 44px);
+  padding: 7px 8px;
+}
+#about-page-layout #about-sections {
+  background-color: #f7f7f7;
+  width: 100%;
+  height: calc(100vh - 44px);
+  padding: 7px 8px;
+}
+
+/*# sourceMappingURL=about-page.css.map */

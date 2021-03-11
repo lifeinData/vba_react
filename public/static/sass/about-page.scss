@@ -1,0 +1,24 @@
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/vendor';
+@import 'libs/breakpoints';
+@import 'libs/html-grid';
+
+#about-page-layout {
+    display: flex;
+
+    & #about-menu {
+        background-color: #f7f7f7;
+        width: 330px;
+        height: calc(100vh - 44px);
+        padding: 7px 8px;
+    }
+
+    & #about-sections {
+        background-color: #f7f7f7;
+        width: 100%; 
+        height: calc(100vh - 44px);
+        padding: 7px 8px;
+    }
+}

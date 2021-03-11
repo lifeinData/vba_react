@@ -94,8 +94,6 @@ class MainMenu extends React.Component {
             <React.Fragment>
                 <div id="main-app-layout">
                     <TemplateChoicesBox />
-
-
                     <TemplateDisplay templateid={this.props.match.params.id}/>
                     <ConfigInfoBox />
                 </div>
