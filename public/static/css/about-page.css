@@ -13,5 +13,10 @@
   height: calc(100vh - 44px);
   padding: 7px 8px;
 }
+#about-page-layout .about-page-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 /*# sourceMappingURL=about-page.css.map */
