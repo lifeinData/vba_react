@@ -27,7 +27,6 @@ class templateChoices extends React.Component {
         let [header, template_id] = e.target.id.split('-')
         // [this.header, this.template_id] = e.target.id.split('-')
         // this.props.parseTemplateRequest(header, template_id)
-        // console.log(window.location.href)
         this.props.templateCodeChoice(header, template_id)
         if (!(this.props.templateChoiceClicked)){
             this.props.templateOptionClicked()

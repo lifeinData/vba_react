@@ -1,0 +1,14 @@
+.vba-input-cont {
+  height: calc(100vh - 48px);
+}
+
+.column2-area {
+  background-color: #f7f7f7;
+  width: 1200px;
+  height: calc(100vh - 44px);
+  display: flex;
+  padding: 7px 8px;
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=vault-build.css.map */

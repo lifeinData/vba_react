@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import mainFlowReducer from './mainFlowReducer';
 import nodePropertyReducer from './nodePropertyReducer';
 import selectedNodeReducer from './selectedNodeReducer';
 import selectedMenuOptionReducer from './selectedMenuOptionReducer';
@@ -8,9 +7,10 @@ import nodePropertyDescrip from './nodePropertyDescripReducer';
 import columnChoicesReducer from './columnChoicesReducer';
 import highlightCodeReducer from './highlightCodeReducer';
 import templateChoiceReducer from './templateChoiceReducer';
+import { menuOptions, vaultTemplateCode } from './vaultBuilderReducer';
+import { overallAppState } from './appStateReducer';
 
 export default combineReducers({
-  'mainFlowNodes': mainFlowReducer,
   'nodeProperty': nodePropertyReducer,
   'selectedNode': selectedNodeReducer,
   'selectedMenuOptionReducer': selectedMenuOptionReducer,
@@ -18,5 +18,8 @@ export default combineReducers({
   'nodePropertyDescrip': nodePropertyDescrip,
   'columnChoices': columnChoicesReducer,
   'funcInfoSelected': highlightCodeReducer,
-  'templateChoice': templateChoiceReducer
+  'templateChoice': templateChoiceReducer,
+  'vaultSessionMenuData': menuOptions,
+  'appState': overallAppState,
+  'templateCode': vaultTemplateCode
 });

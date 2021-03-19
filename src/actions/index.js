@@ -1,57 +1,47 @@
 import parseRequestAxio from '../apis/parseRequest'
-// import hljs from 'highlight.js';
-// import '../components/mainAppLayout/node_modules/highlight.js/styles/github.css';
-// import hljsVba from 'highlight.js/lib/vba';
-// console.log(hljs)
 
-const getInitialNodeProp = (nodeID) => {
-    // move this into another file at some point
-    let nodePropObj = {}
-    //bunch of rules here for intiail node property
-    let nodeClass = nodeID.split('-')[0]
-    
-    if (nodeClass == 'dqNum') {
-        nodePropObj[nodeID] = {
-            columns: '',
-            error_flag: ''
-        }
-    
-    }
+// Vault builder actions will replace old actions later
 
-    return nodePropObj
-}
-
-export const addNodeToFlow = (mainFlowNodes) => {
-    let nodeID = Object.keys(mainFlowNodes)[0]
-
-    let newNode = {...mainFlowNodes, ...getInitialNodeProp(nodeID)}
+export const vaultTemplateSubmitted = (flag) => {
     return {
-        type: 'ADD_NODE',
-        payload: newNode
+        type: 'TEMPLATE_CODE_SUBMIT',
+        payload: flag
     }
 }
 
-export const modifyNodeProperty = (nodeClass, changedProps) => {
-    let payload = {}
-    payload[nodeClass] = changedProps
-
+export const vaultViewSwitch = (flag) => {
     return {
-        type: 'MODIFY_NODE_PROPERTY',
-        payload: payload
+        type: 'VIEWER_MODE_CHANGE',
+        payload: flag
+    }
+}
+export const vaultMenuClick = (vaultID, templateID) => {
+    return async (dispatch) => {
+        let response = await parseRequestAxio.get('/getVaultInfo/', {params : {'mode': 'display', 
+                                                                               'vaultID': vaultID,
+                                                                               'template_id': templateID}})
+        dispatch({ type:"PARSE_VAULT_TEMPLATE", payload: response.data})
     }
 }
 
-export const selectNode = (nodeClass) => {
-    return {
-        type: 'SELECT_NODE',
-        payload: nodeClass
+export const vaultGetMenuStruct = (vaultID) => {
+    return async (dispatch) => {
+        let response = await parseRequestAxio.get('/getVaultInfo/', {params : {'mode': 'menu', 'vaultID': vaultID}})
+        dispatch({ type:"PARSE_VAULT_MENU", payload: response.data})
     }
 }
 
-export const selectMenu = (topic) => {
+export const setVaultID = (vaultID) => {
     return {
-        type: 'SELECT_MENU_OPTION',
-        payload: topic
+        type: 'GET_VAULT_ID',
+        payload: vaultID
+    }
+}
+
+export const vaultGetDisplayOptions = (vaultID) => {
+    return async (dispatch) => {
+        let response = await parseRequestAxio.get('/getVaultInfo/', {params : {'mode': 'display', 'vaultID': vaultID}})
+        dispatch({ type:"PARSE_VAULT_MENU", payload: response.data})
     }
 }
 

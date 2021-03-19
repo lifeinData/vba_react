@@ -39,7 +39,9 @@ class functionBreakdownSection extends React.Component {
 
             let split_code;
             let func_name;
+            
             split_code = Object.keys(this.props.templateCodeInfo).map((func_name) => {
+                console.log("THINK:", this.props.templateCodeInfo)
                 if ((func_name != 'template_code') && (func_name != 'overall_descrip')) {
 
                     return (
@@ -58,6 +60,7 @@ class functionBreakdownSection extends React.Component {
                 }
             })
             
+            // Gets the <OVERALL_DESCRIP> Tag
             split_code.splice(0, 0,
                 <Link to="#overall_descrip">
                     <p 

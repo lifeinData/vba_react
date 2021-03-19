@@ -93,11 +93,12 @@ class templateDisplay extends React.Component {
     }
 
     markTemplateCode = (templateCodeToSplit) => {
+        // backend can handle the relationship of function_name : function Code
         let [split_code_sub, split_code_func] = templateCodeToSplit.split(new RegExp('end sub', 'i'))
         split_code_func = split_code_func != null ? split_code_func.split(new RegExp('end function', 'i')) : ''
         let split_code = [split_code_sub, ...split_code_func]
         let functionIdAry = Object.keys(this.props.templateCodeInfo)
-        functionIdAry.splice(functionIdAry.indexOf('overall_descrip'), 1)
+        functionIdAry.splice(functionIdAry.indexOf('overall_descrip'), 1) //Takes away the <OVERALL_DESCRIP> tag
         let code = split_code.map((el, ind) => {
                             if (el != '') {
                                 // detect if it's a sub or function
@@ -119,6 +120,7 @@ class templateDisplay extends React.Component {
                                                 {codeSection}                                                
                                             </SyntaxHighlighter>
                                         </div>
+                                        
                                     </React.Fragment>
     
                                 )

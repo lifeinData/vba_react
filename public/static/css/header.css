@@ -105,6 +105,7 @@ body {
   background-color: white;
   width: 100%;
   padding: 8px 4px;
+  overflow: auto;
 }
 #main-app-layout .macro-generator-container .template-display-inner-cont .template-code-cont {
   background: #f9f9f9;
@@ -281,6 +282,7 @@ body {
   padding: 8px 4px;
   background: white;
   height: 100%;
+  overflow: auto;
 }
 
 .populate_report_row {

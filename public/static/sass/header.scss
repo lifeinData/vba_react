@@ -153,6 +153,7 @@
         background-color: white;
         width: 100%;
         padding: 8px 4px;
+        overflow: auto;
         // height: 100%;
 
         & .template-code-cont {
@@ -348,6 +349,7 @@
     padding: 8px 4px;
     background: white;    
     height: 100%;
+    overflow: auto;
   }
 
   .populate_report_row {
