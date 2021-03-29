@@ -58,7 +58,7 @@
   body {
     display: flex;
     justify-content: space-evenly;
-    margin: 20px 0;
+    margin: 0px 0px;
   }
 
   #top-main-menu {
@@ -108,7 +108,7 @@
 
     & .macro-generator-container {
       background-color:#ebebeb;
-      width: 1200px;
+      width: 1360px;
       height: calc(100vh - 44px);
       display: flex;
       justify-content: center;
@@ -146,50 +146,7 @@
 
       }
 
-      & .template-display-inner-cont {
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: flex-end;
-        background-color: white;
-        width: 100%;
-        padding: 8px 4px;
-        overflow: auto;
-        // height: 100%;
 
-        & .template-code-cont {
-          
-          background: #f9f9f9;
-          &.active {
-            display: flex;
-          }
-
-          display: none;
-          flex-direction: column;
-          height: 100vh; 
-          overflow: auto;
-          margin: 6px 7px 6px 7px;
-          padding-top: 0px;
-          
-          & .codeDiv {
-            width: fit-content;
-
-            &.highlighted {
-              background: #3e34342f !important
-            }
-          }
-
-          & code {
-            background: none !important;
-          }
-
-          & pre {
-            background:  rgb(247 247 247 / 49%) !important;
-            margin-bottom: 0px;
-            width: fit-content;
-          }
-        }
-        
-      }
 
       & .template-funcs {
         display: flex;
@@ -210,137 +167,6 @@
       }
     }
 
-    & .informationBox {
-      display: flex;
-      flex-direction: column;
-      background:#f7f7f7;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 8px 8px;
-      overflow: hidden;
-      
-        & .template-info-cont {
-          @include info-box-div;
-
-          & .descrip-txt {
-            color: #6d6d6d !important;
-            font-weight: 550;
-            text-align: left;
-            margin: 0px 9px 4px 12px;
-            font-size: 14px !important;
-            width: inherit;
-          }
-
-          & .descrip-header {
-            color: black !important;
-            font-weight: 600;
-            text-align: left;
-            margin: 0px 9px 4px 7px;
-            font-size: 15px !important;
-            width: inherit;
-          }
-
-        }
-        
-        & .template-targetcol-cont {
-            @include info-box-div;
-            overflow: auto;
-            margin-bottom: 0px !important;
-          
-          & .insert_checkbox {
-            padding-left: 6px;
-          }
-
-          & .column-input-form {
-            display: flex;
-            margin: 0px 7px;
-            justify-content: space-between;
-          }
-
-          & Button {
-            padding: 4px 7px;
-            height: 37px;
-          }
-
-          & .column-input {
-            width: calc(100% - 115px);
-          }
-
-          & .column_choices_list {
-            display: flex;
-            margin: 0px 7px;
-            justify-content: space-between;
-
-            & .drop-down-cont {
-              width: 105px;
-              margin-right: 45;
-              
-              & .column-picker {
-                display: flex;
-                justify-content: space-between;
-              }
-
-              & i {
-                margin-left: 0px;
-                margin-top: 5px;
-              }
-            }
-
-            & p {
-              width: fit-content;
-              margin-bottom: 8px;
-            }
-          }
-        }
-
-        & .template-code-opt-cont {
-          @include info-box-div;
-          & .code-option-box {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin: 7px 8px 0px 8px;
-            height: 90%;
-            overflow: auto;
-            
-            & div.code-tooltip {
-              @include code-opt-tooltip;
-
-              &.show {
-                visibility: visible;
-              }
-
-              &.hide {
-                visibility: hidden;
-              }
-              
-              &.clicked {
-                visibility: visible;
-                background-color: green;
-              }
-              
-            }
-
-            & img {
-              height: calc(100% - 20px);
-              width: calc(100% - 35px);
-              position: relative;
-              cursor: pointer;
-            }
-
-            & .option-select {
-              width: 130px;
-              height: 115px;
-              border: 2px black solid;
-              margin-top: 3px;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              // padding: 0px 15px 15px 15px;
-            }
-          }
-        }
-    }
   }
 
   .menu-choice-header-h1, .template-display-inner-cont {
@@ -355,29 +181,6 @@
   .populate_report_row {
     background: black;
   }
-
-  .templateChoiceMenu {
-    display: flex;
-    flex-direction: column;
-    background:#f7f7f7;
-    // justify-content: space-evenly;
-    padding: 7px 8px;
-    height: calc(100vh - 44px);
-    // overflow: hidden;
-      
-      & p {
-        width: inherit;
-        padding-left: 32px;
-        font-size: 15px;
-        font-weight: 500;
-        cursor: pointer;
-
-        &:hover {
-          font-weight: 700;          
-        }
-      }
-    }
-
   
   .alert-dark {
     font-size: 16px;

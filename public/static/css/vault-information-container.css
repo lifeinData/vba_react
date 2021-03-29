@@ -1,0 +1,130 @@
+.informationBox {
+  display: flex;
+  flex-direction: column;
+  background: #f7f7f7;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 8px 8px;
+  overflow: hidden;
+}
+.informationBox .template-info-cont {
+  width: max(315px, 100%);
+  background: #fdfdfd;
+  height: 33.33%;
+  border: 2px #ededed solid;
+  margin-bottom: 7px;
+  padding: 7px 4px;
+}
+.informationBox .template-info-cont .descrip-txt {
+  color: #6d6d6d !important;
+  font-weight: 550;
+  text-align: left;
+  margin: 0px 9px 4px 12px;
+  font-size: 14px !important;
+  width: inherit;
+}
+.informationBox .template-info-cont .descrip-header {
+  color: black !important;
+  font-weight: 600;
+  text-align: left;
+  margin: 0px 9px 4px 7px;
+  font-size: 15px !important;
+  width: inherit;
+}
+.informationBox .template-targetcol-cont {
+  width: max(315px, 100%);
+  background: #fdfdfd;
+  height: 33.33%;
+  border: 2px #ededed solid;
+  margin-bottom: 7px;
+  padding: 7px 4px;
+  overflow: auto;
+  margin-bottom: 0px !important;
+}
+.informationBox .template-targetcol-cont .insert_checkbox {
+  padding-left: 6px;
+}
+.informationBox .template-targetcol-cont .column-input-form {
+  display: flex;
+  margin: 0px 7px;
+  justify-content: space-between;
+}
+.informationBox .template-targetcol-cont Button {
+  padding: 4px 7px;
+  height: 37px;
+}
+.informationBox .template-targetcol-cont .column-input {
+  width: calc(100% - 115px);
+}
+.informationBox .template-targetcol-cont .column_choices_list {
+  display: flex;
+  margin: 0px 7px;
+  justify-content: space-between;
+}
+.informationBox .template-targetcol-cont .column_choices_list .drop-down-cont {
+  width: 105px;
+  margin-right: 45;
+}
+.informationBox .template-targetcol-cont .column_choices_list .drop-down-cont .column-picker {
+  display: flex;
+  justify-content: space-between;
+}
+.informationBox .template-targetcol-cont .column_choices_list .drop-down-cont i {
+  margin-left: 0px;
+  margin-top: 5px;
+}
+.informationBox .template-targetcol-cont .column_choices_list p {
+  width: fit-content;
+  margin-bottom: 8px;
+}
+.informationBox .template-code-opt-cont {
+  width: max(315px, 100%);
+  background: #fdfdfd;
+  height: 33.33%;
+  border: 2px #ededed solid;
+  margin-bottom: 7px;
+  padding: 7px 4px;
+}
+.informationBox .template-code-opt-cont .code-option-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 7px 8px 0px 8px;
+  height: 90%;
+  overflow: auto;
+}
+.informationBox .template-code-opt-cont .code-option-box div.code-tooltip {
+  width: 100%;
+  text-align: center;
+  background: black;
+  color: white;
+  font-weight: 700;
+  margin-top: 5px;
+}
+.informationBox .template-code-opt-cont .code-option-box div.code-tooltip.show {
+  visibility: visible;
+}
+.informationBox .template-code-opt-cont .code-option-box div.code-tooltip.hide {
+  visibility: hidden;
+}
+.informationBox .template-code-opt-cont .code-option-box div.code-tooltip.clicked {
+  visibility: visible;
+  background-color: green;
+}
+.informationBox .template-code-opt-cont .code-option-box img {
+  height: calc(100% - 20px);
+  width: calc(100% - 35px);
+  position: relative;
+  cursor: pointer;
+}
+.informationBox .template-code-opt-cont .code-option-box .option-select {
+  width: 130px;
+  height: 115px;
+  border: 2px black solid;
+  margin-top: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*# sourceMappingURL=vault-information-container.css.map */

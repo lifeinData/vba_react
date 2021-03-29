@@ -27,7 +27,7 @@
 body {
   display: flex;
   justify-content: space-evenly;
-  margin: 20px 0;
+  margin: 0px 0px;
 }
 
 #top-main-menu {
@@ -66,7 +66,7 @@ body {
 }
 #main-app-layout .macro-generator-container {
   background-color: #ebebeb;
-  width: 1200px;
+  width: 1360px;
   height: calc(100vh - 44px);
   display: flex;
   justify-content: center;
@@ -98,41 +98,6 @@ body {
   color: white;
   font-weight: bolder;
 }
-#main-app-layout .macro-generator-container .template-display-inner-cont {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
-  background-color: white;
-  width: 100%;
-  padding: 8px 4px;
-  overflow: auto;
-}
-#main-app-layout .macro-generator-container .template-display-inner-cont .template-code-cont {
-  background: #f9f9f9;
-  display: none;
-  flex-direction: column;
-  height: 100vh;
-  overflow: auto;
-  margin: 6px 7px 6px 7px;
-  padding-top: 0px;
-}
-#main-app-layout .macro-generator-container .template-display-inner-cont .template-code-cont.active {
-  display: flex;
-}
-#main-app-layout .macro-generator-container .template-display-inner-cont .template-code-cont .codeDiv {
-  width: fit-content;
-}
-#main-app-layout .macro-generator-container .template-display-inner-cont .template-code-cont .codeDiv.highlighted {
-  background: #3e34342f !important;
-}
-#main-app-layout .macro-generator-container .template-display-inner-cont .template-code-cont code {
-  background: none !important;
-}
-#main-app-layout .macro-generator-container .template-display-inner-cont .template-code-cont pre {
-  background: rgba(247, 247, 247, 0.49) !important;
-  margin-bottom: 0px;
-  width: fit-content;
-}
 #main-app-layout .macro-generator-container .template-funcs {
   display: flex;
 }
@@ -147,134 +112,6 @@ body {
 #main-app-layout .macro-generator-container pre code .section {
   background-color: aqua;
 }
-#main-app-layout .informationBox {
-  display: flex;
-  flex-direction: column;
-  background: #f7f7f7;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 8px 8px;
-  overflow: hidden;
-}
-#main-app-layout .informationBox .template-info-cont {
-  width: max(315px, 100%);
-  background: #fdfdfd;
-  height: 33.33%;
-  border: 2px #ededed solid;
-  margin-bottom: 7px;
-  padding: 7px 4px;
-}
-#main-app-layout .informationBox .template-info-cont .descrip-txt {
-  color: #6d6d6d !important;
-  font-weight: 550;
-  text-align: left;
-  margin: 0px 9px 4px 12px;
-  font-size: 14px !important;
-  width: inherit;
-}
-#main-app-layout .informationBox .template-info-cont .descrip-header {
-  color: black !important;
-  font-weight: 600;
-  text-align: left;
-  margin: 0px 9px 4px 7px;
-  font-size: 15px !important;
-  width: inherit;
-}
-#main-app-layout .informationBox .template-targetcol-cont {
-  width: max(315px, 100%);
-  background: #fdfdfd;
-  height: 33.33%;
-  border: 2px #ededed solid;
-  margin-bottom: 7px;
-  padding: 7px 4px;
-  overflow: auto;
-  margin-bottom: 0px !important;
-}
-#main-app-layout .informationBox .template-targetcol-cont .insert_checkbox {
-  padding-left: 6px;
-}
-#main-app-layout .informationBox .template-targetcol-cont .column-input-form {
-  display: flex;
-  margin: 0px 7px;
-  justify-content: space-between;
-}
-#main-app-layout .informationBox .template-targetcol-cont Button {
-  padding: 4px 7px;
-  height: 37px;
-}
-#main-app-layout .informationBox .template-targetcol-cont .column-input {
-  width: calc(100% - 115px);
-}
-#main-app-layout .informationBox .template-targetcol-cont .column_choices_list {
-  display: flex;
-  margin: 0px 7px;
-  justify-content: space-between;
-}
-#main-app-layout .informationBox .template-targetcol-cont .column_choices_list .drop-down-cont {
-  width: 105px;
-  margin-right: 45;
-}
-#main-app-layout .informationBox .template-targetcol-cont .column_choices_list .drop-down-cont .column-picker {
-  display: flex;
-  justify-content: space-between;
-}
-#main-app-layout .informationBox .template-targetcol-cont .column_choices_list .drop-down-cont i {
-  margin-left: 0px;
-  margin-top: 5px;
-}
-#main-app-layout .informationBox .template-targetcol-cont .column_choices_list p {
-  width: fit-content;
-  margin-bottom: 8px;
-}
-#main-app-layout .informationBox .template-code-opt-cont {
-  width: max(315px, 100%);
-  background: #fdfdfd;
-  height: 33.33%;
-  border: 2px #ededed solid;
-  margin-bottom: 7px;
-  padding: 7px 4px;
-}
-#main-app-layout .informationBox .template-code-opt-cont .code-option-box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 7px 8px 0px 8px;
-  height: 90%;
-  overflow: auto;
-}
-#main-app-layout .informationBox .template-code-opt-cont .code-option-box div.code-tooltip {
-  width: 100%;
-  text-align: center;
-  background: black;
-  color: white;
-  font-weight: 700;
-  margin-top: 5px;
-}
-#main-app-layout .informationBox .template-code-opt-cont .code-option-box div.code-tooltip.show {
-  visibility: visible;
-}
-#main-app-layout .informationBox .template-code-opt-cont .code-option-box div.code-tooltip.hide {
-  visibility: hidden;
-}
-#main-app-layout .informationBox .template-code-opt-cont .code-option-box div.code-tooltip.clicked {
-  visibility: visible;
-  background-color: green;
-}
-#main-app-layout .informationBox .template-code-opt-cont .code-option-box img {
-  height: calc(100% - 20px);
-  width: calc(100% - 35px);
-  position: relative;
-  cursor: pointer;
-}
-#main-app-layout .informationBox .template-code-opt-cont .code-option-box .option-select {
-  width: 130px;
-  height: 115px;
-  border: 2px black solid;
-  margin-top: 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .menu-choice-header-h1, .template-display-inner-cont {
   width: 100%;
@@ -287,24 +124,6 @@ body {
 
 .populate_report_row {
   background: black;
-}
-
-.templateChoiceMenu {
-  display: flex;
-  flex-direction: column;
-  background: #f7f7f7;
-  padding: 7px 8px;
-  height: calc(100vh - 44px);
-}
-.templateChoiceMenu p {
-  width: inherit;
-  padding-left: 32px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-}
-.templateChoiceMenu p:hover {
-  font-weight: 700;
 }
 
 .alert-dark {

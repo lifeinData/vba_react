@@ -1,0 +1,151 @@
+@import 'libs/mixins';
+
+@mixin info-box-div {
+    width: max(315px, 100%);
+    background: #fdfdfd;
+    height: 33.33%;
+    border: 2px #ededed solid;
+    margin-bottom: 7px;
+    padding: 7px 4px;
+  }
+
+@mixin code-opt-tooltip {
+    width: 100%;
+    text-align: center;
+    background: black;
+    color: white;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.informationBox {
+    display: flex;
+    flex-direction: column;
+    background:#f7f7f7;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px 8px;
+    overflow: hidden;
+    
+      & .template-info-cont {
+        @include info-box-div;
+
+        & .descrip-txt {
+          color: #6d6d6d !important;
+          font-weight: 550;
+          text-align: left;
+          margin: 0px 9px 4px 12px;
+          font-size: 14px !important;
+          width: inherit;
+        }
+
+        & .descrip-header {
+          color: black !important;
+          font-weight: 600;
+          text-align: left;
+          margin: 0px 9px 4px 7px;
+          font-size: 15px !important;
+          width: inherit;
+        }
+
+      }
+      
+      & .template-targetcol-cont {
+          @include info-box-div;
+          overflow: auto;
+          margin-bottom: 0px !important;
+        
+        & .insert_checkbox {
+          padding-left: 6px;
+        }
+
+        & .column-input-form {
+          display: flex;
+          margin: 0px 7px;
+          justify-content: space-between;
+        }
+
+        & Button {
+          padding: 4px 7px;
+          height: 37px;
+        }
+
+        & .column-input {
+          width: calc(100% - 115px);
+        }
+
+        & .column_choices_list {
+          display: flex;
+          margin: 0px 7px;
+          justify-content: space-between;
+
+          & .drop-down-cont {
+            width: 105px;
+            margin-right: 45;
+            
+            & .column-picker {
+              display: flex;
+              justify-content: space-between;
+            }
+
+            & i {
+              margin-left: 0px;
+              margin-top: 5px;
+            }
+          }
+
+          & p {
+            width: fit-content;
+            margin-bottom: 8px;
+          }
+        }
+      }
+
+      & .template-code-opt-cont {
+        @include info-box-div;
+        & .code-option-box {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          margin: 7px 8px 0px 8px;
+          height: 90%;
+          overflow: auto;
+          
+          & div.code-tooltip {
+            @include code-opt-tooltip;
+
+            &.show {
+              visibility: visible;
+            }
+
+            &.hide {
+              visibility: hidden;
+            }
+            
+            &.clicked {
+              visibility: visible;
+              background-color: green;
+            }
+            
+          }
+
+          & img {
+            height: calc(100% - 20px);
+            width: calc(100% - 35px);
+            position: relative;
+            cursor: pointer;
+          }
+
+          & .option-select {
+            width: 130px;
+            height: 115px;
+            border: 2px black solid;
+            margin-top: 3px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            // padding: 0px 15px 15px 15px;
+          }
+        }
+      }
+  }

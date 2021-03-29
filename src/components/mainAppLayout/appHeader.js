@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Menu } from 'semantic-ui-react';
 import { Link, Route, Redirect, Switch } from 'react-router-dom';
 import { setVaultID } from '../../actions';
-import MainAppLayout from './mainAppLayout';
 import AboutPage from '../about_page/index';
 import CustomVaultBuild from '../create_vault/index';
 
@@ -12,39 +11,20 @@ const MainAppHeader = (props) => {
     // const [vaultID, setVaultID] = useState('');
     const [activeItem, setActiveItem] = useState("vault-viewer")
     
-
-    function makeid(length) {
-        var result           = '';
-        var characters       = 'abcdefghijklmnopqrstuvwxyz0123456789';
-        var charactersLength = characters.length;
-        for ( var i = 0; i < length; i++ ) {
-           result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
-    }
-
     function handleItemClick (e,a,b) {
-        // console.log(a.name)
         return (a.name)
     }
 
     useEffect(()=>{
-        let vaultIDExtract = /(?<=\/vaultID\/)(.{8})(?=\/)|(?<=\/vaultID\/)(.{8})/
-        let vaultIDCapture = window.location.href.match(vaultIDExtract)
-
-        if (vaultIDCapture != null) {
-            props.setVaultID(vaultIDCapture[0])
-            setActiveItem("create-vault")
-        }
-
+        console.log('mainAppHeader useeffect ran')
     }, [activeItem])
-
     
     return (
         <React.Fragment>
             <Menu>
+                {/*todo: vault-viewer => Special vault ID*/}
                 <Menu.Item
-                    onClick={(e,a) => {setActiveItem(handleItemClick(e,a))}}
+                    onClick = {(e,a) => {setActiveItem(handleItemClick(e,a))}}
                     name="vault-viewer"
                     active={activeItem === 'vault-viewer'}
                 >
@@ -72,8 +52,7 @@ const MainAppHeader = (props) => {
                     name="create-vault"
                     active={activeItem === 'create-vault'}
                 >
-                <Link to={"/vaultID/" + props.vaultID + '/'}>
-                    
+                <Link to={"/vaultID/" + (props.vaultID !== '' ? props.vaultID + '/' : '')}>
                     Create your own vault
                     
                 </Link>
@@ -83,13 +62,12 @@ const MainAppHeader = (props) => {
 
             <Switch>
                 <Route exact path ="/">
-                    <Redirect to="/home/"/>
+                    <Redirect to="/about/"/>
                 </Route>
-                <Route path="/home/:id?" component={MainAppLayout}></Route>
+                {/* todo: MainAppLayout will be a special vault ID */}
+                {/* <Route path="/home/:id?" component={MainAppLayout}></Route> */}
                 <Route exact path ="/about" component={AboutPage}></Route>
-                <Route  path = "/vaultID/:id?/" component={CustomVaultBuild}></Route>
-
-                
+                <Route  path = "/vaultID/:id?/:templateid?" component={CustomVaultBuild}></Route>
             </Switch>
         </React.Fragment>
     )

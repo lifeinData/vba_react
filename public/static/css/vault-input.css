@@ -1,3 +1,60 @@
+.template-display-inner-cont {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 100%;
+  padding: 8px 4px;
+  overflow: auto;
+}
+.template-display-inner-cont .template-code-cont {
+  background: #f9f9f9;
+  display: none;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+  margin: 6px 7px 6px 7px;
+  padding-top: 0px;
+}
+.template-display-inner-cont .template-code-cont.active {
+  display: flex;
+}
+.template-display-inner-cont .template-code-cont .codeDiv {
+  width: fit-content;
+}
+.template-display-inner-cont .template-code-cont .codeDiv.highlighted {
+  background: #3e34342f !important;
+}
+.template-display-inner-cont .template-code-cont code {
+  background: none !important;
+}
+.template-display-inner-cont .template-code-cont pre {
+  background: rgba(247, 247, 247, 0.49) !important;
+  margin-bottom: 0px;
+  width: fit-content;
+}
+
+.template-function-break-cont {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 7px;
+}
+.template-function-break-cont .ui.blue.basic.button {
+  margin-right: 27px;
+  margin-bottom: 12px;
+  font-weight: 600 !important;
+  font-size: 17px !important;
+}
+.template-function-break-cont .ui.blue.basic.button.active {
+  color: #fff !important;
+  background-color: #1078f7 !important;
+  border-color: #007bff;
+  font-weight: 600;
+}
+.template-function-break-cont .ui.blue.basic.button:hover {
+  background-color: #1078f7 !important;
+  color: white !important;
+}
+
 .vba-codeinput {
   height: calc(100vh - 60px);
   width: 100%;

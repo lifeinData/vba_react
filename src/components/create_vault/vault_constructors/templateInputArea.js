@@ -9,7 +9,6 @@ import { Button } from 'react-bootstrap';
 
 const TemplateInputArea = (props) => {
     let history = useHistory()
-    const [refreshPage, setRefreshPage] = useState('')
     const resetVault = () => {
         let tmp_vaultid;
         tmp_vaultid = makeid(8)
@@ -19,14 +18,13 @@ const TemplateInputArea = (props) => {
 
     const postNewVault = async (values) => {
         values['vaultID'] =  props.vaultID
+        console.log(values)
         let response = await parseRequestAxio.post('/postNewVaultTemplate/', values)
         if (props.templateCodeFlag) {
             props.vaultTemplateSubmitted(false)
         } else {
             props.vaultTemplateSubmitted(true)
         }
-        
-        // history.push('/vaultID/' + tmp_vaultid)
     }
 
     function makeid(length) {

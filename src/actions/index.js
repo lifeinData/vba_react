@@ -1,6 +1,19 @@
 import parseRequestAxio from '../apis/parseRequest'
 
 // Vault builder actions will replace old actions later
+export const vaultMenuParseMenuItem = (menuId) => {
+    return {
+        type: 'PARSE_MENU_ITEM',
+        payload: menuId
+    }
+}
+
+export const vaultFunctionClicked = (functionid) => {
+    return {
+        type: 'TEMPLATE_FUNCTION_CLICK',
+        payload: functionid
+    }
+}
 
 export const vaultTemplateSubmitted = (flag) => {
     return {
@@ -15,7 +28,24 @@ export const vaultViewSwitch = (flag) => {
         payload: flag
     }
 }
-export const vaultMenuClick = (vaultID, templateID) => {
+
+export const vaultMenuClickFlag = (flag) => {
+    return {
+        type: "MENU_CLICKED_FLAG",
+        payload: flag
+    }
+}
+
+export const vaultTagValueParse = (vaultID, templateID) => {
+    return async (dispatch) => {
+        let response = await parseRequestAxio.get('/getVaultInfo/', {params : {'mode': 'tags', 
+                                                                               'vaultID': vaultID,
+                                                                               'template_id': templateID}})
+        dispatch({ type:"PARSE_VAULT_TAGS", payload: response.data})
+    }
+}
+
+export const vaultMenuClickParse = (vaultID, templateID) => {
     return async (dispatch) => {
         let response = await parseRequestAxio.get('/getVaultInfo/', {params : {'mode': 'display', 
                                                                                'vaultID': vaultID,

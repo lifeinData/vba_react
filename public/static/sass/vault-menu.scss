@@ -1,0 +1,23 @@
+.templateChoiceMenu {
+    display: flex;
+    flex-direction: column;
+    background:#f7f7f7;
+    padding: 7px 8px;
+    height: calc(100vh - 44px);
+      
+    & p {
+        width: inherit;
+        padding-left: 32px;
+        font-size: 18px;
+        cursor: pointer;
+        border: 3px solid white;
+    }
+
+    & p:hover, p.active {
+        border: 3px solid black;
+        color: black;
+        background-color: #f7f7f7;
+        font-weight: bolder;
+    }
+}
+

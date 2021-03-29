@@ -1,43 +1,58 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { Resizable } from "re-resizable";
-import { vaultGetMenuStruct, vaultMenuClick, vaultViewSwitch } from '../../../actions'
+import { vaultMenuParseMenuItem, vaultGetMenuStruct, vaultTagValueParse, vaultMenuClickParse, vaultMenuClickFlag, vaultViewSwitch } from '../../../actions'
 import {Accordion, Icon} from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 import Switch from "react-switch";
 
 const VaultMenu = (props) => {
-    const [viewerSwitchFlag, setViewerSwitchFlag] = useState(true)
+
+    let history = useHistory()
+
+    useEffect (
+        () => {
+            console.log('initial menu constructor get request. vaultid ', props.vaultid)
+            props.vaultGetMenuStruct(props.vaultid)
+        }
+    , [props.templateCodeFlag])
+
+    useEffect (
+        // checks whether the vault id already exists
+        () => {
+            console.log('menuOptoin switched')
+            if (Object.keys(props.menuOptions).length > 0) {
+                if (props.templateCodeFlag !== '') {
+                    props.vaultViewSwitch(true)
+                } else {
+                    props.vaultViewSwitch(false)
+                }
+            } else if (Object.keys(props.menuOptions).length == 0){
+                props.vaultViewSwitch(true)
+            }
+
+        }, [props.menuOptions]
+    )
     
     useEffect(
         () => {
-            if (props.vaultID) {
-                props.vaultGetMenuStruct(props.vaultID)
-            }
-        }, [props.vaultID, props.templateCodeFlag]
+            console.log('menuitemselected   ', props.menuItemSelected)
+        }, [props.menuItemSelected]
     )
+    // const checkIfActive = () => {
 
-    // const transformToMenu = () => {
-    //     if (Object.keys(props.menuOptions).length == 0){
-    //         console.log('no Data')
-    //         return <h1>NO DATA</h1>
-    //     } else {
-    //         console.log('data here!', props.menuOptions)
-    //         return <h1>DATA</h1>
-    //     }
     // }
 
     const transformToSubheading = (key) => {
         let subheading = []
+        console.log('transform to subheading runs  ', props.menuItemSelected)
         for (let choice of Object.keys(props.menuOptions[key])){
             if (choice != "id") {
                 // this.choiceID = this.props.templateChoices[key][choice]['id']
                 let menuid = props.menuOptions[key][choice]['id']
                 subheading.push(
-                    <p onClick={handleMenuClick} id={menuid} key={menuid}>
-                        {/* <Link to = { "/home/" + this.props.templateChoices[key]['id'] + "/" + this.props.templateChoices[key][choice]['id']} */}
-                        {/* id={this.props.templateChoices[key]['id'] + '-' + this.props.templateChoices[key][choice]['id']}>  */}
-                            {choice}
-                        {/* </Link> */}
+                    <p className={menuid === props.menuItemSelected ? 'active' : ''} onClick={handleMenuClick} id={menuid} key={menuid}>
+                        {choice}
                     </p>
                 )
             } 
@@ -62,29 +77,30 @@ const VaultMenu = (props) => {
         }
     }
 
-    const handleSwitch = () => {
-        if (props.viewerMode) {
-            props.vaultViewSwitch(false)
-        } else {
-            props.vaultViewSwitch(true)
+    const handleMenuClick = (e) => {
+        props.vaultMenuClickParse(props.vaultid, e.target.id)
+        props.vaultTagValueParse(props.vaultid, e.target.id)
+        history.push(e.target.id)
+        if (props.vaultMenuClicked) {
+            props.vaultMenuClickFlag(false)    
+        } else if (!(props.vaultMenuClicked)) {
+            props.vaultMenuClickFlag(true)
         }
-    }
 
-    const handleMenuClick = (e, d) => {
-        props.vaultMenuClick(props.vaultID, e.target.id)
+        props.vaultMenuParseMenuItem(e.target.id)
+        props.vaultViewSwitch(false)
     }
 
     const transformToMenu = () => {
         if (Object.keys(props.menuOptions).length != 0 ){
             let templateChoiceCate = []
             let index = 0
-            
             for (let category of Object.keys(props.menuOptions)){
                 if (category != 'id'){
                     templateChoiceCate.push(
                         <React.Fragment>
                             <Accordion.Title
-                                active = {true} //change this later
+                                active = {true}
                                 index = {index}
                                 
                                 className = "menu-header-h1 menu-choice"
@@ -92,7 +108,7 @@ const VaultMenu = (props) => {
                             <Icon name='dropdown' />
                                 {category.toUpperCase()}
                             </Accordion.Title>
-                            <Accordion.Content key={category} active={true}> //change this later
+                            <Accordion.Content key={category} active={true}>
                                 {transformToSubheading(category)}
                             </Accordion.Content>
                         </React.Fragment>
@@ -109,6 +125,12 @@ const VaultMenu = (props) => {
 
     }
 
+    const checkViewerMode = () => {
+        // case 1: welcome message
+       
+
+    }
+    
     return (
         <Resizable   
             defaultSize={{
@@ -130,7 +152,7 @@ const VaultMenu = (props) => {
                     <span>{switchText()}</span>
                     <Switch
                         checked={props.viewerMode}
-                        onChange={handleSwitch}
+                        onChange={() => {props.vaultViewSwitch(props.viewerMode == true ? false : true )}}
                         onColor="#86d3ff"
                         onHandleColor="#2693e6"
                         handleDiameter={30}
@@ -141,7 +163,6 @@ const VaultMenu = (props) => {
                         height={20}
                         width={48}
                         disabled={switchDisabled()}
-                        // disabled={false}
                         className="react-switch"
                         id="material-switch"
                     />
@@ -157,8 +178,11 @@ const mapStateToProps = (state) => {
     return ({
         'menuOptions': state.vaultSessionMenuData['data'],
         'viewerMode' : state.appState['viewerMode'],
-        'templateCodeFlag': state.appState['templateSubmittedFlag']
+        'templateCodeFlag': state.appState['templateSubmittedFlag'],
+        'vaultMenuClicked': state.appState['menuClickedFlag'],
+        'vaultid': state.appState['vaultid'],
+        'menuItemSelected': state.appState['menuIdSelected']
     })
 }
 
-export default connect(mapStateToProps, { vaultGetMenuStruct, vaultMenuClick, vaultViewSwitch }) (VaultMenu)
+export default connect(mapStateToProps, { vaultMenuParseMenuItem, vaultTagValueParse, vaultGetMenuStruct, vaultMenuClickParse, vaultMenuClickFlag, vaultViewSwitch }) (VaultMenu)

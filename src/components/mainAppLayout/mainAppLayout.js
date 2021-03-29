@@ -40,7 +40,6 @@ class MainMenu extends React.Component {
 const mapStateToProps = (state) => {
     return ({
         mainFlowNodes: state.mainFlowNodes,
-        templateToDisplay: state.templateCodeInfo.template_code,
     })
 }
 
