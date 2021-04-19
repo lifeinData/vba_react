@@ -7,7 +7,8 @@
   overflow: auto;
 }
 .template-display-inner-cont .template-code-cont {
-  background: #f9f9f9;
+  background: #f8f8f8;
+  padding-top: 0px !important;
   display: none;
   flex-direction: column;
   height: 100vh;
@@ -18,11 +19,52 @@
 .template-display-inner-cont .template-code-cont.active {
   display: flex;
 }
+.template-display-inner-cont .template-code-cont .codeBlock {
+  margin-top: -14px;
+}
 .template-display-inner-cont .template-code-cont .codeDiv {
-  width: fit-content;
+  width: 100%;
 }
 .template-display-inner-cont .template-code-cont .codeDiv.highlighted {
   background: #3e34342f !important;
+}
+.template-display-inner-cont .template-code-cont .link-bar {
+  display: flex;
+  background-color: #f8f8f8;
+  width: inherit !important;
+  align-items: center;
+  height: 40px;
+}
+.template-display-inner-cont .template-code-cont .link-bar .linkbar-popup {
+  display: none;
+  font-size: 15px;
+  font-weight: 800;
+  margin-left: 15px;
+  color: green;
+  background-color: white;
+  border: 2px green solid;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.template-display-inner-cont .template-code-cont .link-bar .linkbar-popup.active {
+  display: block !important;
+}
+.template-display-inner-cont .template-code-cont .link-bar button:nth-child(1) {
+  margin-left: 5px !important;
+}
+.template-display-inner-cont .template-code-cont .link-bar .link-btn {
+  margin-left: 15px;
+  background-color: #f8f8f8;
+  color: black;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 3px 8px;
+  cursor: pointer;
+  height: 25px;
+}
+.template-display-inner-cont .template-code-cont .link-bar .link-btn:hover {
+  color: white;
+  background-color: black;
 }
 .template-display-inner-cont .template-code-cont code {
   background: none !important;
@@ -64,6 +106,39 @@
   flex-direction: column;
   background-color: white;
 }
+.vba-codeinput #add-code-btn {
+  margin-top: -11px;
+}
+.vba-codeinput .inputAreaTitle {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+  margin-right: 6px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+.vba-codeinput #template-name-error {
+  margin-left: 165px;
+  margin-top: 11px;
+  font-size: 14px;
+}
+.vba-codeinput #template-input-error {
+  font-size: 14px;
+  margin: 0px 6px;
+  margin-top: 7px;
+  margin-bottom: 8px;
+}
+.vba-codeinput .inputTemplateLabel {
+  margin-right: 20px;
+  font-weight: 900;
+  font-size: 17px;
+}
+.vba-codeinput .templateShortInput {
+  font-size: 17px;
+}
+.vba-codeinput .templateShortInput:focus {
+  outline: #1078f7 2px solid !important;
+}
 .vba-codeinput .input-options-cont {
   padding: 5px 5px;
   background-color: white;
@@ -73,11 +148,12 @@
 }
 .vba-codeinput .vba-code-textarea {
   resize: none;
-  width: 100%;
   height: 100%;
   margin-top: 0px;
-  padding-left: 2px;
+  padding-left: 9px;
   margin-left: 6px;
+  margin-right: 6px;
+  padding-right: 9px;
 }
 .vba-codeinput .vault-builder-lbl {
   font-size: 15px;
@@ -89,6 +165,12 @@
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 8px;
+}
+
+.show-pw-modal {
+  background-color: white;
+  text-align: center;
+  padding: 5px 10px;
 }
 
 /*# sourceMappingURL=vault-input.css.map */

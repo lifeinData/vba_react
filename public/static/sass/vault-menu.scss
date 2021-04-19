@@ -1,3 +1,51 @@
+.editor-optn-cont {
+    border: 2px solid black;
+    padding: 7px 3px;
+    
+    & .react-switch {
+        margin-left: 15px;
+    }
+
+    & .config-btn:not(:first-child) {
+        margin-top: 7px;
+    }
+
+    & .ui.blue.basic.button.config-btn {
+        width: 100%;
+        font-weight: 600;
+    }
+
+    & .ui.blue.basic.button.config-btn:hover {
+        color: white!important;
+        background-color: #1078f7!important;
+    }
+
+    & .editor-switch-cont {
+        display: flex;
+        margin-top: 12px;
+
+        & .switch-lbl {
+            font-weight: 600;
+            margin-bottom: 14px;
+            padding-top: 4px;
+            font-size: 16px;
+        }
+    }
+}
+.set-editor-pw-modal {
+    background-color: grey;
+}
+
+.set-pw-modal-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .set-pw-modal {
+        background-color:white
+    }
+}
+
 .templateChoiceMenu {
     display: flex;
     flex-direction: column;
@@ -5,7 +53,7 @@
     padding: 7px 8px;
     height: calc(100vh - 44px);
       
-    & p {
+    & .menu-choice-header-h1 p {
         width: inherit;
         padding-left: 32px;
         font-size: 18px;
@@ -13,7 +61,7 @@
         border: 3px solid white;
     }
 
-    & p:hover, p.active {
+    & .menu-choice-header-h1 p:hover, .menu-choice-header-h1 p.active {
         border: 3px solid black;
         color: black;
         background-color: #f7f7f7;

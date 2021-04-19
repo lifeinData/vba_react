@@ -220,20 +220,20 @@ body {
 }
 
 /* header section */
-.ui.menu {
+.ui.menu:not(.pointing) {
   background: #1078f7;
   border: 0px;
   margin-bottom: 0px;
 }
-.ui.menu a.active.item {
+.ui.menu:not(.pointing) a.active.item {
   background: #f7f7f7;
   color: #1078f7;
 }
-.ui.menu a.item {
+.ui.menu:not(.pointing) a.item {
   background-color: white;
   color: #1078f7;
 }
-.ui.menu a.active.item:hover, .ui.menu a.item:hover {
+.ui.menu:not(.pointing) a.active.item:hover, .ui.menu:not(.pointing) a.item:hover {
   background: #f7f7f7;
   color: #1078f7;
 }

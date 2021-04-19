@@ -84,6 +84,13 @@ export const parseTemplateRequest = (heading, templateId) => {
       }
 }
 
+export const setFirstTimeLoad = (status) => {
+    return {
+        type: 'SET_FIRST_TIME_LOAD',
+        payload: status
+    }
+}
+
 export const mouseOverProperty = (propertyType) => {
     return {
         type: "MOUSEOVER_PROPERTY",

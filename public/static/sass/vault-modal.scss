@@ -1,0 +1,51 @@
+.set-pw-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 490px;
+    height: 310px;
+    background-color: white;
+    margin-bottom: 10px;
+    
+    & .set-pw-input {
+        flex-direction: column;
+    }
+
+    & .set-pw-inner-cont, .set-pw-input {
+        display: flex;
+        align-self: flex-start;
+        margin-left: 41px;
+        
+        & .set-pw-error {
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        & .set-pw-subtitle {
+            font-size: 17px;
+        }
+
+        & .adding-priv-toggle {
+            margin-left: 15px;
+            margin-top: -4px;
+        }
+
+        & .adding-priv-info {
+            padding: 0px 10px;
+            height: 25px;
+        }
+    }
+
+    & .set-pw-maintitle {
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    & .error-msgs {
+        font-size: 14px;
+        margin: 0px 6px;
+        margin-top: 7px;
+        margin-bottom: 8px;
+    } 
+}

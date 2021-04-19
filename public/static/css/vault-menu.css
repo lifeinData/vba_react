@@ -1,3 +1,45 @@
+.editor-optn-cont {
+  border: 2px solid black;
+  padding: 7px 3px;
+}
+.editor-optn-cont .react-switch {
+  margin-left: 15px;
+}
+.editor-optn-cont .config-btn:not(:first-child) {
+  margin-top: 7px;
+}
+.editor-optn-cont .ui.blue.basic.button.config-btn {
+  width: 100%;
+  font-weight: 600;
+}
+.editor-optn-cont .ui.blue.basic.button.config-btn:hover {
+  color: white !important;
+  background-color: #1078f7 !important;
+}
+.editor-optn-cont .editor-switch-cont {
+  display: flex;
+  margin-top: 12px;
+}
+.editor-optn-cont .editor-switch-cont .switch-lbl {
+  font-weight: 600;
+  margin-bottom: 14px;
+  padding-top: 4px;
+  font-size: 16px;
+}
+
+.set-editor-pw-modal {
+  background-color: grey;
+}
+
+.set-pw-modal-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.set-pw-modal-cont .set-pw-modal {
+  background-color: white;
+}
+
 .templateChoiceMenu {
   display: flex;
   flex-direction: column;
@@ -5,14 +47,14 @@
   padding: 7px 8px;
   height: calc(100vh - 44px);
 }
-.templateChoiceMenu p {
+.templateChoiceMenu .menu-choice-header-h1 p {
   width: inherit;
   padding-left: 32px;
   font-size: 18px;
   cursor: pointer;
   border: 3px solid white;
 }
-.templateChoiceMenu p:hover, .templateChoiceMenu p.active {
+.templateChoiceMenu .menu-choice-header-h1 p:hover, .templateChoiceMenu .menu-choice-header-h1 p.active {
   border: 3px solid black;
   color: black;
   background-color: #f7f7f7;

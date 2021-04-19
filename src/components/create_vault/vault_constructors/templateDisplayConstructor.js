@@ -4,23 +4,12 @@ import { connect } from 'react-redux';
 import { Alert } from 'react-bootstrap'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { vaultFunctionClicked } from '../../../actions'
-// import {  } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-
-
-function UsePrevious (value) {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    
-    return ref.current;
-
-}
+import NavLinkBar from './decorator_component/navLinkBar'
 
 const VaultTemplateDisplay = (props) => {
     let history = useHistory()
-    const [codeLoaded, setCodeLoaded] = useState(false)
+    const [popUp, setPopUp] = useState(false)
     const [activeAccordianIndex, setActiveAccordianIndex] = useState([0, 1])
     const templateCodeRef = useRef();
     let previousState;
@@ -33,9 +22,8 @@ const VaultTemplateDisplay = (props) => {
                 props.vaultFunctionClicked('overall_descrip')
             } else {
                 let functionId = history.location.hash.split("#")[1]
-                if (props.functionList.includes(functionId)){
+                if (functionId in props.functionList){
                     props.vaultFunctionClicked(functionId)
-                    
                     document.getElementById(functionId).scrollIntoView()
                 }
             }
@@ -45,39 +33,35 @@ const VaultTemplateDisplay = (props) => {
     const getActiveStatus = (mode, functionName) => {
         if (functionName == props.functionFocus) {
             if (mode === "code") {
-                return 'codeDiv highlighted'
-            } else if (mode === "function") {
-                return 'active'
+                return 'codeBlock codeDiv highlighted'
             }
-            
+        } else {
+            return 'codeBlock'
         }
     }
 
     const markTemplateCode = () => {
+        let func_block_regex = new RegExp('^((private |public |friend |static )*function ([a-zA-Z1-9 ()_,]+)\n*?.*?\nend function.*?)', 'igms')
+        let sub_block_regex = new RegExp('^((private |public |friend |static )*sub ([a-zA-Z1-9 ()_,]+)\n*?.*?\nend sub.*?)', 'igms')
+
+        let func_title_regex = new RegExp('^(private |public |friend |static )*function ([a-zA-Z1-9 ()_,]+)', 'igms')
+        let sub_title_regex = new RegExp('^(private |public |friend |static )*sub ([a-zA-Z1-9 ()_,]+)', 'igms')
+
+        let all_code = [...props.templateCode.matchAll(sub_block_regex), ...props.templateCode.matchAll(func_block_regex)]
+        let all_titles = [...props.templateCode.matchAll(func_title_regex), ...props.templateCode.matchAll(sub_title_regex)]
+
+        console.log('all code ===>', all_code, 'all titles ===>', all_titles)
+
         let [split_code_sub, split_code_func] = props.templateCode.split(new RegExp('end sub', 'i'))
-        let [subRegex, funcRegex] = [/Sub (\w+)(?=[()])/, /Function (\w+)(?=[()])/]
         split_code_func = split_code_func != null ? split_code_func.split(new RegExp('end function', 'i')) : ''
         split_code_sub = split_code_sub != null ? split_code_sub.split(new RegExp('end sub', 'i')) : ''
-        let split_code = [...split_code_sub, ...split_code_func]
-        let anchorName;
-        
 
-        let code = split_code.map((codeBlock) => {
+        let code = all_code.map((codeBlock) => {
             if (codeBlock !== '') {
-                if (subRegex.test(codeBlock)) {
-                    codeBlock = codeBlock.trim() + "\nEnd Sub"
-                    anchorName = codeBlock.match(subRegex)[1]
-
-                } else if (funcRegex.test(codeBlock)) {
-                    codeBlock = codeBlock.trim() + "\nEnd Function"
-                    anchorName = codeBlock.match(funcRegex)[1]
-                }
-                
+                let codeBlockTitle = codeBlock[codeBlock.length - 1].split('(')[0]
                 return (
                     <React.Fragment>
-                        {/* <a id={anchorName}></a> */}
-
-                        <div id={anchorName} className={getActiveStatus('code', anchorName)}>
+                        <div id={codeBlockTitle} className={getActiveStatus('code', codeBlockTitle)}>
                             <SyntaxHighlighter language='vba'>
                                 {codeBlock}
                             </SyntaxHighlighter>
@@ -87,7 +71,7 @@ const VaultTemplateDisplay = (props) => {
                 )
             }
         })
-
+        
         return code
 
     }
@@ -104,6 +88,58 @@ const VaultTemplateDisplay = (props) => {
         }        
     }
 
+    const linkBarFunctions = {
+        rawCodeCopy : () => {
+            navigator.clipboard.writeText(props.templateCode)
+            setPopUp(true)
+        },
+
+        vaultLinkCopy : () => {
+            navigator.clipboard.writeText(window.location.origin + '/vaultID/' + props.vaultid)
+            setPopUp(true)
+        },
+
+        templateLinkCopy : () => {
+            navigator.clipboard.writeText(window.location.origin + history.location.pathname)
+            setPopUp(true)
+        }
+    }
+    const getCopyLinkPopupStatus = () => {
+        if (popUp) {
+            return 'linkbar-popup active'
+        } else {
+            return 'linkbar-popup'
+        }
+    }
+
+    const linkBar = () => {
+        return (
+            <div className="link-bar">
+                <button 
+                    onClick={linkBarFunctions['rawCodeCopy']} 
+                    className="link-btn"
+                    onMouseLeave={()=>{setPopUp(false)}}> 
+                        Raw Code
+                </button>
+                <button 
+                    onClick={linkBarFunctions['vaultLinkCopy']} 
+                    className="link-btn"
+                    onMouseLeave={()=>{setPopUp(false)}}> 
+                        Vault Link 
+                </button>
+                <button 
+                    onClick={linkBarFunctions['templateLinkCopy']} 
+                    className="link-btn"
+                    onMouseLeave={()=>{setPopUp(false)}}>
+                        Template Link
+                </button>
+                <div className={getCopyLinkPopupStatus()}>
+                    Link Copied
+                </div>
+            </div>
+        )
+    }
+
     const renderTemplateCode = () => {
         let split_code;
         if ((props.menuClicked !== '') || (props.templateCode)){
@@ -112,57 +148,18 @@ const VaultTemplateDisplay = (props) => {
                 // previousTemplateCode = UsePrevious(props.templateCode)
             }
             
-            return split_code
-        } else {
-            return null
-        }
-    }
-    const renderFunctions = () => {
-        if ((props.menuOptions !== '') && (props.vaultMenuClicked === '') && (props.templateCode == '')){
             return (
-                // make this look better
-                <Alert variant="dark">
-                    Click on a template to the left to see its code and function breakdown 
-                </Alert>
-            )
-        } else if (((props.menuItemSelected !== '') && (props.functionList !== '')) || (props.templateCode != '')) {
-            let functionButtonArea;
-            functionButtonArea = props.functionList.map( (funcName) => {
-                    return (
-                        <Button
-                        basic
-                        color="blue"
-                        onClick={() => {
-                            document.getElementById(funcName).scrollIntoView()
-                            props.vaultFunctionClicked(funcName)
-                            history.push('#'+ funcName)}}
-                            className={getActiveStatus('function', funcName)}>
-                            {funcName}
-                        </Button>
-                    
-                    )
-                }
-                
+                <React.Fragment>
+                    <NavLinkBar/>
+                    {split_code}
+                </React.Fragment>
             )
 
-            functionButtonArea.splice(0, 0,
-                    <Button  
-                        basic
-                        color="blue"
-                        onClick={() => {
-                            props.vaultFunctionClicked("overall_descrip")}}
-                        className={getActiveStatus('function', 'overall_descrip')}>
-                        Overall Description
-                    </Button>
-            )
+        } else {
 
-            
+            return null
 
-            return functionButtonArea
         }
-
-        return null
-        
     }
 
     const displayCode = () => {
@@ -170,24 +167,6 @@ const VaultTemplateDisplay = (props) => {
         return (
 
             <Accordion className="template-display-inner-cont">
-                <Accordion.Title
-                    onClick={() => handleTitleClick(0)}
-                    active={activeAccordianIndex.includes(0)}
-                    index={0}
-                    className="menu-header-h1 menu-choice"
-                >
-                    <Icon name='dropdown' />
-                    TEMPALTE CODE FUNCTION(S)
-
-                </Accordion.Title>
-                <Accordion.Content 
-                    style={{paddingBottom: '0px'}} 
-                    active={activeAccordianIndex.includes(0)}>
-                    <div className="template-function-break-cont">
-                        {renderFunctions()}
-                    </div>
-
-                </Accordion.Content>
                 <Accordion.Title
                     onClick={() => handleTitleClick(1)}
                     active={activeAccordianIndex.includes(1)}
@@ -224,7 +203,7 @@ const mapStateToProps = (state) => {
         vaultMenuClicked: state.appState['menuClickedFlag'],
         vaultid: state.appState['vaultid'],
         menuOptions: state.vaultSessionMenuData['data'],
-        functionList: state.templateTags['funcList'],
+        functionList: state.templateTags['data']['func_descrip'],
         functionFocus: state.appState['functionSelected'],
         menuItemSelected: state.appState['menuIdSelected']
     }

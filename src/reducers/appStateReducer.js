@@ -4,6 +4,7 @@ export const overallAppState = (state={'viewerMode':true,
                                        'menuClickedFlag': '',
                                        'menuIdSelected':'',
                                        'vaultid':'',
+                                       'firstTimeLoad': false,
                                        'functionSelected':'overall_descrip'}, action) => {
     switch (action.type) {
         case 'VIEWER_MODE_CHANGE':
@@ -26,6 +27,9 @@ export const overallAppState = (state={'viewerMode':true,
         case 'PARSE_MENU_ITEM':
             return {...state, 'menuIdSelected':action.payload}
 
+        case 'SET_FIRST_TIME_LOAD':
+            return {...state, 'firstTimeLoad':action.payload}
+            
         default:
             return state
     }

@@ -9,7 +9,7 @@ import CustomVaultBuild from '../create_vault/index';
 const MainAppHeader = (props) => {
 
     // const [vaultID, setVaultID] = useState('');
-    const [activeItem, setActiveItem] = useState("vault-viewer")
+    const [activeItem, setActiveItem] = useState("create-vault")
     
     function handleItemClick (e,a,b) {
         return (a.name)
@@ -54,7 +54,6 @@ const MainAppHeader = (props) => {
                 >
                 <Link to={"/vaultID/" + (props.vaultID !== '' ? props.vaultID + '/' : '')}>
                     Create your own vault
-                    
                 </Link>
 
                 </Menu.Item>
@@ -64,8 +63,6 @@ const MainAppHeader = (props) => {
                 <Route exact path ="/">
                     <Redirect to="/about/"/>
                 </Route>
-                {/* todo: MainAppLayout will be a special vault ID */}
-                {/* <Route path="/home/:id?" component={MainAppLayout}></Route> */}
                 <Route exact path ="/about" component={AboutPage}></Route>
                 <Route  path = "/vaultID/:id?/:templateid?" component={CustomVaultBuild}></Route>
             </Switch>

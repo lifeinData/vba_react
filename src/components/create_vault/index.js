@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { setVaultID, vaultViewSwitch, vaultMenuClickParse, vaultMenuParseMenuItem, vaultTagValueParse } from '../../actions';
+import { setVaultID, setFirstTimeLoad, vaultViewSwitch, vaultMenuClickParse, vaultMenuParseMenuItem, vaultTagValueParse } from '../../actions';
 import { Button } from 'react-bootstrap';
 import { Switch, Route } from 'react-router-dom';
 import parseRequestAxio from '../../apis/parseRequest';
@@ -12,7 +12,6 @@ import TemplateInputArea from './vault_constructors/templateInputArea';
 
 const CustomVaultBuild = (props) => {
     let history = useHistory();
-    const [vaultidloaded, setvaultidloaded] = useState(false)
 
     function makeid(length) {
         var result           = '';
@@ -25,8 +24,7 @@ const CustomVaultBuild = (props) => {
     }
 
     useEffect(()=>{
-        console.log('create_vault useeffect rendered')
-        console.log('this is the vaultID: ', props.vaultid)
+        console.log('create_vault useeffect rendered. vaultid: ', props.vaultid)
         let vaultIDExtract = /(?<=\/vaultID\/)(.{8})(?=\/)|(?<=\/vaultID\/)(.{8})/
         let vaultIDCapture = window.location.href.match(vaultIDExtract)
         
@@ -34,8 +32,10 @@ const CustomVaultBuild = (props) => {
             let uniqueID = makeid(8)
             history.push('/vaultID/' + uniqueID)
             props.setVaultID(uniqueID)
+            
         } else {
-            if (props.vaultID !== vaultIDCapture[0]) {
+            if (props.vaultid !== vaultIDCapture[0]) {
+                // props.vaultViewSwitch(false)
                 props.setVaultID(vaultIDCapture[0])
                 if (props.match.params.templateid){
                     console.log('vault tag value parse runs here')
@@ -48,7 +48,7 @@ const CustomVaultBuild = (props) => {
 
         
         // setvaultidloaded(true)
-    }, [props.vaultid])
+    }, [props.vaultid, props.viewerMode])
 
     const templateDisplay = () => {
         if (!(props.viewerMode)) {
@@ -60,13 +60,21 @@ const CustomVaultBuild = (props) => {
         }
     }
 
+    const displayInformationBox = () => {
+        if (props.viewerMode) {
+            return null;
+        } else {
+            return <InformationBoxContainer />
+        }
+    }
+
     if (props.vaultid != '') {
         return (
             <React.Fragment>
                 <div id="main-app-layout">
                     <VaultMenu />
                     {templateDisplay()}
-                    <InformationBoxContainer />
+                    {displayInformationBox()}
                 </div>
             </React.Fragment>
         )
@@ -83,4 +91,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { setVaultID, vaultMenuParseMenuItem, vaultTagValueParse, vaultMenuClickParse, vaultViewSwitch })(CustomVaultBuild);
+export default connect(mapStateToProps, { setFirstTimeLoad, setVaultID, vaultMenuParseMenuItem, vaultTagValueParse, vaultMenuClickParse, vaultViewSwitch })(CustomVaultBuild);

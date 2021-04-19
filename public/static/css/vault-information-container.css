@@ -7,20 +7,78 @@
   padding: 8px 8px;
   overflow: hidden;
 }
+.informationBox .template-code-breakdown {
+  width: max(315px, 100%);
+  background: #fdfdfd;
+  border: 2px #ededed solid;
+  padding: 7px 4px;
+  height: 66%;
+  margin-bottom: 7px;
+  overflow: auto;
+}
+.informationBox .template-code-breakdown .breakdown-btn-cont {
+  display: flex;
+  flex-direction: column;
+}
+.informationBox .template-code-breakdown .breakdown-btn-cont .code-btn-breakdown-cont {
+  display: flex;
+  position: relative;
+}
+.informationBox .template-code-breakdown .breakdown-btn-cont .code-btn-breakdown-cont .copy-link-popup {
+  display: none;
+  position: absolute;
+  left: 220px;
+  margin-top: 8px;
+  font-size: 15px;
+  z-index: 99;
+  font-weight: 800;
+  color: green;
+  background-color: white;
+  border: 2px green solid;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.informationBox .template-code-breakdown .breakdown-btn-cont .code-btn-breakdown-cont .copy-link-popup.active {
+  display: block !important;
+  position: absolute;
+}
+.informationBox .template-code-breakdown .breakdown-btn-cont .code-btn-breakdown-cont .copy-link {
+  padding-right: 7px;
+  padding-left: 7px !important;
+  height: 39px;
+}
+.informationBox .template-code-breakdown .breakdown-btn-cont .code-btn-breakdown-cont .breakdown-btn {
+  font-weight: 550;
+  padding-left: 12px !important;
+  font-size: 15px;
+  width: 100%;
+  text-align: center;
+  margin-right: 3px;
+  margin-bottom: 5px;
+  overflow: auto;
+}
+.informationBox .template-code-breakdown .breakdown-btn-cont .code-btn-breakdown-cont .breakdown-btn.active {
+  color: white !important;
+  background-color: #1078f7 !important;
+}
+.informationBox .template-code-breakdown .breakdown-btn-cont .code-btn-breakdown-cont .breakdown-btn:hover, .informationBox .template-code-breakdown .breakdown-btn-cont .code-btn-breakdown-cont .copy-link:hover {
+  color: white !important;
+  background-color: #1078f7 !important;
+}
 .informationBox .template-info-cont {
   width: max(315px, 100%);
   background: #fdfdfd;
-  height: 33.33%;
   border: 2px #ededed solid;
-  margin-bottom: 7px;
   padding: 7px 4px;
+  height: 33%;
+  margin-bottom: 0px;
 }
 .informationBox .template-info-cont .descrip-txt {
   color: #6d6d6d !important;
   font-weight: 550;
   text-align: left;
   margin: 0px 9px 4px 12px;
-  font-size: 14px !important;
+  font-size: 16px !important;
   width: inherit;
 }
 .informationBox .template-info-cont .descrip-header {
@@ -28,15 +86,13 @@
   font-weight: 600;
   text-align: left;
   margin: 0px 9px 4px 7px;
-  font-size: 15px !important;
+  font-size: 16px !important;
   width: inherit;
 }
 .informationBox .template-targetcol-cont {
   width: max(315px, 100%);
   background: #fdfdfd;
-  height: 33.33%;
   border: 2px #ededed solid;
-  margin-bottom: 7px;
   padding: 7px 4px;
   overflow: auto;
   margin-bottom: 0px !important;
@@ -80,9 +136,7 @@
 .informationBox .template-code-opt-cont {
   width: max(315px, 100%);
   background: #fdfdfd;
-  height: 33.33%;
   border: 2px #ededed solid;
-  margin-bottom: 7px;
   padding: 7px 4px;
 }
 .informationBox .template-code-opt-cont .code-option-box {

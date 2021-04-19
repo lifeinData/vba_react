@@ -17,4 +17,7 @@
     display: flex;
     padding: 7px 8px;
     overflow: hidden;
+    &.active{
+        width: 100%;
+    }
 }

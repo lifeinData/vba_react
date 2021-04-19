@@ -10,5 +10,8 @@
   padding: 7px 8px;
   overflow: hidden;
 }
+.column2-area.active {
+  width: 100%;
+}
 
 /*# sourceMappingURL=vault-build.css.map */

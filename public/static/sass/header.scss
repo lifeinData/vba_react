@@ -275,7 +275,7 @@
 
   /* header section */
   
-.ui.menu {
+.ui.menu:not(.pointing) {
   background: #1078f7;
   border: 0px;
   margin-bottom: 0px;
