@@ -1,5 +1,4 @@
 .editor-optn-cont {
-  border: 2px solid black;
   padding: 7px 3px;
 }
 .editor-optn-cont .react-switch {
@@ -40,25 +39,64 @@
   background-color: white;
 }
 
-.templateChoiceMenu {
+.menu-choice-container {
   display: flex;
   flex-direction: column;
   background: #f7f7f7;
   padding: 7px 8px;
   height: calc(100vh - 44px);
 }
-.templateChoiceMenu .menu-choice-header-h1 p {
-  width: inherit;
+.menu-choice-container .menu-choice-header-h1 p {
   padding-left: 32px;
   font-size: 18px;
   cursor: pointer;
   border: 3px solid white;
 }
-.templateChoiceMenu .menu-choice-header-h1 p:hover, .templateChoiceMenu .menu-choice-header-h1 p.active {
+.menu-choice-container .menu-choice-header-h1 {
+  width: 100%;
+  border: 2px #ededed solid;
+  padding: 8px 4px;
+  background: white;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.menu-choice-container .menu-choice-header-h1 div.editor-optn-cont:last-child {
+  margin-top: auto;
+}
+.menu-choice-container .template-display-inner-cont {
+  width: 100%;
+  border: 2px #ededed solid;
+  padding: 8px 4px;
+  background: white;
+  height: 100%;
+  overflow: auto;
+}
+.menu-choice-container .inner-choice-menu {
+  width: 100%;
+  border: 2px #ededed solid;
+  padding: 8px 4px;
+  background: white;
+  height: 100%;
+  overflow: auto;
+}
+.menu-choice-container .menu-choice-header-h1 p:hover, .menu-choice-container .menu-choice-header-h1 p.active {
   border: 3px solid black;
   color: black;
   background-color: #f7f7f7;
   font-weight: bolder;
+}
+.menu-choice-container .menu-choice-subheading-cont {
+  display: flex !important;
+}
+.menu-choice-container .menu-choice-subheading-cont .subheading-link {
+  flex-grow: 1;
+}
+.menu-choice-container .menu-choice-subheading-cont .delete-btn {
+  margin-left: 8px;
+  height: 25px;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=vault-menu.css.map */

@@ -1,5 +1,5 @@
 .editor-optn-cont {
-    border: 2px solid black;
+    // border: 2px solid black;
     padding: 7px 3px;
     
     & .react-switch {
@@ -32,6 +32,7 @@
         }
     }
 }
+
 .set-editor-pw-modal {
     background-color: grey;
 }
@@ -46,7 +47,7 @@
     }
 }
 
-.templateChoiceMenu {
+.menu-choice-container {
     display: flex;
     flex-direction: column;
     background:#f7f7f7;
@@ -54,11 +55,44 @@
     height: calc(100vh - 44px);
       
     & .menu-choice-header-h1 p {
-        width: inherit;
+        // width: 80%;
         padding-left: 32px;
         font-size: 18px;
         cursor: pointer;
         border: 3px solid white;
+        
+    }
+
+    & .menu-choice-header-h1 {
+        width: 100%;
+        border: 2px #ededed  solid;
+        padding: 8px 4px;
+        background: white;    
+        height: 100%;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        & div.editor-optn-cont:last-child{
+            margin-top: auto;
+        }
+    }
+
+    & .template-display-inner-cont {
+        width: 100%;
+        border: 2px #ededed  solid;
+        padding: 8px 4px;
+        background: white;    
+        height: 100%;
+        overflow: auto;
+      }
+
+    & .inner-choice-menu{
+        width: 100%;
+        border: 2px #ededed  solid;
+        padding: 8px 4px;
+        background: white;    
+        height: 100%;
+        overflow: auto;
     }
 
     & .menu-choice-header-h1 p:hover, .menu-choice-header-h1 p.active {
@@ -67,5 +101,22 @@
         background-color: #f7f7f7;
         font-weight: bolder;
     }
+
+    & .menu-choice-subheading-cont {
+        display: flex !important;
+        
+        & .subheading-link {
+            flex-grow: 1;
+        }
+
+        & .delete-btn {
+            margin-left: 8px;
+            height: 25px;
+            cursor: pointer;
+        }
+    }
+
+
 }
+
 

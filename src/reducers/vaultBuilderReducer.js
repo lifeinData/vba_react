@@ -3,6 +3,20 @@ export const menuOptions = (state={'data':'', 'vaultid':''}, action) => {
         case 'PARSE_VAULT_MENU':
             state['data'] = action.payload
             return {...state}
+
+        case 'DELETE_MENU_OPTION':
+            let newState;
+            console.log('DELETE MENU OPTION ====>', action.payload.cateHeading, action.payload.templateHeading)
+            delete state['data'][action.payload.cateHeading][action.payload.templateHeading]
+
+            console.log('DELETE MENU OPTION LENGTH ====>', Object.keys(state['data'][action.payload.cateHeading]).length)
+            if (Object.keys(state['data'][action.payload.cateHeading]).length === 1) {
+                delete state['data'][action.payload.cateHeading]
+            }
+            
+            newState = {...state['data']}
+            return {...state, 'data': newState}
+
         default:
             return state
     }

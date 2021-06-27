@@ -32,13 +32,14 @@ const TemplateInputArea = (props) => {
         let error
 
         const getErrorMessage = (mode, parsingType=null) => {
-            let parsingRegexBegin = new RegExp("(?<!_\n)^((private |public |friend |static )*)" + mode + ".+", 'gim')
+            // let parsingRegexBegin = new RegExp("(?<!_\n)^((private |public |friend |static )*)" + mode + ".+", 'gim')
+            let parsingRegexBegin = new RegExp("(?<!_\n)^((private |public |friend |static )*)(" + mode + " ).+$", 'gim')
             let parsingRegexEnd = new RegExp("(?<!_\\n)^end " + mode + ".*", 'gim')
-            console.log('this is the regex ', parsingRegexBegin, parsingRegexEnd)
             let parsingStatus = {'codeExists':false, 'errorMsg':null}
             let parsingResultBegin = inputValues.match(parsingRegexBegin)
             let parsingResultEnd = inputValues.match(parsingRegexEnd)
             
+            console.log('parsing results  ', parsingResultBegin, parsingResultEnd)
 
             if ((parsingResultBegin) || parsingResultEnd) {
                 parsingStatus['codeExists'] = true
@@ -163,7 +164,6 @@ const TemplateInputArea = (props) => {
                             {generateEditPassword()}
                             {showEditPassword()}
                         </div>
-                        
                     </Fade>
                 </Modal>
                 <Formik
@@ -174,15 +174,16 @@ const TemplateInputArea = (props) => {
                     }}
 
                     onSubmit = {values => {
-                                    values.templateCateInput = values.templateCateInput == '' ? "All Category" : values.templateCateInput
+                                    values.templateCateInput = values.templateCateInput === '' ? "All Category" : values.templateCateInput
                                     postNewVault(values)
                                     if (props.firstTimeLoad) {
+                                        console.log('showPasswordIdsplay shows up')
                                         showPasswordDisplay(true)
                                     }
                                     }// }
                                 }
 
-                    validateOnChange = {false} 
+                    validateOnChange = {false}
                 >
 
                 {({ errors, touched, validateField, values, validateForm}) => (
@@ -203,7 +204,6 @@ const TemplateInputArea = (props) => {
                                 <div className="inputAreaTitle">
                                     <label className="inputTemplateLabel" htmlFor="vbaInput">Input your vba code</label>
                                     <Button id="add-code-btn" type="submit" basic color='blue'> Add Code </Button>
-                                    {/* <Button onClick={resetVault} variant="outline-success">Create New Vault</Button> */}
                                 </div>
 
                             </div>

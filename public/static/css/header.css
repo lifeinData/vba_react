@@ -1,135 +1,17 @@
-.grid-component {
-  position: relative;
-  width: 200px;
-}
-
-.grid-container {
-  display: flex;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  background-color: #f3f3f3;
-}
-
-.grid-component {
-  height: 150px !important;
-}
-
-.item-content {
-  position: relative;
+#root {
   width: 100%;
   height: 100%;
-  text-align: center;
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
 }
-
-body {
+#root body {
   display: flex;
   justify-content: space-evenly;
   margin: 0px 0px;
-}
-
-#top-main-menu {
-  display: flex;
-  height: 27px;
-  background-color: #80397b;
-  margin-top: 5px;
-}
-
-body {
   margin-top: 10px;
   min-width: 320px !important;
 }
 
-#root {
-  width: 100%;
-  height: 100%;
-  margin: 0px 5px;
-}
-
 #main-app-layout {
   display: flex;
-}
-#main-app-layout .templateChoices {
-  background-color: #f7f7f7;
-  width: 330px;
-  min-width: 330px;
-  height: 100vh;
-  overflow: auto;
-}
-#main-app-layout .templateChoices p {
-  margin: 3px 11px;
-  margin-bottom: 6px;
-  font-size: 14px;
-  cursor: pointer;
-}
-#main-app-layout .macro-generator-container {
-  background-color: #ebebeb;
-  width: 1360px;
-  height: calc(100vh - 44px);
-  display: flex;
-  justify-content: center;
-  padding: 7px 8px;
-  overflow: hidden;
-}
-#main-app-layout .macro-generator-container .function-break-down {
-  display: flex;
-  flex-flow: row wrap;
-  margin: 0px 10px;
-  width: inherit;
-}
-#main-app-layout .macro-generator-container .function-break-down a {
-  color: black !important;
-  margin-bottom: 14px;
-}
-#main-app-layout .macro-generator-container .function-break-down p {
-  cursor: pointer;
-  border: 1px black solid;
-  padding: 7px 7px;
-  text-align: center;
-  width: fit-content;
-  margin-right: 8px;
-  border-radius: 15px;
-  margin-bottom: 0px;
-}
-#main-app-layout .macro-generator-container .function-break-down p:hover, #main-app-layout .macro-generator-container .function-break-down p.active {
-  background: black;
-  color: white;
-  font-weight: bolder;
-}
-#main-app-layout .macro-generator-container .template-funcs {
-  display: flex;
-}
-#main-app-layout .macro-generator-container pre {
-  width: inherit;
-  overflow: unset !important;
-}
-#main-app-layout .macro-generator-container pre code {
-  background-color: white;
-  font-size: 14px !important;
-}
-#main-app-layout .macro-generator-container pre code .section {
-  background-color: aqua;
-}
-
-.menu-choice-header-h1, .template-display-inner-cont {
-  width: 100%;
-  border: 2px #ededed solid;
-  padding: 8px 4px;
-  background: white;
-  height: 100%;
-  overflow: auto;
-}
-
-.populate_report_row {
-  background: black;
-}
-
-.alert-dark {
-  font-size: 16px;
-  text-align: center;
-  font-weight: 600;
 }
 
 .menu-header-h1 {
@@ -158,68 +40,13 @@ body {
   padding: 4px 0px !important;
 }
 
-#drop-area-container {
-  grid-area: nodeDropArea;
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  display: flex;
-  flex-wrap: wrap;
-  border: 2px black solid;
-  height: 150px !important;
-  align-content: start;
-}
-
-#column_choices_list {
-  display: flex;
-}
-#column_choices_list .radio {
-  margin-left: 9px;
-}
-#column_choices_list label {
-  padding-left: 20px;
-}
-#column_choices_list p {
-  font-size: 1rem;
-  padding-right: 50px;
-}
-
-.node-prop.tab-lbl {
-  font-size: 16px;
-}
-
 .ui.menu .item {
   font-weight: 700 !important;
 }
-
-.disabled {
+.ui.menu .disabled {
   pointer-events: none;
   color: darkgrey;
 }
-
-.text-input {
-  width: 100%;
-  margin: 10px 7px 6px 7px;
-}
-
-.noselect {
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently
-     supported by Chrome, Edge, Opera and Firefox */
-}
-
-/* header section */
 .ui.menu:not(.pointing) {
   background: #1078f7;
   border: 0px;
@@ -233,7 +60,8 @@ body {
   background-color: white;
   color: #1078f7;
 }
-.ui.menu:not(.pointing) a.active.item:hover, .ui.menu:not(.pointing) a.item:hover {
+.ui.menu:not(.pointing) a.active.item:hover,
+.ui.menu:not(.pointing) a.item:hover {
   background: #f7f7f7;
   color: #1078f7;
 }

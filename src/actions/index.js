@@ -159,3 +159,16 @@ export const selectedFuncBlock = (funcBlock) => {
         payload: {'funcBlock' : funcBlock}
     }
 }
+
+export const deleteMenuOption = (cateHeading, subHeading, templateHeading, vaultid, templateId) => {
+    return async (dispatch) => {
+        await (parseRequestAxio.get('/deleteVault/', {params:{
+                                                                vaultID: vaultid,
+                                                                template_id: templateId,
+                                                                sub_heading: subHeading,
+                                                                mode : 'delete'
+                                                            }
+                                                    }))
+        dispatch({type: 'DELETE_MENU_OPTION', payload: {'cateHeading': cateHeading, 'subHeading': subHeading, 'templateHeading': templateHeading}})
+    }
+}

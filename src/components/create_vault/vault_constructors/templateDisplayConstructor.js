@@ -17,15 +17,15 @@ const VaultTemplateDisplay = (props) => {
 
     useEffect( () => {
         console.log('vaultTemplateDisplay useeffect for menuItemSelected is run' )
-        if (props.templateCode != '') {
-            if (history.location.hash === '') {
-                props.vaultFunctionClicked('overall_descrip')
+        if (props.templateCode !== '') {
+            if (history.location.hash === "") {
+              props.vaultFunctionClicked("overall_descrip");
             } else {
-                let functionId = history.location.hash.split("#")[1]
-                if (functionId in props.functionList){
-                    props.vaultFunctionClicked(functionId)
-                    document.getElementById(functionId).scrollIntoView()
-                }
+              let functionId = history.location.hash.split("#")[1];
+              if (functionId in props.functionList) {
+                props.vaultFunctionClicked(functionId);
+                document.getElementById(functionId).scrollIntoView();
+              }
             }
         }
     }, [props.menuItemSelected, props.functionList])

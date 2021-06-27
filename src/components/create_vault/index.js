@@ -51,24 +51,27 @@ const CustomVaultBuild = (props) => {
     }, [props.vaultid, props.viewerMode])
 
     const templateDisplay = () => {
+        
         if (!(props.viewerMode)) {
+            return (
+                <TemplateInputArea />
+            )
+        } else if (props.viewerMode) {
             return (
                 <TemplateDisplay/>
             )
-        } else if (props.viewerMode) {
-            return <TemplateInputArea />
         }
     }
 
     const displayInformationBox = () => {
         if (props.viewerMode) {
-            return null;
-        } else {
             return <InformationBoxContainer />
+        } else {
+            return null;
         }
     }
 
-    if (props.vaultid != '') {
+    if (props.vaultid !== '') {
         return (
             <React.Fragment>
                 <div id="main-app-layout">

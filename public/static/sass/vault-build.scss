@@ -6,9 +6,7 @@
 @import 'libs/breakpoints';
 @import 'libs/html-grid';
 
-.vba-input-cont {
-    height: calc(100vh - 48px)
-}
+
 
 .column2-area {
     background-color: #f7f7f7;
@@ -21,3 +19,60 @@
         width: 100%;
     }
 }
+
+.macro-generator-container {
+    background-color: #ebebeb;
+    width: 1360px;
+    height: calc(100vh - 44px);
+    display: flex;
+    justify-content: center;
+    padding: 7px 8px;
+    overflow: hidden;
+
+    & .function-break-down {
+      display: flex;
+      flex-flow: row wrap;
+      margin: 0px 10px;
+      width: inherit;
+
+      & a {
+        color: black !important;
+        margin-bottom: 14px;
+      }
+
+      & p {
+        cursor: pointer;
+        border: 1px black solid;
+        padding: 7px 7px;
+        text-align: center;
+        width: fit-content;
+        margin-right: 8px;
+        border-radius: 15px;
+        margin-bottom: 0px;
+
+        &:hover,
+        &.active {
+          background: black;
+          color: white;
+          font-weight: bolder;
+        }
+      }
+    }
+
+    & .template-funcs {
+      display: flex;
+    }
+
+    & pre {
+      width: inherit;
+      // margin: 0px;
+      overflow: unset !important;
+      & code {
+        background-color: white;
+        font-size: 14px !important;
+        & .section {
+          background-color: aqua;
+        }
+      }
+    }
+  }
