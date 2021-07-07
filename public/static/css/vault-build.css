@@ -11,7 +11,7 @@
 }
 
 .macro-generator-container {
-  background-color: #ebebeb;
+  background-color: white;
   width: 1360px;
   height: calc(100vh - 44px);
   display: flex;

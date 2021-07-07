@@ -1,82 +1,126 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { Menu } from 'semantic-ui-react';
-import { Link, Route, Redirect, Switch } from 'react-router-dom';
-import { setVaultID } from '../../actions';
-import AboutPage from '../about_page/index';
-import CustomVaultBuild from '../create_vault/index';
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { Menu } from "semantic-ui-react";
+import { Link, Route, Redirect, Switch, useHistory } from "react-router-dom";
+import { setVaultID } from "../../actions";
+import AboutPage from "../about_page/index";
+import CustomVaultBuild from "../create_vault/index";
+import TestPage from "./testPage";
 
 const MainAppHeader = (props) => {
 
-    // const [vaultID, setVaultID] = useState('');
-    const [activeItem, setActiveItem] = useState("create-vault")
-    
-    function handleItemClick (e,a,b) {
-        return (a.name)
+  const [activeItem, setActiveItem] = useState("vault-viewer");
+  const newVault = makeid(8)  
+  let history = useHistory()
+  // let vaultID = null
+
+  function makeid(length) {
+    var result = "";
+    var characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
+    return result;
+  }
 
-    useEffect(()=>{
-        console.log('mainAppHeader useeffect ran')
-    }, [activeItem])
-    
-    return (
-      <React.Fragment>
-        <Menu className="top-app-menu">
-          {/*todo: vault-viewer => Special vault ID*/}
-          <Menu.Item
-            onClick={(e, a) => {
-              setActiveItem(handleItemClick(e, a));
-            }}
-            name="vault-viewer"
-            active={activeItem === "vault-viewer"}
-          >
-            <Link to="/">Vault Viewer</Link>
-          </Menu.Item>
-          <Menu.Item
-            onClick={(e, a) => {
-              setActiveItem(handleItemClick(e, a));
-            }}
-            name="about-page"
-            active={activeItem === "about-page"}
-          >
-            <Link to="/about">What is this?</Link>
-          </Menu.Item>
-          <Menu.Item
-            onClick={(e, a) => {
-              setActiveItem(handleItemClick(e, a));
-            }}
-            name="create-vault"
-            active={activeItem === "create-vault"}
-          >
-            <Link
-              to={
-                "/vaultID/" + (props.vaultID !== "" ? props.vaultID + "/" : "")
-              }
-            >
-              Create your own vault
-            </Link>
-          </Menu.Item>
-        </Menu>
+  useEffect(() => {
+    console.log("mainAppHeader useeffect ran");
+  }, [activeItem]);
 
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/about/" />
-          </Route>
-          <Route exact path="/about" component={AboutPage}></Route>
-          <Route
-            path="/vaultID/:id?/:templateid?"
-            component={CustomVaultBuild}
-          ></Route>
-        </Switch>
-      </React.Fragment>
-    );
+  return (
+    <React.Fragment>
+      <Menu className="top-app-menu">
+        {/*todo: vault-viewer => Special vault ID*/}
+        <Menu.Item
+          onClick={(syntheticE, menuProps) => {
+            setActiveItem(menuProps.name);
+          }}
+          name="vault-viewer"
+          active={activeItem === "vault-viewer"}
+          className="top-menu-btn"
+        >
+          <Link
+            to={"/vaultID/" + (props.vaultID !== "" ? props.vaultID + "/" : "")}
+          >
+            Vault Viewer
+          </Link>
+        </Menu.Item>
 
-}
+        <Menu.Item
+          onClick={(syntheticE, menuProps) => {
+            setActiveItem(menuProps.name);
+          }}
+          name="about-page"
+          active={activeItem === "about-page"}
+          className="top-menu-btn"
+        >
+          <Link to="/about">What is this?</Link>
+        </Menu.Item>
+
+        <Menu.Item
+          onClick={(syntheticE, menuProps) => {
+            
+            console.log('menu clicked  ', newVault)
+            
+            // props.setVaultID(newVault);
+            setActiveItem(menuProps.name);
+          }}
+          name="create-vault"
+          active={activeItem === "create-vault"}
+          className="top-menu-btn"
+        >
+          <Link
+            to={"/vaultID/" + makeid(8)}
+          >
+            Create your own vault
+          </Link>
+
+        </Menu.Item>
+
+        <Menu.Item
+          onClick={(syntheticE, menuProps) => {
+            history.push("/vaultID/" + makeid(8))
+            setActiveItem(menuProps.name);
+          }}
+          name="test-page"
+          active={activeItem === "test-page"}
+          className="top-menu-btn"
+        >
+          <Link
+            // onClick={() => {
+            //   history.push("/vaultID/" + makeid(8));
+            // }}
+            to={"/testPage/" + makeid(8)}
+          >
+            Test Page
+          </Link>
+          
+        </Menu.Item>
+
+      </Menu>
+
+
+        {/* <Route exact path="/vaultId/">
+          <Redirect to="/about/" />
+        </Route> */}
+        <Route exact path="/about" component={AboutPage}></Route>
+        {/* <Route
+          path="/vaultID"
+          component={CustomVaultBuild}
+        >
+        </Route> */}
+        <Route path="/testpage/:id?/:templateid?" component={TestPage}></Route>
+        <Route path="/vaultID/:id?/:templateid?" component={CustomVaultBuild}></Route>
+
+    </React.Fragment>
+  );
+};
 
 const mapStateToProps = (state) => {
-    return {
-        'vaultID': state.appState['vaultid']
-    }
-}
+  return {
+    vaultID: state.appState["vaultid"],
+  };
+};
 
 export default connect(mapStateToProps, { setVaultID })(MainAppHeader);

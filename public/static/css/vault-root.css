@@ -1,0 +1,12 @@
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#main-app-layout {
+  display: flex;
+}
+
+/*# sourceMappingURL=vault-root.css.map */

@@ -12,6 +12,7 @@
   background: #fdfdfd;
   border: 2px #ededed solid;
   padding: 7px 4px;
+  border: 2px black solid;
   height: 66%;
   margin-bottom: 7px;
   overflow: auto;
@@ -70,6 +71,7 @@
   background: #fdfdfd;
   border: 2px #ededed solid;
   padding: 7px 4px;
+  border: 2px solid black;
   height: 33%;
   margin-bottom: 0px;
 }

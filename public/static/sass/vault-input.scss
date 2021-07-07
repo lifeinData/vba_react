@@ -1,6 +1,7 @@
 .template-display-inner-cont {
     display: flex;
     flex-direction: column;
+    border: 2px solid black;
     // justify-content: flex-end;
     background-color: white;
     width: 100%;
@@ -124,7 +125,7 @@
     height: calc(100vh - 60px);
     width: 100%;
     padding-top: 8px;
-    border: 2px #ededed solid;
+    border: 2px black solid;
     display: flex;
     flex-direction: column;
     background-color: white;

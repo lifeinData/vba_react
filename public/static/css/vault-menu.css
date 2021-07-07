@@ -54,7 +54,7 @@
 }
 .menu-choice-container .menu-choice-header-h1 {
   width: 100%;
-  border: 2px #ededed solid;
+  border: 2px black solid;
   padding: 8px 4px;
   background: white;
   height: 100%;
@@ -97,6 +97,22 @@
   margin-left: 8px;
   height: 25px;
   cursor: pointer;
+}
+
+.menu-header-h1 {
+  font-weight: 550;
+  font-size: 17px !important;
+  text-align: left;
+  margin: 10px 7px 6px 7px;
+  border-bottom: 2px black solid;
+  cursor: pointer;
+}
+.menu-header-h1.menu-choice {
+  margin-top: 0px;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  font-size: 17px !important;
+  line-height: 1.4285em;
 }
 
 /*# sourceMappingURL=vault-menu.css.map */

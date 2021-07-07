@@ -31,14 +31,14 @@ const CustomVaultBuild = (props) => {
         if ((vaultIDCapture === null) && (props.vaultid === '')) {
             let uniqueID = makeid(8)
             history.push('/vaultID/' + uniqueID)
-            props.setVaultID(uniqueID)
+            // props.setVaultID(uniqueID)
             
         } else {
             if (props.vaultid !== vaultIDCapture[0]) {
                 // props.vaultViewSwitch(false)
+                console.log('vault tag value parse runs here    ', vaultIDCapture[0])
                 props.setVaultID(vaultIDCapture[0])
                 if (props.match.params.templateid){
-                    console.log('vault tag value parse runs here')
                     props.vaultMenuParseMenuItem(props.match.params.templateid)
                     props.vaultTagValueParse(vaultIDCapture[0], props.match.params.templateid)
                     
@@ -71,20 +71,20 @@ const CustomVaultBuild = (props) => {
         }
     }
 
-    if (props.vaultid !== '') {
-        return (
-            <React.Fragment>
-                <div id="main-app-layout">
-                    <VaultMenu />
-                    {templateDisplay()}
-                    {displayInformationBox()}
-                </div>
-            </React.Fragment>
-        )
-    } else {
-        return null
+    const testFunction = () => {
+        console.log('create vault does run')
     }
-
+    return (
+        <React.Fragment>
+            <div id="main-app-layout">
+                {testFunction()}
+                <VaultMenu />
+                {templateDisplay()}
+                {displayInformationBox()}
+            </div>
+        </React.Fragment>
+    )
+    
 }
 
 const mapStateToProps = (state) => {

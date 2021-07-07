@@ -298,6 +298,7 @@ const VaultMenu = (props) => {
           bottomLeft: false,
           topLeft: false,
         }}
+        handleClasses="handle-div"
       >
         <Accordion exclusive={false} className="menu-choice-header-h1">
           {transformToMenu()}

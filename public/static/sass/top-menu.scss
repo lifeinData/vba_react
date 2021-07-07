@@ -1,0 +1,42 @@
+
+.ui.menu {
+    margin: 0px 8px 0px 8px;
+
+    & .item {
+      font-weight: 700 !important;
+    }
+  
+    & .disabled {
+      pointer-events: none;
+      color: darkgrey;
+    }
+  
+    &:not(.pointing) {
+      background: #1078f7;
+      border: 2px solid black;
+      margin-bottom: 0px;
+    
+      & a.active.item {
+        background: #89f0e6;
+        color: #1078f7;
+        
+        & a {
+            color:black;
+            font-weight:bolder;
+        }
+      }
+    
+      & a.item {
+        background-color: white;
+        color: #1078f7;
+        border-right: 2px black solid;
+        border-radius: 0px !important;
+      }
+
+      & a.active.item:hover,
+      a.item:hover {
+        background: #f2f2f2;
+        color: #1078f7;
+      }
+    }
+  }

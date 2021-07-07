@@ -27,6 +27,7 @@
       
       & .template-code-breakdown{
         @include info-box-div;
+        border: 2px black solid;
         height: 66%;
         margin-bottom: 7px;
         overflow: auto;
@@ -94,6 +95,7 @@
 
       & .template-info-cont {
         @include info-box-div;
+        border: 2px solid black;
         height: 33%;
         margin-bottom: 0px;
         
