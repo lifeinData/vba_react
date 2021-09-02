@@ -6,23 +6,13 @@ import { setVaultID } from "../../actions";
 import AboutPage from "../about_page/index";
 import CustomVaultBuild from "../create_vault/index";
 import TestPage from "./testPage";
+import { makeid } from "../../utils/generate-id";
 
 const MainAppHeader = (props) => {
 
   const [activeItem, setActiveItem] = useState("vault-viewer");
-  const newVault = makeid(8)  
   let history = useHistory()
   // let vaultID = null
-
-  function makeid(length) {
-    var result = "";
-    var characters = "abcdefghijklmnopqrstuvwxyz0123456789";
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
 
   useEffect(() => {
     console.log("mainAppHeader useeffect ran");
@@ -60,8 +50,7 @@ const MainAppHeader = (props) => {
 
         <Menu.Item
           onClick={(syntheticE, menuProps) => {
-            
-            console.log('menu clicked  ', newVault)
+            history.push("/vaultID/" + makeid(8))
             
             // props.setVaultID(newVault);
             setActiveItem(menuProps.name);
@@ -71,7 +60,7 @@ const MainAppHeader = (props) => {
           className="top-menu-btn"
         >
           <Link
-            to={"/vaultID/" + makeid(8)}
+            to={"/vaultID/" + makeid(8) }
           >
             Create your own vault
           </Link>

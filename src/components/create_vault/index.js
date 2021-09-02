@@ -8,20 +8,11 @@ import TemplateDisplay from './vault_constructors/templateDisplayConstructor'
 import InformationBoxContainer from './vault_constructors/informationBoxContainer'
 import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux';
+import { makeid } from '../../utils/generate-id';
 import TemplateInputArea from './vault_constructors/templateInputArea';
 
 const CustomVaultBuild = (props) => {
-    let history = useHistory();
-
-    function makeid(length) {
-        var result           = '';
-        var characters       = 'abcdefghijklmnopqrstuvwxyz0123456789';
-        var charactersLength = characters.length;
-        for ( var i = 0; i < length; i++ ) {
-           result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
-    }
+    const history = useHistory();
 
     useEffect(()=>{
         console.log('create_vault useeffect rendered. vaultid: ', props.vaultid)
