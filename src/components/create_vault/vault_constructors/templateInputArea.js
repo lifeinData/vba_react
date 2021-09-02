@@ -8,6 +8,7 @@ import { Formik, Form, Field } from 'formik';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import { makeid } from '../../../utils/generate-id';
 
 const TemplateInputArea = (props) => {
     let history = useHistory()
@@ -112,16 +113,6 @@ const TemplateInputArea = (props) => {
     
     const handleClose = () => {
         showPasswordDisplay(false) 
-    }
-
-    function makeid(length) {
-        var result           = '';
-        var characters       = 'abcdefghijklmnopqrstuvwxyz0123456789';
-        var charactersLength = characters.length;
-        for ( var i = 0; i < length; i++ ) {
-           result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
     }
 
     const generateEditPassword = () => {
