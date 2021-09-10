@@ -24,7 +24,6 @@ import redX from "../../../images/red_x.png";
 import { Formik, Form, Field } from "formik";
 
 const VaultMenu = (props) => {
-  let history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const [editorPwStatus, setEditorPwStatus] = useState(false);
 
@@ -34,6 +33,7 @@ const VaultMenu = (props) => {
   }, [props.templateCodeFlag, props.vaultid]);
 
   useEffect(() => {
+    // todo: rethink about this, combine variables possibly
     if (Object.keys(props.menuOptions).length === 0) {
       props.setFirstTimeLoad(true);
       props.vaultViewSwitch(false);
@@ -225,12 +225,14 @@ const VaultMenu = (props) => {
     }
   };
 
+  // part of modal
   const handleClose = () => {
     setShowModal(false);
   };
 
   return (
     <React.Fragment>
+      {/* todo: model can go into a seperate component of its own */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -244,6 +246,7 @@ const VaultMenu = (props) => {
         }}
       >
         <Fade in={showModal}>
+          {/* todo: put this as a seperate component input component*/}
           <React.Fragment>
             <Formik
               initialValues={{
